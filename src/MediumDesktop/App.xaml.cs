@@ -1,6 +1,9 @@
 ﻿using DryIoc;
 using DryIoc.MefAttributedModel;
 using MediumDesktop.Core.Extensions;
+using MediumDesktop.Core.Managers.Interfaces;
+using MediumDesktop.Core.Services;
+using MediumDesktop.Core.ViewModels;
 
 namespace MediumDesktop
 {   
@@ -9,15 +12,16 @@ namespace MediumDesktop
     /// </summary>
     public sealed partial class App
     {
-        private readonly IContainer _container = new Container().WithMefAttributedModel();
+        private readonly IContainer _container = new Container();
 
         public App()
         {
-            InitializeComponent();
-
             _container.RegisterExports(new[] { typeof(App).GetAssembly() });
 
             _container.RegisterShared();
+
+
+            _container.Resolve<INavigationService>().Navigate<LoginViewModel>();
         }
     }
 }

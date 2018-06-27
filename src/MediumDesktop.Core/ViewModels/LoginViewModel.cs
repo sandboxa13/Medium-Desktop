@@ -15,10 +15,10 @@ namespace MediumDesktop.Core.ViewModels
         {
             _loginManager = loginManager;
 
-            LoginCommand = ReactiveCommand.Create(async () =>   
-            {
-                await _loginManager.LoginAsync(Username, Password);
-            });
+            //LoginCommand = ReactiveCommand.CreateFromTask(async () =>   
+            //{
+            //    await _loginManager.LoginAsync(Username, Password);
+            //});
         }
 
        
