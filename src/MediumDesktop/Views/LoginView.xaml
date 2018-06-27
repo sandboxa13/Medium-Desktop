@@ -6,8 +6,8 @@
         xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800"
-        d:DataContext="{d:DesignInstance d:Type=viewModels:LoginViewModel}"
-        >
+        d:DataContext="{d:DesignInstance d:Type=viewModels:LoginViewModel}">
+
 
     <Grid >
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

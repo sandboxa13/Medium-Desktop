@@ -24,6 +24,7 @@ namespace MediumDesktop.Services
         private readonly IReadOnlyDictionary<Type, Type> _pages = new Dictionary<Type, Type>
         {
             {typeof(LoginViewModel), typeof(LoginView)},
+            {typeof(MainPageViewModel), typeof(MainPageView)},
         };
 
         public NavigationService(IResolver resolver)
@@ -37,22 +38,33 @@ namespace MediumDesktop.Services
 
         public async Task Navigate<T>(object parameter) where T : class
         {
+            var frame = (Frame)Application.Current.MainWindow.Content;
+
             switch (typeof(T).Name)
             {
-                case nameof(LoginViewModel):    
-                    NavigateFrame(GetChild<Frame>(Application.Current.MainWindow, 0));
+                case nameof(LoginViewModel):
+                    //NavigateFrame(/*GetChild<Frame>(*/(Frame)Application.Current.MainWindow.Content/*, 0)*/);
+                    //var frame = new Frame(){Content = new Page()};
+                    //((Page)(frame.Content)).DataContext = parameter;
+                    frame.Content = new LoginView();
+                    //Application.Current.MainWindow.Content = typeof(T);
+                    await Task.Delay(150);
+                    break;
+
+                case nameof(MainPageViewModel):
+                    frame.Content = new MainPageView();
                     await Task.Delay(150);
                     break;
             }
-            void NavigateFrame(Frame frame)
-            {
-                var viewModelType = typeof(T);
-                if ((Page)frame.Content != null &&
-                   ((Page)frame.Content).DataContext.GetType() == viewModelType &&
-                frame.Navigate(_pages[viewModelType], parameter))
-                ((Page)frame.Content).DataContext = parameter;
-                RaiseNavigated(viewModelType);
-            }
+            //void NavigateFrame(Frame frame)
+            //{
+            //    var viewModelType = typeof(T);
+            //    //if ((Page)frame.Content != null &&
+            //    //   ((Page)frame.Content).DataContext.GetType() == viewModelType &&
+            //    //frame.Navigate(_pages[viewModelType], parameter))
+            //    ((Page)frame.Content).DataContext = parameter;
+            //    RaiseNavigated(viewModelType);
+            //}
         }
 
         private void RaiseNavigated(Type type)  
