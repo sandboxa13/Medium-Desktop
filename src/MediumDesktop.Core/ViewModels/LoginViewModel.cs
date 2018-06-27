@@ -1,9 +1,12 @@
-﻿using MediumDesktop.Core.Managers.Interfaces;
+﻿using DryIocAttributes;
+using MediumDesktop.Core.Managers.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace MediumDesktop.Core.ViewModels
 {
+    [Reuse(ReuseType.Transient)]
+    [ExportEx(typeof(LoginViewModel))]
     public sealed class LoginViewModel : ViewModelBase
     {
         private readonly ILoginManager _loginManager;
