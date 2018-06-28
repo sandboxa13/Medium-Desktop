@@ -22,21 +22,21 @@ namespace MediumDesktop
 
             _container.RegisterShared();
 
-            if (Current.MainWindow == null)
+            var mainWindow = new MainWindow();
+
+            if (mainWindow.Frame == null)
             {
-                Current.MainWindow = new Window {Content = new Frame {Content = new Frame()}};
+                mainWindow.Frame = new Frame();
             }
 
-            var frame = (Frame)Current.MainWindow.Content;
+            var frame = mainWindow.Frame;
 
             if (frame.Content == null)
             {
-                frame.Content = new LoginView();
                 _container.Resolve<INavigationService>().Navigate<LoginViewModel>();
             }
 
-            Current.MainWindow.Activate();
-            Current.MainWindow.Show();
+            mainWindow.Show();
         }
     }
 }

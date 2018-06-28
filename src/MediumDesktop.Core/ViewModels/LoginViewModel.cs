@@ -22,7 +22,7 @@ namespace MediumDesktop.Core.ViewModels
 
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                await _loginManager.LoginAsync(Username, Password);
+                await _navigationService.Navigate<MainPageViewModel>();
             });
         }
 

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using DryIoc;
 using DryIocAttributes;
+using MediumDesktop.Core.Managers.Interfaces;
 using MediumDesktop.Core.Services;
 using MediumDesktop.Core.ViewModels;
 using MediumDesktop.Views;
@@ -38,36 +39,35 @@ namespace MediumDesktop.Services
 
         public async Task Navigate<T>(object parameter) where T : class
         {
-            var frame = (Frame)Application.Current.MainWindow.Content;
-
             switch (typeof(T).Name)
             {
                 case nameof(LoginViewModel):
-                    //NavigateFrame(/*GetChild<Frame>(*/(Frame)Application.Current.MainWindow.Content/*, 0)*/);
-                    //var frame = new Frame(){Content = new Page()};
-                    //((Page)(frame.Content)).DataContext = parameter;
-                    frame.Content = new LoginView();
-                    //Application.Current.MainWindow.Content = typeof(T);
-                    await Task.Delay(150);
+
+                    ((Frame)Application.Current.MainWindow.Content).Navigate(new LoginView
+                    {
+                        DataContext = new LoginViewModel(_resolver.Resolve<ILoginManager>(), _resolver.Resolve<INavigationService>())
+                    });
+
                     break;
 
                 case nameof(MainPageViewModel):
-                    frame.Content = new MainPageView();
-                    await Task.Delay(150);
+
+                    ((Frame)Application.Current.MainWindow.Content).Navigate(new MainPageView
+                    {
+                        DataContext = new MainPageViewModel()
+                    });
                     break;
             }
             //void NavigateFrame(Frame frame)
             //{
             //    var viewModelType = typeof(T);
-            //    //if ((Page)frame.Content != null &&
-            //    //   ((Page)frame.Content).DataContext.GetType() == viewModelType &&
-            //    //frame.Navigate(_pages[viewModelType], parameter))
-            //    ((Page)frame.Content).DataContext = parameter;
+
+
             //    RaiseNavigated(viewModelType);
             //}
         }
 
-        private void RaiseNavigated(Type type)  
+        private void RaiseNavigated(Type type)
         {
             _navigatedSubject.OnNext(type);
         }
