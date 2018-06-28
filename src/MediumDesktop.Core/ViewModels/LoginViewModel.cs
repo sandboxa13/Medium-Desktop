@@ -8,7 +8,7 @@ namespace MediumDesktop.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(LoginViewModel))]
-    public sealed class LoginViewModel 
+    public sealed class LoginViewModel
     {   
         private readonly ILoginManager _loginManager;
         private readonly INavigationService _navigationService;
@@ -20,13 +20,13 @@ namespace MediumDesktop.Core.ViewModels
 
             _navigationService.Navigate<MainPageViewModel>();
 
-            //LoginCommand = ReactiveCommand.CreateFromTask(async () =>
-            //{
-            //    await _loginManager.LoginAsync(Username, Password);
-            //});
+            LoginCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                await _loginManager.LoginAsync(Username, Password);
+            });
         }
 
-       
+
         [Reactive] public string Username { get; set; }
 
         [Reactive] public string Password { get; set; }

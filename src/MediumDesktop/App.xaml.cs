@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using DryIoc;
 using DryIoc.MefAttributedModel;
 using MediumDesktop.Core.Extensions;
-using MediumDesktop.Core.Managers.Interfaces;
 using MediumDesktop.Core.Services;
 using MediumDesktop.Core.ViewModels;
 using MediumDesktop.Views;
