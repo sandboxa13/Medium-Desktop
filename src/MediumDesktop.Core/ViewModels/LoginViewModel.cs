@@ -12,17 +12,13 @@ namespace MediumDesktop.Core.ViewModels
     public sealed class LoginViewModel
     {
         public LoginViewModel(
-            ILoginManager loginManager, 
+            ILoginManager loginManager,
             INavigationService navigationService)
         {
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
                 {
-                    await loginManager.LoginAsync(Username, Password);
+                    await navigationService.NavigateAsync<MainPageViewModel>();
                 });
-        }
-
-        private async Task Next()
-        {
         }
 
 
