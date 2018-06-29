@@ -35,17 +35,26 @@ namespace MediumDesktop.Services
 
         public IObservable<Type> Navigated => _navigatedSubject;
 
-        public async Task NavigateAsync<T>() where T : class
+        public void NavigateAsync<T>() where T : class
         {
-            var instanceView = (Page)Activator.CreateInstance(_pages[typeof(T)]);
-            instanceView.DataContext = _resolver.Resolve(typeof(T));
+            try
+            {
+                var instanceView = (Page)Activator.CreateInstance(_pages[typeof(T)]);
+                instanceView.DataContext = _resolver.Resolve(typeof(T));
 
-            var navigationService = _navigationService ?? await GetNavigationService();
-            navigationService.Navigate(instanceView);
+                var navigationService = _navigationService ??  GetNavigationService();
+                navigationService.Navigate(instanceView);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+          
         }
 
 
-        private async Task<NavigationService> GetNavigationService()
+        private NavigationService GetNavigationService()
         {
             var window = Application.Current.MainWindow;
             var frame = (Frame)window.FindName("RootFrame");
@@ -55,7 +64,7 @@ namespace MediumDesktop.Services
                 var viewType = args.Content.GetType();
                 var viewModelType = _pages.FirstOrDefault(x => x.Value == viewType).Key;
             };
-            return await Task.FromResult(_navigationService);
+            return _navigationService;
         }
     }
 }
