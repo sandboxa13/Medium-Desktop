@@ -140,7 +140,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ViewModelLocator.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
