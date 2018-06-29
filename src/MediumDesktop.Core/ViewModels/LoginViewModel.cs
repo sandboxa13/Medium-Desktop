@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using DryIocAttributes;
+﻿using DryIocAttributes;
 using MediumDesktop.Core.Managers.Interfaces;
 using MediumDesktop.Core.Services;
 using ReactiveUI;
@@ -16,9 +15,9 @@ namespace MediumDesktop.Core.ViewModels
             INavigationService navigationService)
         {
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
-                {
-                    await navigationService.NavigateAsync<MainPageViewModel>();
-                });
+            {
+                await loginManager.LoginAsync(Username, Password);
+            });
         }
 
 

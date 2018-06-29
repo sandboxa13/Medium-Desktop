@@ -37,24 +37,15 @@ namespace MediumDesktop.Services
 
         public async Task NavigateAsync<T>() where T : class
         {
-            try
-            {
-                var instanceView = (Page)Activator.CreateInstance(_pages[typeof(T)]);
-                instanceView.DataContext = _resolver.Resolve(typeof(T));
+            var instanceView = (Page)Activator.CreateInstance(_pages[typeof(T)]);
+            instanceView.DataContext = _resolver.Resolve(typeof(T));
 
-                var navigationService = _navigationService ?? await GetNavigationService();
-                navigationService.Navigate(instanceView);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-          
+            var navigationService = _navigationService ?? await GetNavigationService();
+            navigationService.Navigate(instanceView);
         }
 
 
-        private async  Task<NavigationService> GetNavigationService()
+        private async Task<NavigationService> GetNavigationService()
         {
             var window = Application.Current.MainWindow;
             var frame = (Frame)window.FindName("RootFrame");
