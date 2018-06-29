@@ -19,9 +19,8 @@ namespace MediumDesktop.Services
     public sealed class WpfNavigationService : INavigationService
     {
         private readonly IResolver _resolver;
-        private NavigationService _navigationService;
-
         private readonly Subject<Type> _navigatedSubject = new Subject<Type>();
+        private NavigationService _navigationService;
 
         private readonly IReadOnlyDictionary<Type, Type> _pages = new Dictionary<Type, Type>
         {
@@ -35,24 +34,22 @@ namespace MediumDesktop.Services
         }
 
         public IObservable<Type> Navigated => _navigatedSubject;
-
-        public async Task Navigate<T>() where T : class => await Navigate<T>(_resolver.Resolve<Func<T>>()());
-
-        public async Task Navigate<T>(object parameter) where T : class
+                
+        public async Task NavigateAsync<T>() where T : class
         {
-            switch (typeof(T).Name)
+            switch (typeof(T).Name) 
             {
                 case nameof(LoginViewModel):
-                    await NewMethod(typeof(LoginViewModel));
+                    await InternalNavigate(typeof(LoginViewModel));
                     break;
 
                 case nameof(MainPageViewModel):
-                    await NewMethod(typeof(MainPageViewModel));
+                    await InternalNavigate(typeof(MainPageViewModel));  
                     break;
             }
         }
 
-        private async Task NewMethod(Type type)
+        private async Task InternalNavigate(Type type)
         {
             var instanceView = (Page)Activator.CreateInstance(_pages[type]);
             instanceView.DataContext = _resolver.Resolve(type);
