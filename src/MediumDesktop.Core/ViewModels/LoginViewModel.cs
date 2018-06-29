@@ -1,24 +1,26 @@
-﻿using MediumDesktop.Core.Managers.Interfaces;
+﻿using DryIocAttributes;
+using MediumDesktop.Core.Managers.Interfaces;
+using MediumDesktop.Core.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace MediumDesktop.Core.ViewModels
 {
-    public sealed class LoginViewModel : ViewModelBase
+    [Reuse(ReuseType.Transient)]
+    [ExportEx(typeof(LoginViewModel))]
+    public sealed class LoginViewModel
     {
-        private readonly ILoginManager _loginManager;
-
-        public LoginViewModel(ILoginManager loginManager)
+        public LoginViewModel(
+            ILoginManager loginManager, 
+            INavigationService navigationService)
         {
-            _loginManager = loginManager;
-
-            LoginCommand = ReactiveCommand.Create(async () =>   
+            LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                await _loginManager.LoginAsync(Username, Password);
+                await loginManager.LoginAsync(Username, Password);
             });
         }
 
-       
+
         [Reactive] public string Username { get; set; }
 
         [Reactive] public string Password { get; set; }
