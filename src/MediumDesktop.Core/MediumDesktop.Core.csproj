@@ -68,14 +68,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DryIoc, Version=2.9.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DryIoc.dll.2.9.7\lib\net45\DryIoc.dll</HintPath>
+    <Reference Include="DryIoc, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DryIoc.dll.3.0.0\lib\net45\DryIoc.dll</HintPath>
     </Reference>
-    <Reference Include="DryIoc.MefAttributedModel, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DryIoc.MefAttributedModel.dll.2.5.0\lib\net45\DryIoc.MefAttributedModel.dll</HintPath>
+    <Reference Include="DryIoc.MefAttributedModel, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DryIoc.MefAttributedModel.dll.4.0.0\lib\net45\DryIoc.MefAttributedModel.dll</HintPath>
     </Reference>
-    <Reference Include="DryIocAttributes, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DryIocAttributes.dll.2.5.0\lib\net45\DryIocAttributes.dll</HintPath>
+    <Reference Include="DryIocAttributes, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DryIocAttributes.dll.4.0.0\lib\net45\DryIocAttributes.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows.Navigation;
 using DryIoc;
 using DryIocAttributes;
-using MediumDesktop.Core.Managers.Interfaces;
 using MediumDesktop.Core.Services;
 using MediumDesktop.Core.ViewModels;
 using MediumDesktop.Views;
@@ -16,9 +16,10 @@ namespace MediumDesktop.Services
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(INavigationService))]
-    public sealed class NavigationService : INavigationService
+    public sealed class WpfNavigationService : INavigationService
     {
         private readonly IResolver _resolver;
+        private NavigationService _navigationService;
 
         private readonly Subject<Type> _navigatedSubject = new Subject<Type>();
 
@@ -26,63 +27,51 @@ namespace MediumDesktop.Services
         {
             {typeof(LoginViewModel), typeof(LoginView)},
             {typeof(MainPageViewModel), typeof(MainPageView)},
-        };
+        };  
 
-        public NavigationService(IResolver resolver)
+        public WpfNavigationService(IResolver resolver)
         {
             _resolver = resolver;
         }
 
         public IObservable<Type> Navigated => _navigatedSubject;
 
-        public Task Navigate<T>() where T : class => Navigate<T>(_resolver.Resolve<Func<T>>()());
+        public async Task Navigate<T>() where T : class => await Navigate<T>(_resolver.Resolve<Func<T>>()());
 
         public async Task Navigate<T>(object parameter) where T : class
         {
             switch (typeof(T).Name)
             {
                 case nameof(LoginViewModel):
-
-                    ((Frame)Application.Current.MainWindow.Content).Navigate(new LoginView
-                    {
-                        DataContext = new LoginViewModel(_resolver.Resolve<ILoginManager>(), _resolver.Resolve<INavigationService>())
-                    });
-
+                    await NewMethod(typeof(LoginViewModel));
                     break;
 
                 case nameof(MainPageViewModel):
-
-                    ((Frame)Application.Current.MainWindow.Content).Navigate(new MainPageView
-                    {
-                        DataContext = new MainPageViewModel()
-                    });
+                    await NewMethod(typeof(MainPageViewModel));
                     break;
             }
-            //void NavigateFrame(Frame frame)
-            //{
-            //    var viewModelType = typeof(T);
-
-
-            //    RaiseNavigated(viewModelType);
-            //}
         }
 
-        private void RaiseNavigated(Type type)
+        private async Task NewMethod(Type type)
         {
-            _navigatedSubject.OnNext(type);
+            var instanceView = (Page)Activator.CreateInstance(_pages[type]);
+            instanceView.DataContext = _resolver.Resolve(type);
+
+            var navigationService = _navigationService ?? await GetNavigationService();
+            navigationService.Navigate(instanceView);
         }
 
-        private static T GetChild<T>(DependencyObject root, int depth) where T : DependencyObject
+        private async Task<NavigationService> GetNavigationService()
         {
-            var childrenCount = VisualTreeHelper.GetChildrenCount(root);
-            for (var x = 0; x < childrenCount; x++)
+            var window = Application.Current.MainWindow;
+            var frame = (Frame)window.FindName("RootFrame");
+            _navigationService = frame.NavigationService;
+            _navigationService.Navigated += (sender, args) =>
             {
-                var child = VisualTreeHelper.GetChild(root, x);
-                if (child is T ths && depth-- == 0) return ths;
-                var frame = GetChild<T>(child, depth);
-                if (frame != null) return frame;
-            }
-            return null;
+                var viewType = args.Content.GetType();
+                var viewModelType = _pages.FirstOrDefault(x => x.Value == viewType).Key;
+            };
+            return await Task.FromResult(_navigationService);
         }
     }
 }

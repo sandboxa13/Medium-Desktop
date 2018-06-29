@@ -24,12 +24,12 @@ namespace MediumDesktop
 
             var mainWindow = new MainWindow();
 
-            if (mainWindow.Frame == null)
+            if (mainWindow.RootFrame == null)
             {
-                mainWindow.Frame = new Frame();
+                mainWindow.RootFrame = new Frame();
             }
 
-            var frame = mainWindow.Frame;
+            var frame = mainWindow.RootFrame;
 
             if (frame.Content == null)
             {
