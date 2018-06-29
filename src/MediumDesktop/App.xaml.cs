@@ -33,7 +33,7 @@ namespace MediumDesktop
 
             if (frame.Content == null)
             {
-                _container.Resolve<INavigationService>().Navigate<LoginViewModel>();
+                _container.Resolve<INavigationService>().NavigateAsync<LoginViewModel>();
             }
 
             mainWindow.Show();

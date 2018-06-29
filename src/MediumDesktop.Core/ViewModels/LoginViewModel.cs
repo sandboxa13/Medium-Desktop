@@ -18,11 +18,9 @@ namespace MediumDesktop.Core.ViewModels
             _loginManager = loginManager;
             _navigationService = navigationService;
 
-            _navigationService.Navigate<MainPageViewModel>();
-
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                await _navigationService.Navigate<MainPageViewModel>();
+                await _navigationService.NavigateAsync<MainPageViewModel>();
             });
         }
 
