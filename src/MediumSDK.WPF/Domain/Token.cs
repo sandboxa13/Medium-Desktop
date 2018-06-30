@@ -1,5 +1,5 @@
 ﻿using System;
-using MediumSDK.WPF.Helpers;
+using MediumSDK.WPF.Converters;
 using Newtonsoft.Json;
 
 namespace MediumSDK.WPF.Domain

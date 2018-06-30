@@ -47,7 +47,7 @@
     <Compile Include="Domain\OauthClient.cs" />
     <Compile Include="Domain\Scope.cs" />
     <Compile Include="Domain\Token.cs" />
-    <Compile Include="Helpers\UnixTimestampConverter.cs" />
+    <Compile Include="Converters\UnixTimestampConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

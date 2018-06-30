@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Globalization;
 using Newtonsoft.Json;
 
-namespace MediumSDK.WPF.Helpers
-{
+namespace MediumSDK.WPF.Converters
+{   
     internal class UnixTimestampConverter : JsonConverter
     {
         private static readonly DateTime _epoch = new DateTime(1970, 1, 1);
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue(((DateTime)value - _epoch).TotalMilliseconds.ToString());
+            writer.WriteRawValue(((DateTime)value - _epoch).TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
         }
 
         public override bool CanConvert(Type objectType)
