@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumDesktop", "MediumDesk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumDesktop.Core", "MediumDesktop.Core\MediumDesktop.Core.csproj", "{AE54CB46-23D8-44C3-80F3-D3DAE3D9C084}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumSDK.WPF", "MediumSDK.WPF\MediumSDK.WPF.csproj", "{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{AE54CB46-23D8-44C3-80F3-D3DAE3D9C084}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE54CB46-23D8-44C3-80F3-D3DAE3D9C084}.Release|x64.ActiveCfg = Release|x64
 		{AE54CB46-23D8-44C3-80F3-D3DAE3D9C084}.Release|x64.Build.0 = Release|x64
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Debug|x64.Build.0 = Debug|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Release|x64.ActiveCfg = Release|Any CPU
+		{14CBAA7D-6570-450F-9CA0-E7AF991C0E1F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
