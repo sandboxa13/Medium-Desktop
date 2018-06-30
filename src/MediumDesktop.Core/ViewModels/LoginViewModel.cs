@@ -26,6 +26,6 @@ namespace MediumDesktop.Core.ViewModels
             });
         }
 
-        public ReactiveCommand LoginCommand { get; set; }
+        public ReactiveCommand LoginCommand { get; }
     }
 }

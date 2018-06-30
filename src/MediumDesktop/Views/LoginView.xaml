@@ -11,7 +11,7 @@
 
     <Grid >
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="100" Margin="5" Padding="10" Command="{Binding LoginCommand}"/>
+            <Button Content="Login" Width="100" Margin="5" Padding="10" Command="{Binding LoginCommand}"/>
         </StackPanel>
     </Grid>
 </Page>
