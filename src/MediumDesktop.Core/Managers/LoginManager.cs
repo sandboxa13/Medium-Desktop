@@ -14,11 +14,11 @@ namespace MediumDesktop.Core.Managers
         public LoginManager(IApiController apiController)
         {
             _apiController = apiController;
-        }
+        }   
 
-        public async Task LoginAsync(string username, string password)
+        public async Task<bool> LoginAsync()
         {
-            await _apiController.AuthorizateAsync();
+            return await _apiController.AuthorizateAsync();
         }
     }
 }

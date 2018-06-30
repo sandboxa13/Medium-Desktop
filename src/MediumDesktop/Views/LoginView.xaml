@@ -11,9 +11,6 @@
 
     <Grid >
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Width="100" Margin="5" Text="{Binding Username}"/>
-            <TextBox Width="100" Margin="5" Text="{Binding Password}"/>
-            
             <Button Width="100" Margin="5" Padding="10" Command="{Binding LoginCommand}"/>
         </StackPanel>
     </Grid>

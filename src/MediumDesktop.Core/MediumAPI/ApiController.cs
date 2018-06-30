@@ -3,7 +3,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using DryIocAttributes;
-using Medium;
 using Medium.Authentication;
 using Newtonsoft.Json;
 
@@ -13,19 +12,24 @@ namespace MediumDesktop.Core.MediumAPI
     [ExportEx(typeof(IApiController))]
     public sealed class ApiController : IApiController
     {
-        private OAuthClient _client;
-        private string _clientId = "ce250fa7c114";
+        private string _clientId = "ce250fa7c114";  
         private string _clientSecret = "76880f31a925708f1f04bc522c0c88b3e395edcb";
         private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
+        private Token _accessToken;
 
-        public async Task AuthorizateAsync()
+        public async Task<bool> AuthorizateAsync()
         {
-            _client = new OAuthClient(_clientId, _clientSecret);
-
             var code = await GetAuthCode();
 
             var accessToken = await GetToken(code);
 
+            _accessToken = accessToken;
+
+            return accessToken.AccessToken != null;
+        }
+
+        public async Task RefreshTokenAsync()
+        {
         }
 
         private async Task<string> GetAuthCode()
