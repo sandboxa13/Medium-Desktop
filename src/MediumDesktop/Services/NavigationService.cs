@@ -26,7 +26,7 @@ namespace MediumDesktop.Services
         {
             {typeof(LoginViewModel), typeof(LoginView)},
             {typeof(MainPageViewModel), typeof(MainPageView)},
-        };  
+        };
 
         public WpfNavigationService(IResolver resolver)
         {
@@ -34,29 +34,16 @@ namespace MediumDesktop.Services
         }
 
         public IObservable<Type> Navigated => _navigatedSubject;
-                
+
         public async Task NavigateAsync<T>() where T : class
         {
-            switch (typeof(T).Name) 
-            {
-                case nameof(LoginViewModel):
-                    await InternalNavigate(typeof(LoginViewModel));
-                    break;
-
-                case nameof(MainPageViewModel):
-                    await InternalNavigate(typeof(MainPageViewModel));  
-                    break;
-            }
-        }
-
-        private async Task InternalNavigate(Type type)
-        {
-            var instanceView = (Page)Activator.CreateInstance(_pages[type]);
-            instanceView.DataContext = _resolver.Resolve(type);
+            var instanceView = (Page)Activator.CreateInstance(_pages[typeof(T)]);
+            instanceView.DataContext = _resolver.Resolve(typeof(T));
 
             var navigationService = _navigationService ?? await GetNavigationService();
             navigationService.Navigate(instanceView);
         }
+
 
         private async Task<NavigationService> GetNavigationService()
         {

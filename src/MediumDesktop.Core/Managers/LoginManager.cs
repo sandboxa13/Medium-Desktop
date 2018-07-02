@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DryIocAttributes;
 using MediumDesktop.Core.Managers.Interfaces;
+using MediumDesktop.Core.MediumAPI;
 
 namespace MediumDesktop.Core.Managers
 {
@@ -8,9 +9,16 @@ namespace MediumDesktop.Core.Managers
     [ExportEx(typeof(ILoginManager))]
     public sealed class LoginManager : ILoginManager
     {
-        public async Task LoginAsync(string username, string password)
+        private readonly IApiController _apiController;
+
+        public LoginManager(IApiController apiController)
         {
-            await Task.CompletedTask;
+            _apiController = apiController;
+        }   
+
+        public async Task<bool> LoginAsync()
+        {
+            return await _apiController.AuthorizateAsync();
         }
     }
 }

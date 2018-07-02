@@ -9,6 +9,6 @@
       Title="MainPageView">
 
     <Grid>
-        
+        <TextBlock Text="Welcome to medium" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </Grid>
 </Page>

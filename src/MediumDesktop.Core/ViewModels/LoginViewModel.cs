@@ -2,7 +2,6 @@
 using MediumDesktop.Core.Managers.Interfaces;
 using MediumDesktop.Core.Services;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 namespace MediumDesktop.Core.ViewModels
 {
@@ -11,19 +10,21 @@ namespace MediumDesktop.Core.ViewModels
     public sealed class LoginViewModel
     {
         public LoginViewModel(
-            ILoginManager loginManager, 
-            INavigationService navigationService)
+            ILoginManager loginManager,
+            INavigationService navigationService,
+            IMainWindowService mainWindowService)
         {
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                await loginManager.LoginAsync(Username, Password);
+                var result = await loginManager.LoginAsync();
+
+                if (result)
+                {
+                    mainWindowService.ActivateWindow();
+                    await navigationService.NavigateAsync<MainPageViewModel>();
+                }
             });
         }
-
-
-        [Reactive] public string Username { get; set; }
-
-        [Reactive] public string Password { get; set; }
 
         public ReactiveCommand LoginCommand { get; }
     }
