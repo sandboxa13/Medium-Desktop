@@ -2,6 +2,7 @@
 using MediumDesktop.Core.Managers.Interfaces;
 using MediumDesktop.Core.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace MediumDesktop.Core.ViewModels
 {
@@ -16,16 +17,22 @@ namespace MediumDesktop.Core.ViewModels
         {
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
+                SpinnerVisible = true;
+
                 var result = await loginManager.LoginAsync();
 
                 if (result)
                 {
                     mainWindowService.ActivateWindow();
                     await navigationService.NavigateAsync<MainPageViewModel>();
+
+                    SpinnerVisible = false;
                 }
             });
         }
 
         public ReactiveCommand LoginCommand { get; }
+
+        [Reactive] public bool SpinnerVisible { get; set; }
     }
 }

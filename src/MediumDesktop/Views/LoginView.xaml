@@ -4,14 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
-        mc:Ignorable="d"
+        xmlns:views="clr-namespace:MediumDesktop.Views"
+        xmlns:converters="clr-namespace:MediumDesktop.Converters"
+        mc:Ignorable="d"    
         Title="LoginView" Height="450" Width="800"
         d:DataContext="{d:DesignInstance d:Type=viewModels:LoginViewModel}">
 
-
     <Grid >
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Visibility="{Binding SpinnerVisible, Converter={StaticResource InverseBoolConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Login" Width="100" Margin="5" Padding="10" Command="{Binding LoginCommand}"/>
         </StackPanel>
+
+        <views:Spinner Visibility="{Binding SpinnerVisible, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

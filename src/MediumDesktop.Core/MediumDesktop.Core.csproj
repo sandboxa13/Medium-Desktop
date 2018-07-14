@@ -191,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\ApplicationData.cs" />
+    <Compile Include="Domain\User.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Managers\Interfaces\ILoginManager.cs" />
     <Compile Include="Managers\LoginManager.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logger\" />

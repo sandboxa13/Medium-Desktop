@@ -39,6 +39,11 @@ namespace MediumDesktop.Core.MediumAPI
         {
         }
 
+        public async Task GetUserProfile()
+        {
+
+        }
+
         private async Task<ApplicationData> GetApplicationData()
         {
             return await Task.Run(() =>
