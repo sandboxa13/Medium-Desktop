@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using DryIocAttributes;
+using LiteDB;
+using MediumDesktop.Core.Domain;
 using MediumSDK.WPF.Domain;
 
 namespace MediumDesktop.Core.MediumAPI
@@ -9,14 +11,20 @@ namespace MediumDesktop.Core.MediumAPI
     [ExportEx(typeof(IApiController))]
     public sealed class ApiController : IApiController
     {
-        private string _clientId = "ce250fa7c114";
-        private string _clientSecret = "76880f31a925708f1f04bc522c0c88b3e395edcb";
+        private readonly LiteDatabase _liteDatabase;
         private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
         private Token _accessToken;
 
+        public ApiController(LiteDatabase liteDatabase)
+        {
+            _liteDatabase = liteDatabase;
+        }
+
         public async Task<bool> AuthorizateAsync()
         {
-            var oAuthClient = new OauthClient(_clientId, _clientSecret, _redirectUrl, "text");
+            var result = await GetApplicationData();
+
+            var oAuthClient = new OauthClient(result.ClientId, result.ClientSecret, _redirectUrl, "text");
 
             var code = await oAuthClient.GetAuthCode();
 
@@ -26,8 +34,21 @@ namespace MediumDesktop.Core.MediumAPI
             return accessToken.AccessToken != null;
         }
 
+
         public async Task RefreshTokenAsync()
         {
+        }
+
+        private async Task<ApplicationData> GetApplicationData()
+        {
+            return await Task.Run(() =>
+            {
+                var applicationDataCollection = _liteDatabase.GetCollection<ApplicationData>("application");
+
+                var result = applicationDataCollection.FindOne(x => x.Id == 1);
+
+                return result;
+            });
         }
     }
 }
