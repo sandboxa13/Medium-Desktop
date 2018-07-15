@@ -20,5 +20,4 @@ namespace MediumDesktop.Converters
             return CollapsedBox;
         }
     }
-
 }
