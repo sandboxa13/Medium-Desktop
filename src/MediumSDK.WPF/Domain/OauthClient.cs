@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using MediumSDK.WPF.Extensions;
 using Newtonsoft.Json;
 
 namespace MediumSDK.WPF.Domain
@@ -13,7 +14,7 @@ namespace MediumSDK.WPF.Domain
         private readonly string _clientSecret;
         private readonly string _state;
         private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
-
+        private Token _token;
         public OauthClient(string clientId, string clientSecret, string state)
         {
             _clientId = clientId;
@@ -28,7 +29,7 @@ namespace MediumSDK.WPF.Domain
             http.Start();
 
             var url =
-                $"https://medium.com/m/oauth/authorize?client_id={_clientId}&scope=basicProfile,publishPost&state={_state}&response_type=code&redirect_uri={System.Uri.EscapeDataString(_redirectUrl)}";
+                $"https://medium.com/m/oauth/authorize?client_id={_clientId}&scope=basicProfile,publishPost&state={_state}&response_type=code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
 
             System.Diagnostics.Process.Start(url);
             var context = await http.GetContextAsync();
@@ -53,7 +54,7 @@ namespace MediumSDK.WPF.Domain
         {
             var tokenRequestURI = "https://api.medium.com/v1/tokens";
             var tokenRequestBody =
-                $"code={code}&client_id={_clientId}&client_secret={_clientSecret}&grant_type=authorization_code&redirect_uri={System.Uri.EscapeDataString(_redirectUrl)}";
+                $"code={code}&client_id={_clientId}&client_secret={_clientSecret}&grant_type=authorization_code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
 
             var tokenRequest = (HttpWebRequest)WebRequest.Create(tokenRequestURI);
             tokenRequest.Method = "POST";
@@ -67,16 +68,30 @@ namespace MediumSDK.WPF.Domain
 
             var tokenResponse = await tokenRequest.GetResponseAsync();
 
-            Token token;
 
             using (var reader = new StreamReader(tokenResponse.GetResponseStream() ?? throw new NullReferenceException()))
             {
                 var responseText = await reader.ReadToEndAsync();
 
-                token = JsonConvert.DeserializeObject<Token>(responseText);
+                _token = JsonConvert.DeserializeObject<Token>(responseText);
             }
 
-            return await Task.FromResult(token);
+            return await Task.FromResult(_token);
+        }
+            
+        public async Task<User> GetUserProfile()
+        {   
+            var userProfileRequestUri = "https://api.medium.com/v1/me"; 
+
+            var tokenRequest = (HttpWebRequest)WebRequest.Create(userProfileRequestUri);
+            tokenRequest.Method = "GET";
+            tokenRequest.ContentType = "application/x-www-form-urlencoded";
+            tokenRequest.Accept = "Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            tokenRequest.Headers["Authorization"] = "Bearer " + _token.AccessToken;
+
+            var user =  tokenRequest.GetResponseJson<User>();
+
+            return await Task.FromResult(user);
         }
     }
 }

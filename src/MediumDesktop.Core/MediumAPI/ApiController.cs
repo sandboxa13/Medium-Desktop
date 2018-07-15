@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using DryIocAttributes;
-using LiteDB;
-using MediumDesktop.Core.Domain;
 using MediumDesktop.Core.Managers.Interfaces;
 using MediumSDK.WPF.Domain;
 
@@ -13,6 +11,7 @@ namespace MediumDesktop.Core.MediumAPI
     {
         private readonly IStoreManager _storeManager;
         private Token _accessToken;
+        private OauthClient _oauthClient;
 
         public ApiController(IStoreManager storeManager)
         {
@@ -23,12 +22,14 @@ namespace MediumDesktop.Core.MediumAPI
         {
             var applicationData = await _storeManager.GetApplicationData();
 
-            var oAuthClient = new OauthClient(applicationData.ClientId, applicationData.ClientSecret, "text");
+            _oauthClient = new OauthClient(applicationData.ClientId, applicationData.ClientSecret, "text");
 
-            var code = await oAuthClient.GetAuthCode();
+            var code = await _oauthClient.GetAuthCode();
 
-            var accessToken = await oAuthClient.GetToken(code);
+            var accessToken = await _oauthClient.GetToken(code);
             _accessToken = accessToken;
+
+            await GetUserProfile();
 
             return accessToken.AccessToken != null;
         }
@@ -40,7 +41,7 @@ namespace MediumDesktop.Core.MediumAPI
 
         public async Task GetUserProfile()
         {
-
+            _oauthClient.GetUserProfile();
         }
     }
 }
