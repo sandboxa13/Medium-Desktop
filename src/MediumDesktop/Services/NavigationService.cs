@@ -10,7 +10,9 @@ using DryIoc;
 using DryIocAttributes;
 using MediumDesktop.Core.Services;
 using MediumDesktop.Core.ViewModels;
+using MediumDesktop.Core.ViewModels.User;
 using MediumDesktop.Views;
+using MediumDesktop.Views.User;
 
 namespace MediumDesktop.Services
 {
@@ -26,6 +28,7 @@ namespace MediumDesktop.Services
         {
             {typeof(LoginViewModel), typeof(LoginView)},
             {typeof(MainPageViewModel), typeof(MainPageView)},
+            {typeof(UserProfileViewModel), typeof(UserProfileView)},
         };
 
         public WpfNavigationService(IResolver resolver)

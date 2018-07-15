@@ -1,11 +1,10 @@
 ﻿using DryIocAttributes;
-using ReactiveUI;
 
-namespace MediumDesktop.Core.ViewModels
+namespace MediumDesktop.Core.ViewModels.User
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(UserProfileViewModel))]
-    public sealed class UserProfileViewModel : ReactiveObject
+    public sealed class UserProfileViewModel : BaseViewModel
     {
 
     }

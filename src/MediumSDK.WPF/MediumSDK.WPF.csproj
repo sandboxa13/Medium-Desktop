@@ -43,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\JsonResponse.cs" />
     <Compile Include="Domain\MediumClient.cs" />
     <Compile Include="Domain\OauthClient.cs" />
     <Compile Include="Domain\Scope.cs" />
     <Compile Include="Domain\Token.cs" />
     <Compile Include="Converters\UnixTimestampConverter.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Extensions\WebRequestExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

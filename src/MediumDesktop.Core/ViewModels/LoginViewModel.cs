@@ -8,7 +8,7 @@ namespace MediumDesktop.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(LoginViewModel))]
-    public sealed class LoginViewModel : ReactiveObject
+    public sealed class LoginViewModel : BaseViewModel
     {
         public LoginViewModel(
             ILoginManager loginManager,

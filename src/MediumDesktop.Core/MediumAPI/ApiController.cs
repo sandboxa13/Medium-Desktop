@@ -1,8 +1,6 @@
-﻿using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DryIocAttributes;
-using LiteDB;
-using MediumDesktop.Core.Domain;
+using MediumDesktop.Core.Managers.Interfaces;
 using MediumSDK.WPF.Domain;
 
 namespace MediumDesktop.Core.MediumAPI
@@ -11,25 +9,23 @@ namespace MediumDesktop.Core.MediumAPI
     [ExportEx(typeof(IApiController))]
     public sealed class ApiController : IApiController
     {
-        private readonly LiteDatabase _liteDatabase;
-        private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
-        private Token _accessToken;
+        private readonly IStoreManager _storeManager;
+        private OauthClient _oauthClient;
 
-        public ApiController(LiteDatabase liteDatabase)
+        public ApiController(IStoreManager storeManager)
         {
-            _liteDatabase = liteDatabase;
+            _storeManager = storeManager;
         }
 
-        public async Task<bool> AuthorizateAsync()
+        public async Task<bool> AuthorizateAsync()  
         {
-            var result = await GetApplicationData();
+            var applicationData = await _storeManager.GetApplicationData();
 
-            var oAuthClient = new OauthClient(result.ClientId, result.ClientSecret, _redirectUrl, "text");
+            _oauthClient = new OauthClient(applicationData.ClientId, applicationData.ClientSecret, "text");
 
-            var code = await oAuthClient.GetAuthCode();
+            var code = await _oauthClient.GetAuthCode();
 
-            var accessToken = await oAuthClient.GetToken(code);
-            _accessToken = accessToken;
+            var accessToken = await _oauthClient.GetToken(code);
 
             return accessToken.AccessToken != null;
         }
@@ -39,21 +35,11 @@ namespace MediumDesktop.Core.MediumAPI
         {
         }
 
-        public async Task GetUserProfile()
+        public async Task<User> GetUserProfile()
         {
+            var user = await _oauthClient.GetUserProfile();
 
-        }
-
-        private async Task<ApplicationData> GetApplicationData()
-        {
-            return await Task.Run(() =>
-            {
-                var applicationDataCollection = _liteDatabase.GetCollection<ApplicationData>("application");
-
-                var result = applicationDataCollection.FindOne(x => x.Id == 1);
-
-                return result;
-            });
+            return await Task.FromResult(user);
         }
     }
 }

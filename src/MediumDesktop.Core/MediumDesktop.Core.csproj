@@ -194,15 +194,19 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Managers\Interfaces\ILoginManager.cs" />
+    <Compile Include="Managers\Interfaces\IStoreManager.cs" />
     <Compile Include="Managers\LoginManager.cs" />
+    <Compile Include="Managers\StoreManager.cs" />
     <Compile Include="MediumAPI\ApiController.cs" />
     <Compile Include="MediumAPI\IApiController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IMainWindowService.cs" />
     <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\UserProfileViewModel.cs" />
+    <Compile Include="ViewModels\User\UserContentViewModel.cs" />
+    <Compile Include="ViewModels\User\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logger\" />
