@@ -10,9 +10,7 @@ namespace MediumDesktop.Converters
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
 
-            return (bool)value
-                ? BooleanBoxes.False
-                : BooleanBoxes.True;
+            return ((bool)value) ? VisibilityBoxes.CollapsedBox : VisibilityBoxes.VisibleBox;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -24,5 +22,4 @@ namespace MediumDesktop.Converters
                 : BooleanBoxes.True;
         }
     }
-
 }

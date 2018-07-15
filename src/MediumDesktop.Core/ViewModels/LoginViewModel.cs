@@ -8,7 +8,7 @@ namespace MediumDesktop.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(LoginViewModel))]
-    public sealed class LoginViewModel
+    public sealed class LoginViewModel : ReactiveObject
     {
         public LoginViewModel(
             ILoginManager loginManager,
@@ -30,9 +30,11 @@ namespace MediumDesktop.Core.ViewModels
                 }
             });
         }
-
+            
         public ReactiveCommand LoginCommand { get; }
 
         [Reactive] public bool SpinnerVisible { get; set; }
+
+        [Reactive] public string TestText { get; set; }
     }
 }

@@ -6,5 +6,5 @@
         mc:Ignorable="d"    
         WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
-    <Frame NavigationUIVisibility="Hidden" x:Name="RootFrame" ></Frame>
+    <Frame NavigationUIVisibility="Hidden" x:Name="RootFrame"/>
 </Window>
