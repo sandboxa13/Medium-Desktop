@@ -7,5 +7,7 @@ namespace MediumDesktop.Core.MediumAPI
         Task<bool> AuthorizateAsync();
 
         Task RefreshTokenAsync();
+
+        Task GetUserProfile();
     }
 }
