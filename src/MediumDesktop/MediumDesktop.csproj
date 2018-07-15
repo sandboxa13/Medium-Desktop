@@ -165,6 +165,9 @@
     <Compile Include="Views\User\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Styles\BorderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

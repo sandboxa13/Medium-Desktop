@@ -43,9 +43,6 @@ namespace MediumDesktop.Core.ViewModels.User
         public ReactiveCommand SignOutCommand { get; private set; }
         public ReactiveCommand ShowContentCommand { get; }
 
-        public void Show()
-        {
-            IsVisible = !IsVisible;
-        }
+        public void Show() => IsVisible = !IsVisible;
     }
 }
