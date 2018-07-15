@@ -194,7 +194,9 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Managers\Interfaces\ILoginManager.cs" />
+    <Compile Include="Managers\Interfaces\IStoreManager.cs" />
     <Compile Include="Managers\LoginManager.cs" />
+    <Compile Include="Managers\StoreManager.cs" />
     <Compile Include="MediumAPI\ApiController.cs" />
     <Compile Include="MediumAPI\IApiController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,15 +14,11 @@ namespace MediumSDK.WPF.Domain
         private readonly string _state;
         private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
 
-
-        public OauthClient(string clientId, string clientSecret, string redirectUrl, string state)
+        public OauthClient(string clientId, string clientSecret, string state)
         {
             _clientId = clientId;
             _clientSecret = clientSecret;
             _state = state;
-
-            if (redirectUrl != string.Empty)
-                _redirectUrl = redirectUrl; 
         }
 
         public async Task<string> GetAuthCode()
