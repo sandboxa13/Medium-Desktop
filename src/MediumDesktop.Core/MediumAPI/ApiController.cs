@@ -10,7 +10,6 @@ namespace MediumDesktop.Core.MediumAPI
     public sealed class ApiController : IApiController
     {
         private readonly IStoreManager _storeManager;
-        private Token _accessToken;
         private OauthClient _oauthClient;
 
         public ApiController(IStoreManager storeManager)
@@ -27,9 +26,6 @@ namespace MediumDesktop.Core.MediumAPI
             var code = await _oauthClient.GetAuthCode();
 
             var accessToken = await _oauthClient.GetToken(code);
-            _accessToken = accessToken;
-
-            await GetUserProfile();
 
             return accessToken.AccessToken != null;
         }
@@ -39,9 +35,11 @@ namespace MediumDesktop.Core.MediumAPI
         {
         }
 
-        public async Task GetUserProfile()
+        public async Task<User> GetUserProfile()
         {
-            _oauthClient.GetUserProfile();
+            var user = await _oauthClient.GetUserProfile();
+
+            return await Task.FromResult(user);
         }
     }
 }

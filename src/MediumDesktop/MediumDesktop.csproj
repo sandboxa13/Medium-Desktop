@@ -159,8 +159,11 @@
     <Compile Include="Views\Spinner.xaml.cs">
       <DependentUpon>Spinner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserProfileView.xaml.cs">
-      <DependentUpon>UserProfileView.xaml</DependentUpon>
+    <Compile Include="Views\User\UserContentView.xaml.cs">
+      <DependentUpon>UserContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserProfilePage.xaml.cs">
+      <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Styles\ButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -200,7 +203,10 @@
     <Page Include="Views\Spinner.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserProfileView.xaml">
+    <Page Include="Views\User\UserContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\UserProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

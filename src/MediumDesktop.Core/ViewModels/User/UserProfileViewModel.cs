@@ -1,6 +1,6 @@
 ﻿using DryIocAttributes;
 
-namespace MediumDesktop.Core.ViewModels
+namespace MediumDesktop.Core.ViewModels.User
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(UserProfileViewModel))]

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MediumDesktop.Views
+namespace MediumDesktop.Views.User
 {
     /// <summary>
-    /// Interaction logic for UserProfileView.xaml
+    /// Interaction logic for UserContentView.xaml
     /// </summary>
-    public partial class UserProfileView : UserControl
+    public partial class UserContentView : UserControl
     {
-        public UserProfileView()
+        public UserContentView()
         {
             InitializeComponent();
         }
