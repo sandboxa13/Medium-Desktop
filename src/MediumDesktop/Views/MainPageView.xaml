@@ -12,13 +12,14 @@
 
     <Page.Resources>    
         <Style x:Key="UserContent.PopUp" TargetType="{x:Type Popup}">
-            <Setter Property="HorizontalOffset" Value="-60"/>
-            <Setter Property="Placement" Value="Absolute"/>
-            <Setter Property="VerticalOffset" Value="-380"/>
+            <Setter Property="HorizontalOffset" Value="-100"/>
+            <Setter Property="Placement" Value="Relative"/>
+            <Setter Property="VerticalOffset" Value="150"/>
             <Setter Property="StaysOpen" Value="False"/>
             <Setter Property="AllowsTransparency" Value="True"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="400"/>
+            <Setter Property="PlacementTarget" Value="{Binding ElementName=UserContentButton}"/>
         </Style>
 
 
@@ -67,6 +68,7 @@
 
 
         <Button Grid.Column="2" Grid.Row="0"
+                Name="UserContentButton"
                 Command="{Binding UserContentViewModel.ShowContentCommand}" 
                 Style="{StaticResource Button.Transparent}" 
                 HorizontalAlignment="Center"
