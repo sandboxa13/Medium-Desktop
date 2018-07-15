@@ -14,7 +14,7 @@
         <Style x:Key="UserContent.PopUp" TargetType="{x:Type Popup}">
             <Setter Property="HorizontalOffset" Value="-100"/>
             <Setter Property="Placement" Value="Relative"/>
-            <Setter Property="VerticalOffset" Value="150"/>
+            <Setter Property="VerticalOffset" Value="100"/>
             <Setter Property="StaysOpen" Value="False"/>
             <Setter Property="AllowsTransparency" Value="True"/>
             <Setter Property="Width" Value="200"/>
