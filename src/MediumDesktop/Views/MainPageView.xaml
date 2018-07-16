@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
+      xmlns:user="clr-namespace:MediumDesktop.Core.ViewModels.User;assembly=MediumDesktop.Core"
       xmlns:views="clr-namespace:MediumDesktop.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
