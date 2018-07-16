@@ -77,4 +77,25 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontWeight" Value="400"/>
     </Style>
+
+    <Style x:Key="Button.UserIcon" TargetType="Button" BasedOn="{StaticResource Button.Default}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="2" x:Name="border" BorderThickness="1" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <Image>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="../Images/userIcon.png"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
