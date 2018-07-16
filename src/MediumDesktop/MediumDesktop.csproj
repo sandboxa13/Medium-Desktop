@@ -160,7 +160,7 @@
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\VisibilityBoxes.cs" />
     <Compile Include="Views\Pages\BasePage.cs" />
-    <Compile Include="Views\Spinner.xaml.cs">
+    <Compile Include="Views\UserControls\Spinner.xaml.cs">
       <DependentUpon>Spinner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\UserContentView.xaml.cs">
@@ -207,7 +207,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Spinner.xaml">
+    <Page Include="Views\UserControls\Spinner.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\UserContentView.xaml">

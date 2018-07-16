@@ -1,6 +1,6 @@
 ﻿using MediumDesktop.Behaviors;
 
-namespace MediumDesktop.Views
+namespace MediumDesktop.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for Spinner.xaml

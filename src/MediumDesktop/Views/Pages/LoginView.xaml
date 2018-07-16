@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
-        xmlns:views="clr-namespace:MediumDesktop.Views"
         xmlns:pages="clr-namespace:MediumDesktop.Views.Pages"
+        xmlns:userControls="clr-namespace:MediumDesktop.Views.UserControls"
         mc:Ignorable="d"    
         Title="LoginView" Height="450" Width="800"
         d:DataContext="{d:DesignInstance d:Type=viewModels:LoginViewModel}">
@@ -20,8 +20,8 @@
         </Grid>
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding SpinnerVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-            <views:Spinner />
-            <TextBlock Text="Подождите" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <userControls:Spinner />
+            <TextBlock Text="Please wait" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </pages:BasePage>
