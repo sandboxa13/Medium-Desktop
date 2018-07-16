@@ -8,6 +8,7 @@
         mc:Ignorable="d"    
         WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800"
+        MinHeight="600"
         d:DataContext="{d:DesignInstance d:Type=viewModels:MainWindowViewModel}">
 
     <Window.Resources>

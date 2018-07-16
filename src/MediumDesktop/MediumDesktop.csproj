@@ -152,10 +152,14 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Animations\AnimationsEnum.cs" />
+    <Compile Include="Animations\PageAnimationsExtentions.cs" />
+    <Compile Include="Animations\StoryBoardHelpers.cs" />
     <Compile Include="Behaviors\StoryboardActiveByIsVisibileBehaviour.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\VisibilityBoxes.cs" />
+    <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Spinner.xaml.cs">
       <DependentUpon>Spinner.xaml</DependentUpon>
     </Compile>
