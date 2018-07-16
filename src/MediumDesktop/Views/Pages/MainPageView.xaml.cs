@@ -1,4 +1,4 @@
-﻿namespace MediumDesktop.Views
+﻿namespace MediumDesktop.Views.Pages
 {
     /// <summary>
     /// Interaction logic for MainPageView.xaml

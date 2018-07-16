@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using MediumDesktop.Animations;
 
-namespace MediumDesktop.Views
+namespace MediumDesktop.Views.Pages
 {
     public class BasePage : Page
     {
@@ -58,7 +58,6 @@ namespace MediumDesktop.Views
 
                     await this.SlideFromLeftTask(Seconds);
                     break;
-
             }
         }
     }

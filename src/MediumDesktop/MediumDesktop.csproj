@@ -159,14 +159,14 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\VisibilityBoxes.cs" />
-    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\Pages\BasePage.cs" />
     <Compile Include="Views\Spinner.xaml.cs">
       <DependentUpon>Spinner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\User\UserContentView.xaml.cs">
+    <Compile Include="Views\UserControls\UserContentView.xaml.cs">
       <DependentUpon>UserContentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\User\UserProfilePage.xaml.cs">
+    <Compile Include="Views\Pages\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Styles\BorderStyles.xaml">
@@ -181,10 +181,10 @@
     <Page Include="Resources\Themes\LightTheme\LightThemeColors.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoginView.xaml">
+    <Page Include="Views\Pages\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainPageView.xaml">
+    <Page Include="Views\Pages\MainPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
@@ -197,10 +197,10 @@
     </Compile>
     <Compile Include="Services\MainWindowService.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Views\LoginView.xaml.cs">
+    <Compile Include="Views\Pages\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPageView.xaml.cs">
+    <Compile Include="Views\Pages\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -210,10 +210,10 @@
     <Page Include="Views\Spinner.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\User\UserContentView.xaml">
+    <Page Include="Views\UserControls\UserContentView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\User\UserProfilePage.xaml">
+    <Page Include="Views\Pages\UserProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

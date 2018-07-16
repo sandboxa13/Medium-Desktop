@@ -11,8 +11,9 @@ using DryIocAttributes;
 using MediumDesktop.Core.Services;
 using MediumDesktop.Core.ViewModels;
 using MediumDesktop.Core.ViewModels.User;
-using MediumDesktop.Views;
-using MediumDesktop.Views.User;
+using LoginView = MediumDesktop.Views.Pages.LoginView;
+using MainPageView = MediumDesktop.Views.Pages.MainPageView;
+using UserProfileView = MediumDesktop.Views.Pages.UserProfileView;
 
 namespace MediumDesktop.Services
 {

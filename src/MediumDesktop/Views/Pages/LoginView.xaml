@@ -1,17 +1,22 @@
-﻿<views:BasePage x:Class="MediumDesktop.Views.LoginView"
+﻿<pages:BasePage x:Class="MediumDesktop.Views.Pages.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
         xmlns:views="clr-namespace:MediumDesktop.Views"
+        xmlns:pages="clr-namespace:MediumDesktop.Views.Pages"
         mc:Ignorable="d"    
         Title="LoginView" Height="450" Width="800"
         d:DataContext="{d:DesignInstance d:Type=viewModels:LoginViewModel}">
 
     <Grid>
-        <Grid Visibility="{Binding SpinnerVisible, Mode=OneWay, Converter={StaticResource InverseBoolConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Login" Width="100" Margin="5" Padding="10" Command="{Binding LoginCommand}"/>
+        <Grid Visibility="{Binding SpinnerVisible, Mode=OneWay, Converter={StaticResource InverseBoolConverter}}" 
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Button Content="Login"
+                    Style="{StaticResource Button.Transparent}"
+                    Command="{Binding LoginCommand}"/>
         </Grid>
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding SpinnerVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -19,5 +24,5 @@
             <TextBlock Text="Подождите" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
     </Grid>
-</views:BasePage>
+</pages:BasePage>
 

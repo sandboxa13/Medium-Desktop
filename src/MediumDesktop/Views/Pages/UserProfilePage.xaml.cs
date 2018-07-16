@@ -1,4 +1,4 @@
-﻿namespace MediumDesktop.Views.User
+﻿namespace MediumDesktop.Views.Pages
 {
     /// <summary>
     /// Interaction logic for UserProfileView.xaml
