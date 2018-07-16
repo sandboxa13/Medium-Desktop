@@ -3,8 +3,101 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
+        xmlns:user="clr-namespace:MediumDesktop.Core.ViewModels.User;assembly=MediumDesktop.Core"
         mc:Ignorable="d"    
         WindowState="Maximized"
-        Title="MainWindow" Height="450" Width="800">
-    <Frame NavigationUIVisibility="Hidden" x:Name="RootFrame"/>
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance d:Type=viewModels:MainWindowViewModel}">
+
+    <Window.Resources>
+        <Style x:Key="UserContent.PopUp" TargetType="{x:Type Popup}">
+            <Setter Property="HorizontalOffset" Value="-85"/>
+            <Setter Property="Placement" Value="Relative"/>
+            <Setter Property="VerticalOffset" Value="50"/>
+            <Setter Property="StaysOpen" Value="False"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="400"/>
+            <Setter Property="PlacementTarget" Value="{Binding ElementName=UserContentButton}"/>
+        </Style>
+
+
+        <DataTemplate x:Key="UserContent.Popup.Template" DataType="{x:Type user:UserContentViewModel}">
+            <Popup IsOpen="{Binding IsVisible, Mode=TwoWay}" Style="{StaticResource UserContent.PopUp}">
+                <Border Style="{StaticResource Border.Default}">
+                    <StackPanel Background="White" Orientation="Vertical">
+                        <Border Style="{StaticResource Border.Default}">
+                            <Button Command="{Binding ProfileCommand}"
+                                    Style="{StaticResource Button.Transparent}"  
+                                    Content="Become a member"/>
+                        </Border>
+
+                        <Border Style="{StaticResource Border.Default}">
+                            <Button Command="{Binding ProfileCommand}"
+                                    Style="{StaticResource Button.Transparent}"  
+                                    Content="Profile"/>
+                        </Border>
+
+                        <Border Style="{StaticResource Border.Default}">
+                            <Button Command="{Binding ProfileCommand}"
+                                    Style="{StaticResource Button.Transparent}"  
+                                    Content="Profile"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0"
+                    Style="{StaticResource Button.Default}"/>
+
+            <Image Grid.Column="1" 
+                   Source="../Resources/Images/medium_2017_logo.png"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+
+            <Button Grid.Column="2" Grid.Row="0"
+                    Name="UserContentButton"
+                    Command="{Binding UserContentViewModel.ShowContentCommand}" 
+                    Style="{StaticResource Button.Transparent}" 
+                    HorizontalAlignment="Center"
+                    Content="User"/>
+
+
+            <ContentControl Grid.Column="2"
+                            VerticalAlignment="Top" 
+                            Background="Transparent" 
+                            ContentTemplate="{StaticResource UserContent.Popup.Template}"
+                            Content="{Binding UserContentViewModel}"/>
+        </Grid>
+
+
+        <!--MainContainer-->
+        <Grid Grid.Row="1">
+            <Frame NavigationUIVisibility="Hidden" x:Name="RootFrame"/>
+        </Grid>
+
+
+        <!--Footer-->
+        <Grid Grid.Row="2">
+
+        </Grid>
+    </Grid>
 </Window>
