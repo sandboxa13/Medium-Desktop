@@ -1,80 +1,17 @@
-﻿<Page x:Class="MediumDesktop.Views.MainPageView"
+﻿<views:BasePage x:Class="MediumDesktop.Views.MainPageView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:viewModels="clr-namespace:MediumDesktop.Core.ViewModels;assembly=MediumDesktop.Core"
       xmlns:user="clr-namespace:MediumDesktop.Core.ViewModels.User;assembly=MediumDesktop.Core"
+      xmlns:views="clr-namespace:MediumDesktop.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance viewModels:MainPageViewModel}"
       Title="MainPageView">
 
-    <Page.Resources>    
-        <Style x:Key="UserContent.PopUp" TargetType="{x:Type Popup}">
-            <Setter Property="HorizontalOffset" Value="-100"/>
-            <Setter Property="Placement" Value="Relative"/>
-            <Setter Property="VerticalOffset" Value="100"/>
-            <Setter Property="StaysOpen" Value="False"/>
-            <Setter Property="AllowsTransparency" Value="True"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="400"/>
-            <Setter Property="PlacementTarget" Value="{Binding ElementName=UserContentButton}"/>
-        </Style>
-
-
-        <DataTemplate x:Key="UserContent.Popup.Template" DataType="{x:Type user:UserContentViewModel}">
-            <Popup IsOpen="{Binding IsVisible, Mode=TwoWay}" Style="{StaticResource UserContent.PopUp}">
-                <Border Style="{StaticResource Border.Default}">
-                    <StackPanel Background="White" Orientation="Vertical">
-                        <Border Style="{StaticResource Border.Default}">
-                            <Button Command="{Binding ProfileCommand}"
-                                    Style="{StaticResource Button.Transparent}"  
-                                    Content="Become a member"/>
-                        </Border>
-
-                        <Border Style="{StaticResource Border.Default}">
-                            <Button Command="{Binding ProfileCommand}"
-                                    Style="{StaticResource Button.Transparent}"  
-                                    Content="Profile"/>
-                        </Border>
-
-                        <Border Style="{StaticResource Border.Default}">
-                            <Button Command="{Binding ProfileCommand}"
-                                    Style="{StaticResource Button.Transparent}"  
-                                    Content="Profile"/>
-                        </Border>
-                    </StackPanel>
-                </Border>
-            </Popup>
-        </DataTemplate>
-    </Page.Resources>
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Column="1" Grid.Row="1"
-                   Text="Welcome to medium"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-
-
-        <Button Grid.Column="2" Grid.Row="0"
-                Name="UserContentButton"
-                Command="{Binding UserContentViewModel.ShowContentCommand}" 
-                Style="{StaticResource Button.Transparent}" 
-                HorizontalAlignment="Center"
-                Content="User"/>
-
-
-        <ContentControl VerticalAlignment="Top" Background="Transparent" Grid.Column="2" ContentTemplate="{StaticResource UserContent.Popup.Template}" Content="{Binding UserContentViewModel}" Grid.Row="1"/>
+       <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Main page"/>
     </Grid>
-</Page>
+</views:BasePage>

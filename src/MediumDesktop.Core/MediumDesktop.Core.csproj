@@ -205,6 +205,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\User\UserContentViewModel.cs" />
     <Compile Include="ViewModels\User\UserProfileViewModel.cs" />
   </ItemGroup>

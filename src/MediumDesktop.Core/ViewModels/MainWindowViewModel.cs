@@ -6,18 +6,21 @@ using ReactiveUI.Fody.Helpers;
 
 namespace MediumDesktop.Core.ViewModels
 {
-    [Reuse(ReuseType.Singleton)]
-    [ExportEx(typeof(MainPageViewModel))]
-    public sealed class MainPageViewModel : BaseViewModel
+    [Reuse(ReuseType.Transient)]
+    [ExportEx(typeof(MainWindowViewModel))]
+    public sealed class MainWindowViewModel : BaseViewModel
     {
         private readonly IApiController _apiController;
         private readonly INavigationService _navigationService;
 
-        public MainPageViewModel(IApiController apiController, INavigationService navigationService)
+        public MainWindowViewModel(IApiController apiController, INavigationService navigationService)
         {
             _apiController = apiController;
             _navigationService = navigationService;
 
+            UserContentViewModel = new UserContentViewModel(_apiController, _navigationService);
         }
+
+        [Reactive] public UserContentViewModel UserContentViewModel { get; private set; }
     }
 }

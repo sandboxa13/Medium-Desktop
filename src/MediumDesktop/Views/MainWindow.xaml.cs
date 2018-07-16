@@ -25,6 +25,8 @@ namespace MediumDesktop.Views
             _container.RegisterExports(new[] { typeof(App).GetAssembly() });
             _container.RegisterShared();
 
+            DataContext = _container.Resolve<MainWindowViewModel>();
+
             _container.Resolve<INavigationService>().NavigateAsync<LoginViewModel>();
         }
     }
