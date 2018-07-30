@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Logger\**" />
+    <EmbeddedResource Remove="Logger\**" />
+    <None Remove="Logger\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DryIoc.dll" Version="3.0.2" />
     <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
     <PackageReference Include="DryIocAttributes.dll" Version="4.0.2" />
@@ -15,10 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Medium.SDK\Medium.SDK.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Logger\" />
   </ItemGroup>
 
 </Project>
