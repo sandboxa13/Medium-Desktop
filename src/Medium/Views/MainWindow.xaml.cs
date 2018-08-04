@@ -1,8 +1,10 @@
-﻿using Avalonia;
+﻿using System.IO;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using DryIoc;
 using DryIoc.MefAttributedModel;
+using Medium.Core.Managers;
 using Medium.Core.Managers.Interfaces;
 
 namespace Medium.Views
@@ -15,11 +17,14 @@ namespace Medium.Views
         {
             InitializeComponent();
 
-            _container.RegisterExports(new[] { typeof(MainWindow).GetAssembly() });
+            _container.RegisterExports(new[] { typeof(LoginManager).GetAssembly() });
 #if DEBUG
             this.AttachDevTools();
 #endif
 
+            var configuration = _container.Resolve<IConfiguration>();
+            configuration.SetBasePath(Directory.GetCurrentDirectory());
+            configuration.AddJsonFile("appsettings.json");
         }
 
         private void InitializeComponent()

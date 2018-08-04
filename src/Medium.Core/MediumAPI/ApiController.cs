@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DryIocAttributes;
+using Medium.Core.Managers.Interfaces;
 using Medium.SDK.Domain;
 
 namespace Medium.Core.MediumAPI
@@ -8,15 +9,19 @@ namespace Medium.Core.MediumAPI
     [ExportEx(typeof(IApiController))]
     public sealed class ApiController : IApiController
     {
+        private readonly IConfiguration _configuration;
         private OauthClient _oauthClient;
 
-        public ApiController()
+        public ApiController(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
         public async Task<bool> AuthorizateAsync()  
         {
-            _oauthClient = new OauthClient("", "", "text");
+            _oauthClient = new OauthClient(
+                _configuration.GetAppSettings().ClientId,
+                _configuration.GetAppSettings().ClientSecret, "text");
 
             var code = await _oauthClient.GetAuthCode();
 
