@@ -14,7 +14,6 @@ namespace Medium.Core.Managers
         private string _basePath;   
         private readonly Dictionary<string, string> _values = new Dictionary<string, string>();
 
-
         public async Task AddJsonFile(string flieName)
         {
             await Task.Run(() =>    
