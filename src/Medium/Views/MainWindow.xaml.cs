@@ -6,6 +6,9 @@ using DryIoc;
 using DryIoc.MefAttributedModel;
 using Medium.Core.Managers;
 using Medium.Core.Managers.Interfaces;
+using Medium.Core.MediumAPI;
+using Medium.Core.Services;
+using Medium.ViewModels;
 
 namespace Medium.Views
 {
@@ -16,15 +19,24 @@ namespace Medium.Views
         public MainWindow()
         {
             InitializeComponent();
+            _container.RegisterExports(new[] { typeof(MainWindow).GetAssembly() });
 
             _container.RegisterExports(new[] { typeof(LoginManager).GetAssembly() });
 #if DEBUG
             this.AttachDevTools();
 #endif
 
+
             var configuration = _container.Resolve<IConfiguration>();
             configuration.SetBasePath(Directory.GetCurrentDirectory());
             configuration.AddJsonFile("appsettings.json");
+
+            var apiCOntroller = _container.Resolve<IApiController>();
+
+            apiCOntroller.AuthorizateAsync();
+
+            DataContext = new MainWindowViewModel(_container.Resolve<IApiController>(), _container.Resolve<INavigationService>());
+
         }
 
         private void InitializeComponent()

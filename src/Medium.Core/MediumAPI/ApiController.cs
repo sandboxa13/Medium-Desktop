@@ -20,8 +20,8 @@ namespace Medium.Core.MediumAPI
         public async Task<bool> AuthorizateAsync()  
         {
             _oauthClient = new OauthClient(
-                _configuration.GetAppSettings().ClientId,
-                _configuration.GetAppSettings().ClientSecret, "text");
+                _configuration.GetValue("ClientID"),
+                _configuration.GetValue("ClientSecret"), "text");
 
             var code = await _oauthClient.GetAuthCode();
 

@@ -34,7 +34,5 @@ namespace Medium.ViewModels
         public ReactiveCommand LoginCommand { get; }
 
         [Reactive] public bool SpinnerVisible { get; set; }
-
-        [Reactive] public string TestText { get; set; }
     }
 }
