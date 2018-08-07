@@ -1,48 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
 using Newtonsoft.Json;
 
 namespace Medium.Core.Managers
 {
-    [Reuse(ReuseType.Singleton)]    
+    [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IConfiguration))]
     public class Configuration : IConfiguration
-    {   
+    {
         private string _basePath;   
         private readonly Dictionary<string, string> _values = new Dictionary<string, string>();
 
-        public void SetBasePath(string basePath) => _basePath = basePath;
 
-        public void AddJsonFile(string path)
+        public async Task AddJsonFile(string flieName)
         {
-            var pathToFile = _basePath + "\\" + path;   
+            await Task.Run(() =>    
+            {
+                var pathToFile = _basePath + "\\" + flieName;
 
-            using (var stream = new StreamReader(pathToFile))
-            {   
-                var tmp  = JsonConvert.DeserializeObject<Dictionary<string, string>>(stream.ReadToEnd());
-
-                foreach (var tmpKey in tmp.Keys)
+                using (var stream = new StreamReader(pathToFile))
                 {
-                    _values.Add(tmpKey, tmp[tmpKey]);
+                    var tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(stream.ReadToEnd());
+
+                    foreach (var tmpKey in tmp.Keys)
+                    {
+                        _values.Add(tmpKey, tmp[tmpKey]);
+                    }
                 }
-            }
+            });
         }
 
-        public string GetValue(string key)
-        {
-            try
-            {
-                return _values[key];
+        public string GetValue(string key) => _values[key];
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
+        public void SetBasePath(string basePath) => _basePath = basePath;
     }
 }

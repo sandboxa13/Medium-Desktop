@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -19,29 +20,27 @@ namespace Medium.Views
         public MainWindow()
         {
             InitializeComponent();
-            _container.RegisterExports(new[] { typeof(MainWindow).GetAssembly() });
-
-            _container.RegisterExports(new[] { typeof(LoginManager).GetAssembly() });
 #if DEBUG
             this.AttachDevTools();
 #endif
-
-
-            var configuration = _container.Resolve<IConfiguration>();
-            configuration.SetBasePath(Directory.GetCurrentDirectory());
-            configuration.AddJsonFile("appsettings.json");
-
-            var apiCOntroller = _container.Resolve<IApiController>();
-
-            apiCOntroller.AuthorizateAsync();
-
-            DataContext = new MainWindowViewModel(_container.Resolve<IApiController>(), _container.Resolve<INavigationService>());
-
         }
 
         private void InitializeComponent()
         {
-            AvaloniaXamlLoaderPortableXaml.Load(this);
+            Task.Run(async () =>
+            {
+                AvaloniaXamlLoaderPortableXaml.Load(this);
+
+                _container.RegisterExports(new[] { typeof(MainWindow).GetAssembly() });
+
+                _container.RegisterExports(new[] { typeof(LoginManager).GetAssembly() });
+
+                var configuration = _container.Resolve<IConfiguration>();
+                configuration.SetBasePath(Directory.GetCurrentDirectory());
+                await configuration.AddJsonFile("appsettings.json");
+
+                DataContext = new MainWindowViewModel(_container.Resolve<IApiController>(), _container.Resolve<INavigationService>());
+            });
         }
     }
 }

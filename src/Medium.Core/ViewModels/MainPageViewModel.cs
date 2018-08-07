@@ -15,7 +15,6 @@ namespace Medium.Core.ViewModels
         {
             _apiController = apiController;
             _navigationService = navigationService;
-
         }
     }
 }

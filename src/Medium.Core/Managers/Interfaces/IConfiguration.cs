@@ -1,10 +1,12 @@
-﻿namespace Medium.Core.Managers.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Medium.Core.Managers.Interfaces
 {
     public interface IConfiguration
     {
         void SetBasePath(string basePath);
-                
-        void AddJsonFile(string path);  
+
+        Task AddJsonFile(string flieName);      
             
         string GetValue(string key);  
     }
