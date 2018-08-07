@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
+    <OutputPath>C:\Dima\GitRep\Medium-Desktop\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.6.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Medium.Core\Medium.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DryIocAttributes">
+      <HintPath>..\..\..\..\..\..\Users\iRU\.nuget\packages\dryiocattributes.dll\4.0.2\lib\netstandard2.0\DryIocAttributes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
