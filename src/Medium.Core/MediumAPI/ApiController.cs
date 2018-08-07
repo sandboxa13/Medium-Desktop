@@ -9,10 +9,10 @@ namespace Medium.Core.MediumAPI
     [ExportEx(typeof(IApiController))]
     public sealed class ApiController : IApiController
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfigurationManager _configuration;
         private OauthClient _oauthClient;
 
-        public ApiController(IConfiguration configuration)
+        public ApiController(IConfigurationManager configuration)
         {
             _configuration = configuration;
         }
@@ -20,8 +20,9 @@ namespace Medium.Core.MediumAPI
         public async Task<bool> AuthorizateAsync()  
         {
             _oauthClient = new OauthClient(
-                _configuration.GetValue("ClientID"),
-                _configuration.GetValue("ClientSecret"), "text");
+                _configuration.GetValue<string>("ClientID"),
+                _configuration.GetValue<string>("ClientSecret"),
+                "text");
 
             var code = await _oauthClient.GetAuthCode();
 

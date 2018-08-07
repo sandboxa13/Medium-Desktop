@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 
 namespace Medium.Core.Managers.Interfaces
-{
-    public interface IConfiguration
-    {
-        void SetBasePath(string basePath);
+{   
+    public interface IConfigurationManager
+    {   
+        void SetBasePath(string basePath);      
+                
+        Task AddJsonFile(string flieName);
 
-        Task AddJsonFile(string flieName);      
-            
-        string GetValue(string key);  
+        T GetValue<T>(string key);
     }
 }
