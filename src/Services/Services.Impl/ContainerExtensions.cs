@@ -1,6 +1,5 @@
 ﻿using DryIoc;
 using DryIoc.MefAttributedModel;
-using Services.Interfaces.Interfaces;
 
 namespace Services.Impl
 {
