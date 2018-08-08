@@ -2,7 +2,7 @@ version: '1.0.{build}'
 image: Visual Studio 2017
 branches:
   only:
-  - master
+  - dev
 init:
   # Good practise, because Windows line endings are different from Unix/Linux ones
   - cmd: git config --global core.autocrlf true
@@ -12,7 +12,7 @@ before_build:
   # Display .NET Core version
   - cmd: dotnet --version
   # Display minimal restore text
-  - cmd: dotnet restore ./src/src.csproj --verbosity m
+  - cmd: dotnet restore ./src/UI/Medium/Medium.csproj --verbosity m
 build_script:
   # output will be in ./src/bin/debug/netcoreapp1.1/publish
   - cmd: dotnet publish ./src/src.csproj
@@ -25,7 +25,7 @@ artifacts:
 clone_depth: 1
 test_script:
   # restore packages for our unit tests
-  - cmd: dotnet restore ./tests/tests.csproj --verbosity m
+  - cmd: dotnet restore ./tests/MediumTests.csproj --verbosity m
   # run the unit tests (requires changing into the test directory)
   - cmd: cd tests
   - cmd: dotnet xunit
