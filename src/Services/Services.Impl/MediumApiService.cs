@@ -26,7 +26,7 @@ namespace Services.Impl
             tokenRequest.Method = "GET";
             tokenRequest.ContentType = "application/x-www-form-urlencoded";
             tokenRequest.Accept = "Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            tokenRequest.Headers["Authorization"] = "Bearer " + _token.AccessToken;
+            tokenRequest.Headers["Authorization"] = "Bearer " + _authorizationService.GetToken().AccessToken;
 
             var user = tokenRequest.GetResponseJson<User>();
 

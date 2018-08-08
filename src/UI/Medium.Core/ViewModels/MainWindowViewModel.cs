@@ -1,8 +1,8 @@
 ﻿using DryIocAttributes;
-using Medium.Core.MediumAPI;
 using Medium.Core.Services;
 using Medium.Core.ViewModels.User;
 using ReactiveUI.Fody.Helpers;
+using Services.Interfaces.Interfaces;
 
 namespace Medium.Core.ViewModels
 {
@@ -10,15 +10,15 @@ namespace Medium.Core.ViewModels
     [ExportEx(typeof(MainWindowViewModel))]
     public sealed class MainWindowViewModel : BaseViewModel
     {
-        private readonly IApiController _apiController;
+        private readonly IMediumApiService _mediumApiService;
         private readonly INavigationService _navigationService;
 
-        public MainWindowViewModel(IApiController apiController, INavigationService navigationService)
+        public MainWindowViewModel(IMediumApiService mediumApiService, INavigationService navigationService)
         {
-            _apiController = apiController;
+            _mediumApiService = mediumApiService;
             _navigationService = navigationService;
 
-            UserContentViewModel = new UserContentViewModel(_apiController, _navigationService);
+            UserContentViewModel = new UserContentViewModel(_mediumApiService, _navigationService);
         }
 
         [Reactive] public UserContentViewModel UserContentViewModel { get; private set; }

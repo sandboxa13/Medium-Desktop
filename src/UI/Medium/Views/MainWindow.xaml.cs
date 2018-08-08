@@ -5,7 +5,6 @@ using Avalonia.Markup.Xaml;
 using DryIoc;
 using DryIoc.MefAttributedModel;
 using Medium.Core.Extensions;
-using Medium.Core.MediumAPI;
 using Medium.Core.Services;
 using Medium.Core.ViewModels;
 using Services.Interfaces.Interfaces;
@@ -36,7 +35,7 @@ namespace Medium.Views
             configuration.AddJsonFile("appsettings.json");
 
             DataContext = new MainWindowViewModel(
-                _container.Resolve<IApiController>(),
+                _container.Resolve<IMediumApiService>(),
                 _container.Resolve<INavigationService>());
         }
     }

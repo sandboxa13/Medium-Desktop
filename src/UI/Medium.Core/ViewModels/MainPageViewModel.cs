@@ -1,6 +1,6 @@
 ﻿using DryIocAttributes;
-using Medium.Core.MediumAPI;
 using Medium.Core.Services;
+using Services.Interfaces.Interfaces;
 
 namespace Medium.Core.ViewModels
 {
@@ -8,12 +8,12 @@ namespace Medium.Core.ViewModels
     [ExportEx(typeof(MainPageViewModel))]
     public sealed class MainPageViewModel : BaseViewModel
     {
-        private readonly IApiController _apiController;
+        private readonly IMediumApiService _mediumApiService;
         private readonly INavigationService _navigationService;
 
-        public MainPageViewModel(IApiController apiController, INavigationService navigationService)
+        public MainPageViewModel(IMediumApiService mediumApiService, INavigationService navigationService)
         {
-            _apiController = apiController;
+            _mediumApiService = mediumApiService;
             _navigationService = navigationService;
         }
     }
