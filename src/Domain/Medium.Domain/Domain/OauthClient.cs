@@ -1,6 +1,4 @@
-﻿using Medium.Domain.Domain;
-
-namespace Medium.Domain.OAuth
+﻿namespace Medium.Domain.Domain
 {
     public class OauthClient
     {
