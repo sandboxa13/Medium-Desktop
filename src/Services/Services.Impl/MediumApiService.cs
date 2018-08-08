@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Domain.Domain;
 using Medium.Domain.Extensions;
+using Medium.Domain.Routes;
 using Services.Interfaces.Interfaces;
 
 namespace Services.Impl
@@ -20,9 +21,7 @@ namespace Services.Impl
 
         public async Task<User> GetUserProfile()
         {
-            var userProfileRequestUri = "https://api.medium.com/v1/me";
-
-            var tokenRequest = (HttpWebRequest)WebRequest.Create(userProfileRequestUri);
+            var tokenRequest = (HttpWebRequest)WebRequest.Create(MediumApiRoutes.UserProfile);
             tokenRequest.Method = "GET";
             tokenRequest.ContentType = "application/x-www-form-urlencoded";
             tokenRequest.Accept = "Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
