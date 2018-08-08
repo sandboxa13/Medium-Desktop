@@ -13,9 +13,6 @@ before_build:
   - cmd: dotnet --version
   # Display minimal restore text
   - cmd: dotnet restore ./src/UI/Medium/Medium.csproj --verbosity m
-build_script:
-  # output will be in ./src/bin/debug/netcoreapp1.1/publish
-  - cmd: dotnet publish ./src/UI/Medium/Medium.csproj
 after_build:
   # For once the build has completed
 artifacts:
