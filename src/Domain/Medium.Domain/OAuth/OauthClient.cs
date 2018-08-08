@@ -15,7 +15,7 @@ namespace Medium.Domain.OAuth
         private readonly string _clientSecret;
         private readonly string _state;
         private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
-        private Token _token;
+        public Token Token { get; set; }
         public OauthClient(string clientId, string clientSecret, string state)
         {
             _clientId = clientId;

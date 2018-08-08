@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DryIocAttributes;
+using Medium.Domain.Domain;
 using Medium.Domain.OAuth;
 using Services.Interfaces.Interfaces;
 
@@ -36,5 +37,7 @@ namespace Services.Impl
         {
             throw new NotImplementedException();
         }
+
+        public Token GetToken() => _oauthClient.Token;
     }
 }
