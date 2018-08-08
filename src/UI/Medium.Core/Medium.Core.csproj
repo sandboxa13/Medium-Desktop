@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain\**" />
+    <Compile Remove="Logger\**" />
+    <EmbeddedResource Remove="Domain\**" />
+    <EmbeddedResource Remove="Logger\**" />
+    <None Remove="Domain\**" />
+    <None Remove="Logger\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DryIoc.dll" Version="3.0.2" />
+    <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
+    <PackageReference Include="DryIocAttributes.dll" Version="4.0.2" />
+    <PackageReference Include="Fody" Version="3.1.4" />
+    <PackageReference Include="ReactiveUI" Version="8.3.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="8.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Medium.Domain\Medium.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\Services.Impl\Services.Impl.csproj" />
+    <ProjectReference Include="..\..\Services\Services.Interfaces\Services.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
