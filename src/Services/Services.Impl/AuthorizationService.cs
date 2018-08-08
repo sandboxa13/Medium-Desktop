@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Domain.Domain;
 using Medium.Domain.OAuth;
+using Medium.Domain.Routes;
 using Newtonsoft.Json;
 using Services.Interfaces.Interfaces;
 
@@ -52,7 +53,7 @@ namespace Services.Impl
             http.Start();
 
             var url =
-                $"https://medium.com/m/oauth/authorize?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
+                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
 
             System.Diagnostics.Process.Start(url);
             var context = await http.GetContextAsync();
@@ -75,11 +76,10 @@ namespace Services.Impl
 
         private async Task<Token> GetToken(string code)
         {
-            var tokenRequestURI = "https://api.medium.com/v1/tokens";
             var tokenRequestBody =
                 $"code={code}&client_id={_oauthClient.ClientId}&client_secret={_oauthClient.ClientSecret}&grant_type=authorization_code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
 
-            var tokenRequest = (HttpWebRequest)WebRequest.Create(tokenRequestURI);
+            var tokenRequest = (HttpWebRequest)WebRequest.Create(MediumApiRoutes.Token);
             tokenRequest.Method = "POST";
             tokenRequest.ContentType = "application/x-www-form-urlencoded";
             tokenRequest.Accept = "Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
