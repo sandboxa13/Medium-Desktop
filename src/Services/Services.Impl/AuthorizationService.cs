@@ -15,7 +15,6 @@ namespace Services.Impl
     [ExportEx(typeof(IAuthorizationService))]
     public class AuthorizationService : IAuthorizationService
     {
-        private readonly string _redirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
         private readonly IConfigurationService _configurationService;
         private OauthClient _oauthClient;
             
@@ -48,11 +47,11 @@ namespace Services.Impl
         private async Task<string> GetAuthCode()
         {
             var http = new HttpListener();
-            http.Prefixes.Add(_redirectUrl);
+            http.Prefixes.Add(MediumApiRoutes.RedirectUrl);
             http.Start();
 
             var url =
-                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
+                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={Uri.EscapeDataString(MediumApiRoutes.RedirectUrl)}";
 
             System.Diagnostics.Process.Start(url);
             var context = await http.GetContextAsync();
@@ -76,7 +75,7 @@ namespace Services.Impl
         private async Task<Token> GetToken(string code)
         {
             var tokenRequestBody =
-                $"code={code}&client_id={_oauthClient.ClientId}&client_secret={_oauthClient.ClientSecret}&grant_type=authorization_code&redirect_uri={Uri.EscapeDataString(_redirectUrl)}";
+                $"code={code}&client_id={_oauthClient.ClientId}&client_secret={_oauthClient.ClientSecret}&grant_type=authorization_code&redirect_uri={Uri.EscapeDataString(MediumApiRoutes.RedirectUrl)}";
 
             var tokenRequest = (HttpWebRequest)WebRequest.Create(MediumApiRoutes.Token);
             tokenRequest.Method = "POST";

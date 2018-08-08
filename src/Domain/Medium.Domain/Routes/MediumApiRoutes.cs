@@ -1,4 +1,6 @@
-﻿namespace Medium.Domain.Routes
+﻿using System.Net;
+
+namespace Medium.Domain.Routes
 {
     public static class MediumApiRoutes
     {
@@ -18,5 +20,11 @@
         /// The route to the GetUserProfile Method
         /// </summary>
         public const string UserProfile = "https://api.medium.com/v1/me";
+
+
+        /// <summary>
+        /// The route to the  
+        /// </summary>
+        public static readonly string RedirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
     }
 }
