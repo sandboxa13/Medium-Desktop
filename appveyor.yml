@@ -11,9 +11,6 @@ install:
 before_build:
 - cmd: dotnet restore
 
-build:
-  project: Medium.sln
-
 test_script:
   - cmd: dotnet test tests/MediumTests.csproj
   
