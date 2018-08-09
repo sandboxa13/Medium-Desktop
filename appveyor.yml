@@ -9,8 +9,13 @@ init:
 install:
   # Install repo specific stuff here
 before_build: 
+  - cmd: cd src
   - cmd: dotnet --version 
-  - cmd: dotnet restore ./src/UI/Medium/Medium.csproj --verbosity m
+  - cmd: dotnet restore
+ 
+ build:
+  - cmd: cd src
+  project: Medium.sln
  
 test_script:
   - cmd: dotnet restore tests/MediumTests.csproj
