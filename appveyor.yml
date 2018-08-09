@@ -16,10 +16,9 @@ install:
   
 before_build: 
   - cmd: cd src
-  - cmd: dotnet --version 
   - cmd: dotnet restore
  
- build:
+build:
   project: Medium.sln
  
 test_script:
