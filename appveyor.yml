@@ -13,6 +13,7 @@ before_build:
   - cmd: dotnet restore ./src/UI/Medium/Medium.csproj --verbosity m
  
 test_script:
+  - cmd: dotnet restore
   - cmd: dotnet test tests/MediumTests.csproj
   
 artifacts:
