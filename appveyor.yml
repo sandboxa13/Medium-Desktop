@@ -18,7 +18,7 @@ before_build:
   # Display .NET Core version
   - cmd: dotnet --version
   # Display minimal restore text
-  - cmd: dotnet restore ./src/UI/Medium/Medium.csproj --verbosity m
+  - cmd: dotnet restore ./src/Medium.sln --verbosity m
  
 test_script:
   - cmd: dotnet restore ./tests/MediumTests.csproj
