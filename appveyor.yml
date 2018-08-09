@@ -19,6 +19,7 @@ before_build:
   - cmd: dotnet restore
  
 build:
+  -cmd: cd src
   project: Medium.sln
  
 test_script:
