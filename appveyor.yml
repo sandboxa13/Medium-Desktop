@@ -14,16 +14,14 @@ dotnet_csproj:
   file: 'src\UI\Medium\Medium.csproj'
   version: $(commit_description)
   
-before_build: 
-  - cmd: cd src
-  - cmd: dotnet restore
- 
-build:
-  -cmd: cd src
-  project: Medium.sln
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
+  # Display minimal restore text
+  - cmd: dotnet restore ./src/UI/Medium/Medium.csproj --verbosity m
  
 test_script:
-  - cmd: dotnet restore tests/MediumTests.csproj
+  - cmd: dotnet restore ./tests/MediumTests.csproj
   - cmd: dotnet test tests/MediumTests.csproj
   
 artifacts:
