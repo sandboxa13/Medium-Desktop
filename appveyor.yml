@@ -9,11 +9,6 @@ init:
 install:
   # Install repo specific stuff here
   
- dotnet_csproj:
-  patch: true
-  file: 'src\UI\Medium\Medium.csproj'
-  version: $(commit_description)
-  
 before_build: 
   - cmd: cd src
   - cmd: dotnet restore
