@@ -22,7 +22,7 @@ before_build:
  
 test_script:
   - cmd: dotnet restore ./tests/MediumTests.csproj
-  - cmd: dotnet test tests/MediumTests.csproj
+  - cmd: dotnet test ./tests/MediumTests.csproj
   
 artifacts:
  - path: '\src\bin\Debug\netcoreapp1.1\publish'
