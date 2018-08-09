@@ -31,7 +31,7 @@ namespace Medium.Views
             _container.RegisterShared();
 
             var configuration = _container.Resolve<IConfigurationService>();
-            configuration.SetBasePath(Directory.GetCurrentDirectory());
+            configuration.SetBasePath("../../");
             configuration.AddJsonFile("appsettings.json");
 
             DataContext = new MainWindowViewModel(
