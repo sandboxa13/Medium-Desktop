@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using DryIoc;
@@ -7,7 +6,7 @@ using DryIoc.MefAttributedModel;
 using Medium.Core.Extensions;
 using Medium.Core.Services;
 using Medium.Core.ViewModels;
-using Services.Interfaces.Interfaces;
+using Services.Interfaces.Interfaces; 
 
 namespace Medium.Views
 {

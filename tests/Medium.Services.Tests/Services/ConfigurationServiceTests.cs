@@ -22,7 +22,7 @@ namespace Medium.Services.Tests.Services
         {   
             var configurationService = new ConfigurationService();
 
-            configurationService.SetBasePath("../../");
+            configurationService.SetBasePath("../");
             await configurationService.AddJsonFile("appsettings.json");
 
             configurationService.GetValue<string>("ClientID").Should().NotBeNullOrEmpty();
