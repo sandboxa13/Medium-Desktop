@@ -10,13 +10,8 @@ namespace Services.Impl
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IConfigurationService))]   
-    public class ConfigurationService : IConfigurationService
+    public sealed class ConfigurationService : IConfigurationService
     {
-        /// <summary>
-        /// Base path to directory with config file
-        /// </summary>
-        private string _basePath;
-
         /// <summary>
         /// Contains all values from config file
         /// </summary>
@@ -31,7 +26,7 @@ namespace Services.Impl
         {
             await Task.Run(() =>
             {
-                var pathToFile = _basePath + "\\" + flieName;
+                var pathToFile = BasePath + "\\" + flieName;
 
                 using (var stream = new StreamReader(pathToFile))
                 {
@@ -41,6 +36,13 @@ namespace Services.Impl
                 }
             });
         }
+
+
+        /// <summary>
+        /// Base path to directory with config file
+        /// </summary>
+        public string BasePath { get; set; }
+
 
         /// <summary>
         /// Getting value by specific key.
@@ -55,11 +57,15 @@ namespace Services.Impl
             return token.ToObject<T>();
         }
 
+
         /// <summary>
         /// Set base path to config file
         /// </summary>
         /// <param name="basePath"></param>
-        public void SetBasePath(string basePath) => _basePath = basePath;
+        public void SetBasePath(string basePath)
+        {
+            BasePath = basePath;
+        }
 
 
         /// <summary>
