@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Medium.Domain.Domain;
 
 namespace Services.Interfaces.Interfaces
 {
@@ -7,5 +8,7 @@ namespace Services.Interfaces.Interfaces
         Task<bool> AuthorizateAsync();
 
         Task RefreshTokenAsync();
+
+        Token GetToken();
     }
 }

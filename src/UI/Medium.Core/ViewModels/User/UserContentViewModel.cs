@@ -1,8 +1,8 @@
 ﻿using DryIocAttributes;
-using Medium.Core.MediumAPI;
 using Medium.Core.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Services.Interfaces.Interfaces;
 
 namespace Medium.Core.ViewModels.User
 {
@@ -10,14 +10,14 @@ namespace Medium.Core.ViewModels.User
     [ExportEx(typeof(UserContentViewModel))]
     public class UserContentViewModel : BaseViewModel
     {
-        private readonly IApiController _apiController;
+        private readonly IMediumApiService _mediumApiService;
         private readonly INavigationService _navigationService;
 
         public UserContentViewModel(
-            IApiController apiController,
-            INavigationService navigationService)
+            IMediumApiService mediumApiService,
+            INavigationService navigationService)   
         {
-            _apiController = apiController;
+            _mediumApiService = mediumApiService;
             _navigationService = navigationService;
 
             ProfileCommand = ReactiveCommand.CreateFromTask(async () =>

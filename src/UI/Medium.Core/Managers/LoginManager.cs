@@ -1,24 +1,24 @@
 ﻿using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
-using Medium.Core.MediumAPI;
+using Services.Interfaces.Interfaces;
 
 namespace Medium.Core.Managers
-{
+{   
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(ILoginManager))]
     public sealed class LoginManager : ILoginManager
     {
-        private readonly IApiController _apiController;
+        private readonly IAuthorizationService _authorizationService;
 
-        public LoginManager(IApiController apiController)
+        public LoginManager(IAuthorizationService authorizationService)
         {
-            _apiController = apiController;
+            _authorizationService = authorizationService;
         }   
 
         public async Task<bool> LoginAsync()
         {
-            return await _apiController.AuthorizateAsync();
+            return await _authorizationService.AuthorizateAsync();
         }
     }
 }
