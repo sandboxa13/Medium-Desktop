@@ -21,8 +21,8 @@ before_build:
   - cmd: dotnet restore ./src/Medium.sln --verbosity m
  
 test_script:
-  - cmd: dotnet restore ./tests/MediumTests.csproj
-  - cmd: dotnet test ./tests/MediumTests.csproj
+  - cmd: dotnet restore ./tests/MediumTests/MediumTests.csproj
+  - cmd: dotnet test ./tests/MediumTests/MediumTests.csproj
   
 artifacts:
  - path: '\src\bin\Debug\netcoreapp1.1\publish'
