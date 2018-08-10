@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
 using Services.Impl;
@@ -15,17 +16,19 @@ namespace Medium.Services.Tests.Services
             configurationService.SetBasePath("basePath");
 
             configurationService.BasePath.Should().Be("basePath");
-        }   
+        }
 
-        //[Fact]
-        //public async Task Method_AddJSON_File_Should_Find_File_And_Deserialize()
-        //{   
-        //    var configurationService = new ConfigurationService();
+        [Fact]
+        public async Task Method_AddJSON_File_Should_Find_File_And_Deserialize()
+        {
+            var configurationService = new ConfigurationService();
 
-        //    configurationService.SetBasePath("../");
-        //    await configurationService.AddJsonFile("appsettings.json");
+            var path = new DirectoryInfo(@"../../../../..").FullName;
+            configurationService.SetBasePath(path);
 
-        //    configurationService.GetValue<string>("ClientID").Should().NotBeNullOrEmpty();
-        //}
+            await configurationService.AddJsonFile("appsettings.json");
+
+            configurationService.GetValue<string>("ClientID").Should().NotBeNullOrEmpty();
+        }
     }
 }

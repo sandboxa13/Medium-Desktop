@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.IO;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using DryIoc;
@@ -6,7 +7,7 @@ using DryIoc.MefAttributedModel;
 using Medium.Core.Extensions;
 using Medium.Core.Services;
 using Medium.Core.ViewModels;
-using Services.Interfaces.Interfaces; 
+using Services.Interfaces.Interfaces;
 
 namespace Medium.Views
 {
@@ -30,8 +31,14 @@ namespace Medium.Views
             _container.RegisterShared();
 
             var configuration = _container.Resolve<IConfigurationService>();
-            configuration.SetBasePath("../../");
+
+
+            var path = new DirectoryInfo(@"../..").FullName;
+
+            configuration.SetBasePath(path);
             configuration.AddJsonFile("appsettings.json");
+
+
 
             DataContext = new MainWindowViewModel(
                 _container.Resolve<IMediumApiService>(),
