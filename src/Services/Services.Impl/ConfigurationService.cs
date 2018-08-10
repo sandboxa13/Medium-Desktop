@@ -26,7 +26,7 @@ namespace Services.Impl
         {
             await Task.Run(() =>
             {
-                var pathToFile = BasePath + "\\" + flieName;
+                var pathToFile = Path.Combine(BasePath, "\\", flieName);
 
                 using (var stream = new StreamReader(pathToFile))
                 {

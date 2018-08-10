@@ -17,15 +17,15 @@ namespace Medium.Services.Tests.Services
             configurationService.BasePath.Should().Be("basePath");
         }   
 
-        [Fact]
-        public async Task Method_AddJSON_File_Should_Find_File_And_Deserialize()
-        {   
-            var configurationService = new ConfigurationService();
+        //[Fact]
+        //public async Task Method_AddJSON_File_Should_Find_File_And_Deserialize()
+        //{   
+        //    var configurationService = new ConfigurationService();
 
-            configurationService.SetBasePath("../");
-            await configurationService.AddJsonFile("appsettings.json");
+        //    configurationService.SetBasePath("../");
+        //    await configurationService.AddJsonFile("appsettings.json");
 
-            configurationService.GetValue<string>("ClientID").Should().NotBeNullOrEmpty();
-        }
+        //    configurationService.GetValue<string>("ClientID").Should().NotBeNullOrEmpty();
+        //}
     }
 }
