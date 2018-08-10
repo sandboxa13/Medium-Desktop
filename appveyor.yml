@@ -15,7 +15,7 @@ dotnet_csproj:
   
 before_build:
   - cmd: dotnet --version
-  - cmd: dotnet restore ./src/Medium.sln --verbosity m
+  - cmd: dotnet restore ./Medium.sln --verbosity m
  
 test_script:
   - cmd: dotnet restore ./tests/Medium.Services.Tests/Medium.Services.Tests.csproj
