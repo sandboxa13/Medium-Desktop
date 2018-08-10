@@ -20,15 +20,14 @@ namespace Services.Impl
         /// <summary>
         /// Add new JSON config file
         /// </summary>
-        /// <param name="flieName">name of file</param>
+        /// <param name="flieName">name of file</param> 
         /// <returns></returns>
-        public async Task AddJsonFile(string flieName)
+        public async Task AddJsonFile(string fileName)
         {
             await Task.Run(() =>
             {
-                var pathToFile = BasePath + "\\" + flieName;
-
-                using (var stream = new StreamReader(pathToFile))
+                var path = BasePath + "\\" + fileName;
+                using (var stream = new StreamReader(path))
                 {
                     var objects = (JObject)JsonConvert.DeserializeObject(stream.ReadToEnd());
 
