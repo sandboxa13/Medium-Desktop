@@ -15,6 +15,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Views\LoginView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.6.1" />
     <PackageReference Include="Avalonia.Desktop" Version="0.6.1" />
   </ItemGroup>
@@ -25,5 +28,10 @@
     <Reference Include="DryIocAttributes">
       <HintPath>..\..\..\..\..\..\Users\iRU\.nuget\packages\dryiocattributes.dll\4.0.2\lib\netstandard2.0\DryIocAttributes.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
