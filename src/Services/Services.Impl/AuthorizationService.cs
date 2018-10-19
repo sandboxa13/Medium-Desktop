@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Avalonia;
 using DryIocAttributes;
+using ImTools;
 using Medium.Domain.Domain;
 using Medium.Domain.Routes;
 using Newtonsoft.Json;
@@ -17,7 +20,7 @@ namespace Services.Impl
     {
         private readonly IConfigurationService _configurationService;
         private OauthClient _oauthClient;
-            
+
         public AuthorizationService(IConfigurationService configurationService)
         {
             _configurationService = configurationService;
@@ -26,8 +29,8 @@ namespace Services.Impl
         public async Task<bool> AuthorizateAsync()
         {
             _oauthClient = new OauthClient(
-                _configurationService.GetValue<string>("ClientID"),
-                _configurationService.GetValue<string>("ClientSecret"),
+                "ce250fa7c114",
+                "bb152d21f43b20de5174495f488cd71aede8efaa",
                 "text");
 
             var code = await GetAuthCode();
@@ -51,9 +54,18 @@ namespace Services.Impl
             http.Start();
 
             var url =
-                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={Uri.EscapeDataString(MediumApiRoutes.RedirectUrl)}";
+                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={MediumApiRoutes.RedirectUrl}";
 
-            System.Diagnostics.Process.Start(url);
+            var proc = new Process
+            {
+                StartInfo =
+                {
+                    UseShellExecute = true,
+                    FileName = url
+                }
+            };
+            proc.Start();
+
             var context = await http.GetContextAsync();
             var response = context.Response;
             var responseString = "<html><head><meta http-equiv=\'refresh\' content=\'10;url=https://google.com\'></head><body>Please return to the app.</body></html>";

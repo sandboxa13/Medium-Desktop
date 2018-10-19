@@ -1,26 +1,59 @@
 ﻿using DryIocAttributes;
-using Medium.Core.Services;
-using Medium.Core.ViewModels.User;
-using ReactiveUI.Fody.Helpers;
+using PropertyChanged;
+using ReactiveUI;
 using Services.Interfaces.Interfaces;
+using System;
+using System.Reactive.Linq;
+using Medium.Domain.Navigation;
 
 namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(MainWindowViewModel))]
-    public sealed class MainWindowViewModel : BaseViewModel
+    [AddINotifyPropertyChangedInterface]
+    public sealed class MainWindowViewModel : ReactiveObject
     {
-        private readonly IMediumApiService _mediumApiService;
         private readonly INavigationService _navigationService;
+        private readonly IFactory<LoginViewModel> _loginFactory;
 
-        public MainWindowViewModel(IMediumApiService mediumApiService, INavigationService navigationService)
+        public MainWindowViewModel(
+            INavigationService navigationService,
+            IFactory<LoginViewModel> loginFactory)
         {
-            _mediumApiService = mediumApiService;
             _navigationService = navigationService;
+            _loginFactory = loginFactory;
 
-            UserContentViewModel = new UserContentViewModel(_mediumApiService, _navigationService);
+            CurrentPageIndex = 0;
+
+            LoginViewModel = _loginFactory.Create();
+
+            InitSubscriptions();
         }
 
-        [Reactive] public UserContentViewModel UserContentViewModel { get; private set; }
+        public int CurrentPageIndex { get; set; }
+
+        public LoginViewModel LoginViewModel { get; set; }
+
+        private void InitSubscriptions()
+        {
+            _navigationService.CurrentPage()
+                .Subscribe(index =>
+            {
+                switch (index)
+                {
+                    case PageIndex.AuthorizationPage:
+                        CurrentPageIndex = 0;
+                        break;
+
+                    case PageIndex.MainPage:
+                        CurrentPageIndex = 1;
+                        break;
+
+                    case PageIndex.SubscriptionsPage:
+                        CurrentPageIndex = 2;
+                        break;
+                }
+            });
+        }
     }
 }

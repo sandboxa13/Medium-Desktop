@@ -1,7 +1,7 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Grid>
-    <Button Content="Authorizate">
+    <Button Width="100" Command="{Binding LoginCommand}" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Authorizate">
       
     </Button>
   </Grid>

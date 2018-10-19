@@ -1,11 +1,15 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:authorization="clr-namespace:Medium.Views"
+        xmlns:views="clr-namespace:Medium.Views"
         Title="Medium">
-    <Grid ColumnDefinitions="*, *, *" RowDefinitions="*, 5*">
-        <Border Grid.Row="1" Grid.Column="1">
-          <Carousel SelectedItem="{Binding }">
-          </Carousel>
-        </Border>
-    </Grid>
+
+  <Panel>
+    <Carousel SelectedIndex="{Binding CurrentPageIndex}">
+
+      <views:LoginView DataContext="{Binding LoginViewModel}"/>
+
+      <views:MainPageView/>
+
+    </Carousel>
+  </Panel>
 </Window>

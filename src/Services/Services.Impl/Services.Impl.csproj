@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.6.2-build6473-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.6.2-build6473-beta" />
+    <PackageReference Include="Avalonia.Gtk" Version="0.5.2-build3922-alpha" />
+    <PackageReference Include="Avalonia.Native" Version="0.7.0-build4201810181" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.6.2-build6473-beta" />
     <PackageReference Include="DryIoc.dll" Version="3.0.2" />
     <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
   </ItemGroup>

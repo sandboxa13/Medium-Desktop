@@ -1,40 +1,40 @@
 ﻿using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
-using Medium.Core.Services;
+using Medium.Domain.Navigation;
+using PropertyChanged;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using Services.Interfaces.Interfaces;
 
 namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(LoginViewModel))]
-    public sealed class LoginViewModel : BaseViewModel
+    [AddINotifyPropertyChangedInterface]
+    public sealed class LoginViewModel : ReactiveObject
     {
+        private readonly ILoginManager _loginManager;
+        private readonly INavigationService _navigationService;
+
         public LoginViewModel(
             ILoginManager loginManager,
-            INavigationService navigationService,
-            IMainWindowService mainWindowService)
+            INavigationService navigationService)
         {
-            LoginCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                SpinnerVisible = true;
+            _loginManager = loginManager;
+            _navigationService = navigationService;
 
-                var result = await loginManager.LoginAsync();
+            LoginCommand = ReactiveCommand.Create(LoginHandler);
+        }   
 
-                if (result)
-                {
-                    mainWindowService.ActivateWindow();
-                    await navigationService.NavigateAsync<MainPageViewModel>();
-
-                    SpinnerVisible = false;
-                }
-            });
-        }
-            
         public ReactiveCommand LoginCommand { get; }
 
-        [Reactive] public bool SpinnerVisible { get; set; }
+        private async void LoginHandler()
+        {
+            var result = await _loginManager.LoginAsync();
 
-        [Reactive] public string TestText { get; set; }
+            if (result)
+            {
+                _navigationService.NavigateAsync(PageIndex.MainPage);
+            }
+        }
     }
 }

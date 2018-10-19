@@ -25,6 +25,6 @@ namespace Medium.Domain.Routes
         /// <summary>
         /// The route to the  
         /// </summary>
-        public static readonly string RedirectUrl = $"http://{IPAddress.Loopback}:{3000}/";
+        public static readonly string RedirectUrl = $"http://{IPAddress.Loopback}:{3500}/";
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Medium.Domain.Navigation;
 
-namespace Medium.Core.Services
-{   
+namespace Services.Interfaces.Interfaces
+{       
     public interface INavigationService
-    {   
-        Task NavigateAsync<TViewModel>() where TViewModel : class;
+    {
+        void NavigateAsync(PageIndex pageIndex);
 
-        IObservable<Type> Navigated { get; }
+        IObservable<PageIndex> CurrentPage();
     }
 }

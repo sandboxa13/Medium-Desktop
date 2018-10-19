@@ -14,16 +14,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.6.2-build6473-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.6.2-build6473-beta" />
+    <PackageReference Include="Avalonia.Gtk" Version="0.5.2-build3922-alpha" />
+    <PackageReference Include="Avalonia.Native" Version="0.7.0-build4201810181" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.6.2-build6473-beta" />
     <PackageReference Include="DryIoc.dll" Version="3.0.2" />
     <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
     <PackageReference Include="DryIocAttributes.dll" Version="4.0.2" />
-    <PackageReference Include="Fody" Version="3.1.4" />
-    <PackageReference Include="ReactiveUI" Version="8.3.1" />
-    <PackageReference Include="ReactiveUI.Fody" Version="8.3.1" />
+    <PackageReference Include="Fody" Version="3.2.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody" Version="2.5.13" />
+    <PackageReference Include="ReactiveUI" Version="9.0.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Medium.Domain\Medium.Domain.csproj" />
     <ProjectReference Include="..\..\Services\Services.Impl\Services.Impl.csproj" />
     <ProjectReference Include="..\..\Services\Services.Interfaces\Services.Interfaces.csproj" />
   </ItemGroup>
