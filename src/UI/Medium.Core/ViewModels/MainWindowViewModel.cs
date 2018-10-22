@@ -1,17 +1,15 @@
 ﻿using DryIocAttributes;
-using PropertyChanged;
-using ReactiveUI;
 using Services.Interfaces.Interfaces;
 using System;
-using System.Reactive.Linq;
 using Medium.Domain.Navigation;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(MainWindowViewModel))]
-    [AddINotifyPropertyChangedInterface]
-    public sealed class MainWindowViewModel : ReactiveObject
+    public sealed class MainWindowViewModel : ReactiveObject, IDisposable
     {
         private readonly INavigationService _navigationService;
         private readonly IFactory<LoginViewModel> _loginFactory;
@@ -30,9 +28,9 @@ namespace Medium.Core.ViewModels
             InitSubscriptions();
         }
 
-        public int CurrentPageIndex { get; set; }
+        [Reactive] public int CurrentPageIndex { get; set; }
 
-        public LoginViewModel LoginViewModel { get; set; }
+        [Reactive] public LoginViewModel LoginViewModel { get; set; }
 
         private void InitSubscriptions()
         {
@@ -54,6 +52,10 @@ namespace Medium.Core.ViewModels
                         break;
                 }
             });
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

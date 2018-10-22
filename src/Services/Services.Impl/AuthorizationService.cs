@@ -4,9 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Avalonia;
 using DryIocAttributes;
-using ImTools;
 using Medium.Domain.Domain;
 using Medium.Domain.Routes;
 using Newtonsoft.Json;
@@ -29,8 +27,8 @@ namespace Services.Impl
         public async Task<bool> AuthorizateAsync()
         {
             _oauthClient = new OauthClient(
-                "ce250fa7c114",
-                "bb152d21f43b20de5174495f488cd71aede8efaa",
+                _configurationService.GetValue<string>("ClientID"),
+                _configurationService.GetValue<string>("ClientSecret"),
                 "text");
 
             var code = await GetAuthCode();

@@ -1,4 +1,5 @@
-﻿using DryIocAttributes;
+﻿using System;
+using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
 using Medium.Domain.Navigation;
 using PropertyChanged;
@@ -10,7 +11,7 @@ namespace Medium.Core.ViewModels
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(LoginViewModel))]
     [AddINotifyPropertyChangedInterface]
-    public sealed class LoginViewModel : ReactiveObject
+    public sealed class LoginViewModel : IDisposable
     {
         private readonly ILoginManager _loginManager;
         private readonly INavigationService _navigationService;
@@ -35,6 +36,11 @@ namespace Medium.Core.ViewModels
             {
                 _navigationService.NavigateAsync(PageIndex.MainPage);
             }
+        }
+
+        public void Dispose()
+        {
+            LoginCommand?.Dispose();
         }
     }
 }
