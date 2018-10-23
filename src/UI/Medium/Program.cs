@@ -1,20 +1,12 @@
-﻿using Avalonia;
-using Avalonia.Logging.Serilog;
-using Medium.Views;
-
-namespace Medium
+﻿namespace Medium
 {
-    class Program
+    public class Program
     {
-
-        static void Main(string[] args)
+        public static void Main()
         {
-            BuildAvaloniaApp().Start<MainWindow>();
-        }
+            var bootStrappet = new Bootstrapper();
 
-        public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
-                .UsePlatformDetect()
-                .LogToDebug();
+            bootStrappet.RunApplication();
+        }   
     }
 }

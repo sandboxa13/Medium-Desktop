@@ -14,18 +14,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc.dll" Version="3.0.2" />
-    <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
-    <PackageReference Include="DryIocAttributes.dll" Version="4.0.2" />
-    <PackageReference Include="Fody" Version="3.1.4" />
-    <PackageReference Include="ReactiveUI" Version="8.3.1" />
-    <PackageReference Include="ReactiveUI.Fody" Version="8.3.1" />
+    <PackageReference Include="Fody" Version="3.2.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI" Version="9.0.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Medium.Domain\Medium.Domain.csproj" />
-    <ProjectReference Include="..\..\Services\Services.Impl\Services.Impl.csproj" />
-    <ProjectReference Include="..\..\Services\Services.Interfaces\Services.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Services\Medium.Services.Authorization\Medium.Services.Authorization.csproj" />
+    <ProjectReference Include="..\..\Services\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
+    <ProjectReference Include="..\..\Services\Medium.Services.Navigation\Medium.Services.Navigation.csproj" />
+    <ProjectReference Include="..\..\Services\Medium.Services.Utils\Medium.Services.Utils.csproj" />
   </ItemGroup>
 
 </Project>

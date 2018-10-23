@@ -3,11 +3,16 @@ using Avalonia.Markup.Xaml;
 
 namespace Medium
 {
+  
     public class App : Application
     {
+        public App()
+        {
+        }
+
         public override void Initialize()
         {
-            AvaloniaXamlLoaderPortableXaml.Load(this);
+            AvaloniaXamlLoader.Load(this);
         }
     }
 }

@@ -4,12 +4,11 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Services.Interfaces.Interfaces;
 
-namespace Services.Impl
+namespace Medium.Services.Configuration
 {
     [Reuse(ReuseType.Singleton)]
-    [ExportEx(typeof(IConfigurationService))]   
+    [ExportEx(typeof(IConfigurationService))]
     public sealed class ConfigurationService : IConfigurationService
     {
         /// <summary>
@@ -20,20 +19,20 @@ namespace Services.Impl
         /// <summary>
         /// Add new JSON config file
         /// </summary>
-        /// <param name="flieName">name of file</param> 
+        /// <param name="fileName"></param>
         /// <returns></returns>
-        public async Task AddJsonFile(string fileName)
+        public Task AddJsonFile(string fileName)
         {
-            await Task.Run(() =>
-            {
-                var path = BasePath + "\\" + fileName;
-                using (var stream = new StreamReader(path))
-                {
-                    var objects = (JObject)JsonConvert.DeserializeObject(stream.ReadToEnd());
+            var path = BasePath + "\\" + fileName;
 
-                    GetAllObjects(objects);
-                }
-            });
+            using (var stream = new StreamReader(path))
+            {
+                var objects = (JObject)JsonConvert.DeserializeObject(stream.ReadToEnd());
+
+                GetAllObjects(objects);
+            }
+
+            return Task.CompletedTask;
         }
 
 

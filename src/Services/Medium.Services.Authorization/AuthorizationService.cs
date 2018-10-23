@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Domain.Domain;
 using Medium.Domain.Routes;
+using Medium.Services.Configuration;
 using Newtonsoft.Json;
-using Services.Interfaces.Interfaces;
 
-namespace Services.Impl
+namespace Medium.Services.Authorization
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IAuthorizationService))]
@@ -17,7 +18,7 @@ namespace Services.Impl
     {
         private readonly IConfigurationService _configurationService;
         private OauthClient _oauthClient;
-            
+
         public AuthorizationService(IConfigurationService configurationService)
         {
             _configurationService = configurationService;
@@ -51,9 +52,18 @@ namespace Services.Impl
             http.Start();
 
             var url =
-                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={Uri.EscapeDataString(MediumApiRoutes.RedirectUrl)}";
+                $"{MediumApiRoutes.Authorize}?client_id={_oauthClient.ClientId}&scope=basicProfile,publishPost&state={_oauthClient.State}&response_type=code&redirect_uri={MediumApiRoutes.RedirectUrl}";
 
-            System.Diagnostics.Process.Start(url);
+            var proc = new Process
+            {
+                StartInfo =
+                {
+                    UseShellExecute = true,
+                    FileName = url
+                }
+            };
+            proc.Start();
+
             var context = await http.GetContextAsync();
             var response = context.Response;
             var responseString = "<html><head><meta http-equiv=\'refresh\' content=\'10;url=https://google.com\'></head><body>Please return to the app.</body></html>";

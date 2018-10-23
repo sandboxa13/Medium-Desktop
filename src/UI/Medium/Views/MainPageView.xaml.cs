@@ -4,16 +4,16 @@ using Avalonia.Markup.Xaml;
 
 namespace Medium.Views
 {
-    public class MainWindow : Window
+    public class MainPageView : UserControl
     {
-        public MainWindow()
+        public MainPageView()
         {
-            AvaloniaXamlLoader.Load(this);
-            this.AttachDevTools();
+            this.InitializeComponent();
         }
 
         private void InitializeComponent()
         {
+            AvaloniaXamlLoader.Load(this);
         }
     }
 }

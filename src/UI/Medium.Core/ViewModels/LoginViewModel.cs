@@ -1,40 +1,43 @@
-﻿using DryIocAttributes;
+﻿using System;
+using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
-using Medium.Core.Services;
+using Medium.Domain.Navigation;
+using Medium.Services.Navigation;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
-namespace Medium.Core.ViewModels
+namespace Medium.Core.ViewModels    
 {
-    [Reuse(ReuseType.Transient)]
-    [ExportEx(typeof(LoginViewModel))]
-    public sealed class LoginViewModel : BaseViewModel
+    [Reuse(ReuseType.Transient)]    
+    [ExportEx(typeof(AuthorizationViewModel))]
+    public sealed class AuthorizationViewModel : ReactiveObject, IDisposable
     {
-        public LoginViewModel(
-            ILoginManager loginManager,
-            INavigationService navigationService,
-            IMainWindowService mainWindowService)
-        {
-            LoginCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                SpinnerVisible = true;
+        private readonly IAuthorizationManager _authorizationManager;
+        private readonly INavigationService _navigationService;
 
-                var result = await loginManager.LoginAsync();
+        public AuthorizationViewModel(
+            IAuthorizationManager authorizationManager,
+            INavigationService navigationService)
+        {   
+            _authorizationManager = authorizationManager;
+            _navigationService = navigationService;
 
-                if (result)
-                {
-                    mainWindowService.ActivateWindow();
-                    await navigationService.NavigateAsync<MainPageViewModel>();
+            LoginCommand = ReactiveCommand.Create(LoginHandler);
+        }   
 
-                    SpinnerVisible = false;
-                }
-            });
-        }
-            
         public ReactiveCommand LoginCommand { get; }
 
-        [Reactive] public bool SpinnerVisible { get; set; }
+        public void Dispose()
+        {
+        }
 
-        [Reactive] public string TestText { get; set; }
+        private async void LoginHandler()
+        {
+            var result = await _authorizationManager.LoginAsync();
+
+            if (result)
+            {
+                _navigationService.NavigateAsync(PageIndex.MainPage);
+            }
+        }
     }
 }

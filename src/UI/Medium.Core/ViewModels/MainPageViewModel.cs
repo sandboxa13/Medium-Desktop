@@ -1,12 +1,14 @@
-﻿using DryIocAttributes;
-using Medium.Core.Services;
-using Services.Interfaces.Interfaces;
+﻿using System;
+using DryIocAttributes;
+using Medium.Services.MediumApi;
+using Medium.Services.Navigation;
+using ReactiveUI;
 
 namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(MainPageViewModel))]
-    public sealed class MainPageViewModel : BaseViewModel
+    public sealed class MainPageViewModel : ReactiveObject, IDisposable
     {
         private readonly IMediumApiService _mediumApiService;
         private readonly INavigationService _navigationService;
@@ -15,6 +17,10 @@ namespace Medium.Core.ViewModels
         {
             _mediumApiService = mediumApiService;
             _navigationService = navigationService;
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
