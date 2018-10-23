@@ -23,9 +23,4 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Services\Services.Impl\Services.Impl.csproj" />
-    <ProjectReference Include="..\..\src\Services\Services.Interfaces\Services.Interfaces.csproj" />
-  </ItemGroup>
-
 </Project>

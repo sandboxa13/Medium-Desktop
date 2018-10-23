@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Services.Interfaces.Interfaces;
 
-namespace Services.Impl
+namespace Medium.Services.Configuration
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IConfigurationService))]
@@ -20,7 +19,6 @@ namespace Services.Impl
         /// <summary>
         /// Add new JSON config file
         /// </summary>
-        /// <param name="flieName">name of file</param>
         /// <param name="fileName"></param>
         /// <returns></returns>
         public Task AddJsonFile(string fileName)

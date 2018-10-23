@@ -2,9 +2,8 @@
 using System.Reactive.Subjects;
 using DryIocAttributes;
 using Medium.Domain.Navigation;
-using Services.Interfaces.Interfaces;
 
-namespace Services.Impl
+namespace Medium.Services.Navigation
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(INavigationService))]

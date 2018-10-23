@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Domain.Domain;
 using Medium.Domain.Routes;
+using Medium.Services.Configuration;
 using Newtonsoft.Json;
-using Services.Interfaces.Interfaces;
 
-namespace Services.Impl
+namespace Medium.Services.Authorization
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IAuthorizationService))]

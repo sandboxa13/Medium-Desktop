@@ -8,9 +8,9 @@ using DryIoc;
 using DryIoc.MefAttributedModel;
 using Medium.Core.Extensions;
 using Medium.Core.ViewModels;
+using Medium.Services.Configuration;
 using Medium.Views;
 using ReactiveUI;
-using Services.Interfaces.Interfaces;
 
 namespace Medium
 {

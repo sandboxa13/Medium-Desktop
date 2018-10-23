@@ -1,17 +1,17 @@
 ﻿using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
-using Services.Interfaces.Interfaces;
+using Medium.Services.Authorization;
 
 namespace Medium.Core.Managers
 {   
     [Reuse(ReuseType.Singleton)]
-    [ExportEx(typeof(ILoginManager))]
-    public sealed class LoginManager : ILoginManager
+    [ExportEx(typeof(IAuthorizationManager))]   
+    public sealed class AuthorizationManager : IAuthorizationManager
     {
         private readonly IAuthorizationService _authorizationService;
 
-        public LoginManager(IAuthorizationService authorizationService)
+        public AuthorizationManager(IAuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
         }   

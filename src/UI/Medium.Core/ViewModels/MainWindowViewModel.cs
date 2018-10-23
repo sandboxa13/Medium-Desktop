@@ -1,7 +1,8 @@
 ﻿using DryIocAttributes;
-using Services.Interfaces.Interfaces;
 using System;
 using Medium.Domain.Navigation;
+using Medium.Services.Navigation;
+using Medium.Services.Utils;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -11,26 +12,31 @@ namespace Medium.Core.ViewModels
     [ExportEx(typeof(MainWindowViewModel))]
     public sealed class MainWindowViewModel : ReactiveObject, IDisposable
     {
-        private readonly INavigationService _navigationService;
-        private readonly IFactory<LoginViewModel> _loginFactory;
+        private readonly INavigationService _navigationService; 
+        private readonly IFactory<AuthorizationViewModel> _authorizationFactory;
+        private readonly IFactory<MainPageViewModel> _mainPageFactory;
 
-        public MainWindowViewModel(
+        public MainWindowViewModel(     
             INavigationService navigationService,
-            IFactory<LoginViewModel> loginFactory)
+            IFactory<AuthorizationViewModel> authorizationFactory,
+            IFactory<MainPageViewModel> mainPageFactory)
         {
             _navigationService = navigationService;
-            _loginFactory = loginFactory;
-
-            CurrentPageIndex = 0;
-
-            LoginViewModel = _loginFactory.Create();
+            _authorizationFactory = authorizationFactory;
+            _mainPageFactory = mainPageFactory;
 
             InitSubscriptions();
         }
+            
+        [Reactive] public int CurrentPageIndex { get; private set; }
+        [Reactive] public AuthorizationViewModel AuthorizationViewModel { get; private set; }
+        [Reactive] public MainPageViewModel MainPageViewModel { get; private set; }
 
-        [Reactive] public int CurrentPageIndex { get; set; }
-
-        [Reactive] public LoginViewModel LoginViewModel { get; set; }
+        public void Dispose()
+        {
+            AuthorizationViewModel?.Dispose();
+            MainPageViewModel?.Dispose();
+        }
 
         private void InitSubscriptions()
         {
@@ -40,11 +46,11 @@ namespace Medium.Core.ViewModels
                 switch (index)
                 {
                     case PageIndex.AuthorizationPage:
-                        CurrentPageIndex = 0;
+                        GoToAuthorizationPage();
                         break;
 
                     case PageIndex.MainPage:
-                        CurrentPageIndex = 1;
+                        GoToMainPage();
                         break;
 
                     case PageIndex.SubscriptionsPage:
@@ -52,10 +58,21 @@ namespace Medium.Core.ViewModels
                         break;
                 }
             });
+
+            GoToAuthorizationPage();
+        }
+            
+        private void GoToAuthorizationPage()
+        {
+            AuthorizationViewModel = _authorizationFactory.Create();
+            CurrentPageIndex = 0;
         }
 
-        public void Dispose()
+        private void GoToMainPage()
         {
+            AuthorizationViewModel?.Dispose();
+            MainPageViewModel = _mainPageFactory.Create();
+            CurrentPageIndex = 1;
         }
     }
 }

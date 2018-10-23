@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Services.Interfaces.Interfaces
+namespace Medium.Services.Configuration
 {
     public interface IConfigurationService
     {

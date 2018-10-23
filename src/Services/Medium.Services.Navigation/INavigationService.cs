@@ -1,7 +1,7 @@
 ﻿using System;
 using Medium.Domain.Navigation;
 
-namespace Services.Interfaces.Interfaces
+namespace Medium.Services.Navigation
 {       
     public interface INavigationService
     {

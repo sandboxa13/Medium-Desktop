@@ -1,8 +1,7 @@
 ﻿using DryIoc;
 using DryIocAttributes;
-using Services.Interfaces.Interfaces;
 
-namespace Services.Impl
+namespace Medium.Services.Utils
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IFactory<>))]

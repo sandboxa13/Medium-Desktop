@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Medium.Domain.Domain;
 
-namespace Services.Interfaces.Interfaces
+namespace Medium.Services.MediumApi
 {
     public interface IMediumApiService
     {

@@ -4,9 +4,9 @@ using DryIocAttributes;
 using Medium.Domain.Domain;
 using Medium.Domain.Extensions;
 using Medium.Domain.Routes;
-using Services.Interfaces.Interfaces;
+using Medium.Services.Authorization;
 
-namespace Services.Impl
+namespace Medium.Services.MediumApi
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IMediumApiService))]

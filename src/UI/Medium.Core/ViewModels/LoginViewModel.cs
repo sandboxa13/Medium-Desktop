@@ -2,25 +2,23 @@
 using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
 using Medium.Domain.Navigation;
-using PropertyChanged;
+using Medium.Services.Navigation;
 using ReactiveUI;
-using Services.Interfaces.Interfaces;
 
-namespace Medium.Core.ViewModels
+namespace Medium.Core.ViewModels    
 {
-    [Reuse(ReuseType.Transient)]
-    [ExportEx(typeof(LoginViewModel))]
-    [AddINotifyPropertyChangedInterface]
-    public sealed class LoginViewModel : IDisposable
+    [Reuse(ReuseType.Transient)]    
+    [ExportEx(typeof(AuthorizationViewModel))]
+    public sealed class AuthorizationViewModel : ReactiveObject, IDisposable
     {
-        private readonly ILoginManager _loginManager;
+        private readonly IAuthorizationManager _authorizationManager;
         private readonly INavigationService _navigationService;
 
-        public LoginViewModel(
-            ILoginManager loginManager,
+        public AuthorizationViewModel(
+            IAuthorizationManager authorizationManager,
             INavigationService navigationService)
-        {
-            _loginManager = loginManager;
+        {   
+            _authorizationManager = authorizationManager;
             _navigationService = navigationService;
 
             LoginCommand = ReactiveCommand.Create(LoginHandler);
@@ -28,19 +26,18 @@ namespace Medium.Core.ViewModels
 
         public ReactiveCommand LoginCommand { get; }
 
+        public void Dispose()
+        {
+        }
+
         private async void LoginHandler()
         {
-            var result = await _loginManager.LoginAsync();
+            var result = await _authorizationManager.LoginAsync();
 
             if (result)
             {
                 _navigationService.NavigateAsync(PageIndex.MainPage);
             }
-        }
-
-        public void Dispose()
-        {
-            LoginCommand?.Dispose();
         }
     }
 }

@@ -2,6 +2,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <ApplicationIcon />
+    <StartupObject></StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
     <OutputPath>C:\Dima\GitRep\Medium-Desktop\bin\</OutputPath>
@@ -26,11 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Medium.Core\Medium.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DryIocAttributes">
-      <HintPath>..\..\..\..\..\..\Users\iRU\.nuget\packages\dryiocattributes.dll\4.0.2\lib\netstandard2.0\DryIocAttributes.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\LoginView.xaml">
