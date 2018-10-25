@@ -26,6 +26,8 @@ namespace Medium.Core.ViewModels
             _mainPageFactory = mainPageFactory;
 
             InitSubscriptions();
+
+
         }
             
         [Reactive] public int CurrentPageIndex { get; private set; }

@@ -1,3 +1,7 @@
 # Medium-Desktop
 
-[![Build status](https://ci.appveyor.com/api/projects/status/58vac9dqnt5ronbc/branch/master?svg=true)](https://ci.appveyor.com/project/sandboxa13/medium-desktop/branch/master)
+| Platform | Status |
+| -------- | ------ |
+| MacOS    | [![Build Status](https://dev.azure.com/dimanikishin84/Medium-Desktop/_apis/build/status/mac-pipeline)](https://dev.azure.com/dimanikishin84/Medium-Desktop/_build/latest?definitionId=3) |
+| Windows  | [![Build Status](https://dev.azure.com/dimanikishin84/Medium-Desktop/_apis/build/status/linux-pipeline)](https://dev.azure.com/dimanikishin84/Medium-Desktop/_build/latest?definitionId=2) |
+| Linux    | [![Build Status](https://dev.azure.com/dimanikishin84/Medium-Desktop/_apis/build/status/windows-pipeline)](https://dev.azure.com/dimanikishin84/Medium-Desktop/_build/latest?definitionId=1) |
