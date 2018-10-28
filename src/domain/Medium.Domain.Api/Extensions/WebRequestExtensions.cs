@@ -2,9 +2,9 @@
 using System.IO;
 using System.Net;
 using System.Text;
-using Medium.Domain.Domain;
+using Medium.Domain.Api.Domain;
 
-namespace Medium.Domain.Extensions
+namespace Medium.Domain.Api.Extensions
 {
     public static class WebRequestExtensions
     {

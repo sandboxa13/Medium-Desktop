@@ -1,4 +1,4 @@
-﻿namespace Medium.Domain.Domain
+﻿namespace Medium.Domain.Api.Domain
 {
     public class JsonResponse<T>
     {

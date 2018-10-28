@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Subjects;
 using DryIocAttributes;
-using Medium.Domain.Navigation;
+using Medium.Services.Navigation.Navigation;
 
 namespace Medium.Services.Navigation
 {

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\domain\Medium.Domain.Api\Medium.Domain.Api.csproj" />
+    <ProjectReference Include="..\src\Services\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
+  </ItemGroup>
+
+</Project>

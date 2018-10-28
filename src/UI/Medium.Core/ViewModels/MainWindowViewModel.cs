@@ -1,7 +1,7 @@
 ﻿using DryIocAttributes;
 using System;
-using Medium.Domain.Navigation;
 using Medium.Services.Navigation;
+using Medium.Services.Navigation.Navigation;
 using Medium.Services.Utils;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -26,8 +26,6 @@ namespace Medium.Core.ViewModels
             _mainPageFactory = mainPageFactory;
 
             InitSubscriptions();
-
-
         }
             
         [Reactive] public int CurrentPageIndex { get; private set; }
@@ -43,7 +41,28 @@ namespace Medium.Core.ViewModels
         private void InitSubscriptions()
         {
             _navigationService.CurrentPage()
-                .Subscribe(index =>
+                .Subscribe(CurrentPageChangedHandler());
+
+            GoToAuthorizationPage();
+        }
+       
+
+        private void GoToAuthorizationPage()
+        {
+            AuthorizationViewModel = _authorizationFactory.Create();
+            CurrentPageIndex = 0;
+        }
+
+        private void GoToMainPage()
+        {
+            AuthorizationViewModel?.Dispose();
+            MainPageViewModel = _mainPageFactory.Create();
+            CurrentPageIndex = 1;
+        }
+
+        private Action<PageIndex> CurrentPageChangedHandler()
+        {
+            return index =>
             {
                 switch (index)
                 {
@@ -59,22 +78,7 @@ namespace Medium.Core.ViewModels
                         CurrentPageIndex = 2;
                         break;
                 }
-            });
-
-            GoToAuthorizationPage();
-        }
-            
-        private void GoToAuthorizationPage()
-        {
-            AuthorizationViewModel = _authorizationFactory.Create();
-            CurrentPageIndex = 0;
-        }
-
-        private void GoToMainPage()
-        {
-            AuthorizationViewModel?.Dispose();
-            MainPageViewModel = _mainPageFactory.Create();
-            CurrentPageIndex = 1;
+            };
         }
     }
 }

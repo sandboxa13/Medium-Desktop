@@ -1,4 +1,4 @@
-﻿namespace Medium.Domain.Navigation
+﻿namespace Medium.Services.Navigation.Navigation
 {
     public enum PageIndex
     {

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Medium.Domain.Routes
+namespace Medium.Domain.Api.Routes
 {
     public static class MediumApiRoutes
     {

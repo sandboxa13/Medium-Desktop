@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\domain\Medium.Domain.Api\Medium.Domain.Api.csproj" />
     <ProjectReference Include="..\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
   </ItemGroup>
 

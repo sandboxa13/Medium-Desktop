@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Medium.Services.Authorization\Medium.Services.Authorization.csproj" />
+    <ProjectReference Include="..\..\domain\Medium.Domain.Api\Medium.Domain.Api.csproj" />
   </ItemGroup>
 
 </Project>

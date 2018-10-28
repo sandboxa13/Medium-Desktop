@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Domain\**" />
     <Compile Remove="Logger\**" />
-    <EmbeddedResource Remove="Domain\**" />
     <EmbeddedResource Remove="Logger\**" />
-    <None Remove="Domain\**" />
     <None Remove="Logger\**" />
   </ItemGroup>
 
@@ -23,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Medium.Services.Authorization\Medium.Services.Authorization.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Navigation\Medium.Services.Navigation.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Utils\Medium.Services.Utils.csproj" />

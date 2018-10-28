@@ -1,4 +1,4 @@
-﻿namespace Medium.Domain.Domain
+﻿namespace Medium.Domain.Api.Domain.Api
 {
     public class User
     {   

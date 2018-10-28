@@ -2,7 +2,7 @@
 using System.Globalization;
 using Newtonsoft.Json;
 
-namespace Medium.Domain.Converters
+namespace Medium.Domain.Api.Converters
 {   
     internal class UnixTimestampConverter : JsonConverter
     {

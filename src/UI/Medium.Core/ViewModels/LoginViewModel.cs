@@ -1,8 +1,8 @@
 ﻿using System;
 using DryIocAttributes;
 using Medium.Core.Managers.Interfaces;
-using Medium.Domain.Navigation;
 using Medium.Services.Navigation;
+using Medium.Services.Navigation.Navigation;
 using ReactiveUI;
 
 namespace Medium.Core.ViewModels    
