@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using DryIocAttributes;
-using Medium.Core.Managers.Interfaces;
+using Medium.Core.Interfaces;
 using Medium.Domain.Navigation;
 using Medium.Services.Navigation;
 using ReactiveUI;
@@ -8,36 +12,25 @@ using ReactiveUI;
 namespace Medium.Core.ViewModels    
 {
     [Reuse(ReuseType.Transient)]    
-    [ExportEx(typeof(AuthorizationViewModel))]
-    public sealed class AuthorizationViewModel : ReactiveObject, IDisposable
+    [ExportEx(typeof(LoginViewModel))]
+    public sealed class LoginViewModel : ReactiveObject, ISupportsActivation
     {
-        private readonly IAuthorizationManager _authorizationManager;
-        private readonly INavigationService _navigationService;
+        public ReactiveCommand<Unit, bool> LoginCommand { get; }
+        public ViewModelActivator Activator { get; }
 
-        public AuthorizationViewModel(
+        public LoginViewModel(
             IAuthorizationManager authorizationManager,
             INavigationService navigationService)
         {   
-            _authorizationManager = authorizationManager;
-            _navigationService = navigationService;
-
-            LoginCommand = ReactiveCommand.Create(LoginHandler);
-        }   
-
-        public ReactiveCommand LoginCommand { get; }
-
-        public void Dispose()
-        {
-        }
-
-        private async void LoginHandler()
-        {
-            var result = await _authorizationManager.LoginAsync();
-
-            if (result)
+            Activator = new ViewModelActivator();
+            LoginCommand = ReactiveCommand.CreateFromTask(() => Task.FromResult(true));
+            this.WhenActivated(disposables =>
             {
-                _navigationService.NavigateAsync(PageIndex.MainPage);
-            }
+                LoginCommand.Where(loggedIn => loggedIn)
+                    .Select(ignore => PageIndex.MainPage)
+                    .Subscribe(navigationService.NavigateAsync)
+                    .DisposeWith(disposables);
+            });
         }
     }
 }

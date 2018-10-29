@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DryIocAttributes;
-using Medium.Core.Managers.Interfaces;
+using Medium.Core.Interfaces;
 using Medium.Services.Authorization;
 
 namespace Medium.Core.Managers

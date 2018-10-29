@@ -1,5 +1,9 @@
 ﻿using DryIocAttributes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using Medium.Domain.Navigation;
 using Medium.Services.Navigation;
 using Medium.Services.Utils;
@@ -10,71 +14,40 @@ namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(MainWindowViewModel))]
-    public sealed class MainWindowViewModel : ReactiveObject, IDisposable
+    public sealed class MainWindowViewModel : ReactiveObject, ISupportsActivation
     {
-        private readonly INavigationService _navigationService; 
-        private readonly IFactory<AuthorizationViewModel> _authorizationFactory;
-        private readonly IFactory<MainPageViewModel> _mainPageFactory;
+        [Reactive] 
+        public ISupportsActivation CurrentPage { get; private set; }
+        
+        public IEnumerable<ISupportsActivation> Pages { get; }
+        public ViewModelActivator Activator { get; }
 
         public MainWindowViewModel(     
-            INavigationService navigationService,
-            IFactory<AuthorizationViewModel> authorizationFactory,
-            IFactory<MainPageViewModel> mainPageFactory)
+            IFactory<LoginViewModel> authorizationFactory,
+            IFactory<MainPageViewModel> mainPageFactory,
+            INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            _authorizationFactory = authorizationFactory;
-            _mainPageFactory = mainPageFactory;
-
-            InitSubscriptions();
-
-
-        }
+            var pages = new List<ISupportsActivation>();
+            pages.Add(authorizationFactory.Create());
+            pages.Add(mainPageFactory.Create());
+            Pages = pages;
             
-        [Reactive] public int CurrentPageIndex { get; private set; }
-        [Reactive] public AuthorizationViewModel AuthorizationViewModel { get; private set; }
-        [Reactive] public MainPageViewModel MainPageViewModel { get; private set; }
-
-        public void Dispose()
-        {
-            AuthorizationViewModel?.Dispose();
-            MainPageViewModel?.Dispose();
-        }
-
-        private void InitSubscriptions()
-        {
-            _navigationService.CurrentPage()
-                .Subscribe(index =>
+            var typeMap = new Dictionary<PageIndex, Type>
             {
-                switch (index)
-                {
-                    case PageIndex.AuthorizationPage:
-                        GoToAuthorizationPage();
-                        break;
+                {PageIndex.AuthorizationPage, typeof(LoginViewModel)},
+                {PageIndex.MainPage, typeof(MainPageViewModel)},
+                {PageIndex.SubscriptionsPage, typeof(object)}
+            };
 
-                    case PageIndex.MainPage:
-                        GoToMainPage();
-                        break;
-
-                    case PageIndex.SubscriptionsPage:
-                        CurrentPageIndex = 2;
-                        break;
-                }
+            Activator = new ViewModelActivator();
+            this.WhenActivated(disposables =>
+            {
+                navigationService.CurrentPage()
+                    .Select(index => typeMap[index])
+                    .Select(type => Pages.First(x => x.GetType() == type))
+                    .Subscribe(viewModel => CurrentPage = viewModel)
+                    .DisposeWith(disposables);
             });
-
-            GoToAuthorizationPage();
-        }
-            
-        private void GoToAuthorizationPage()
-        {
-            AuthorizationViewModel = _authorizationFactory.Create();
-            CurrentPageIndex = 0;
-        }
-
-        private void GoToMainPage()
-        {
-            AuthorizationViewModel?.Dispose();
-            MainPageViewModel = _mainPageFactory.Create();
-            CurrentPageIndex = 1;
         }
     }
 }

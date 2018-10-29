@@ -4,9 +4,8 @@
     {
         public static void Main()
         {
-            var bootStrappet = new Bootstrapper();
-
-            bootStrappet.RunApplication();
+            var bootStrapper = new Bootstrapper();
+            bootStrapper.RunApplication();
         }   
     }
 }
