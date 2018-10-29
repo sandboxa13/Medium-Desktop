@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\domain\Medium.Domain.Api\Medium.Domain.Api.csproj" />
+    <PackageReference Include="MediumSDK.Net" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\domain\Medium.Domain.Api\Medium.Domain.Api.csproj" />
+    <PackageReference Include="MediumSDK.Net" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\src\Services\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
   </ItemGroup>
 

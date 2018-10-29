@@ -2,7 +2,7 @@
 {
     public enum PageIndex
     {
-        AuthorizationPage, 
+        AuthenticationPage, 
         MainPage, 
         SubscriptionsPage   
     }

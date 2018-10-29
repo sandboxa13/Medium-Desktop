@@ -6,7 +6,7 @@
   <Panel>
     <Carousel SelectedIndex="{Binding CurrentPageIndex}">
 
-      <views:LoginView DataContext="{Binding AuthorizationViewModel}"/>
+      <views:LoginView DataContext="{Binding AuthenticationViewModel}"/>
 
       <views:MainPageView/>
 

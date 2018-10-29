@@ -13,28 +13,28 @@ namespace Medium.Core.ViewModels
     public sealed class MainWindowViewModel : ReactiveObject, IDisposable
     {
         private readonly INavigationService _navigationService; 
-        private readonly IFactory<AuthorizationViewModel> _authorizationFactory;
+        private readonly IFactory<AuthenticationViewModel> _AuthenticationFactory;
         private readonly IFactory<MainPageViewModel> _mainPageFactory;
 
         public MainWindowViewModel(     
             INavigationService navigationService,
-            IFactory<AuthorizationViewModel> authorizationFactory,
+            IFactory<AuthenticationViewModel> AuthenticationFactory,
             IFactory<MainPageViewModel> mainPageFactory)
         {
             _navigationService = navigationService;
-            _authorizationFactory = authorizationFactory;
+            _AuthenticationFactory = AuthenticationFactory;
             _mainPageFactory = mainPageFactory;
 
             InitSubscriptions();
         }
             
         [Reactive] public int CurrentPageIndex { get; private set; }
-        [Reactive] public AuthorizationViewModel AuthorizationViewModel { get; private set; }
+        [Reactive] public AuthenticationViewModel AuthenticationViewModel { get; private set; }
         [Reactive] public MainPageViewModel MainPageViewModel { get; private set; }
 
         public void Dispose()
         {
-            AuthorizationViewModel?.Dispose();
+            AuthenticationViewModel?.Dispose();
             MainPageViewModel?.Dispose();
         }
 
@@ -43,19 +43,19 @@ namespace Medium.Core.ViewModels
             _navigationService.CurrentPage()
                 .Subscribe(CurrentPageChangedHandler());
 
-            GoToAuthorizationPage();
+            GoToAuthenticationPage();
         }
        
 
-        private void GoToAuthorizationPage()
+        private void GoToAuthenticationPage()
         {
-            AuthorizationViewModel = _authorizationFactory.Create();
+            AuthenticationViewModel = _AuthenticationFactory.Create();
             CurrentPageIndex = 0;
         }
 
         private void GoToMainPage()
         {
-            AuthorizationViewModel?.Dispose();
+            AuthenticationViewModel?.Dispose();
             MainPageViewModel = _mainPageFactory.Create();
             CurrentPageIndex = 1;
         }
@@ -66,8 +66,8 @@ namespace Medium.Core.ViewModels
             {
                 switch (index)
                 {
-                    case PageIndex.AuthorizationPage:
-                        GoToAuthorizationPage();
+                    case PageIndex.AuthenticationPage:
+                        GoToAuthenticationPage();
                         break;
 
                     case PageIndex.MainPage:

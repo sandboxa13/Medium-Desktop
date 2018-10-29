@@ -5,24 +5,24 @@ using Medium.Services.Navigation;
 using Medium.Services.Navigation.Navigation;
 using ReactiveUI;
 
-namespace Medium.Core.ViewModels    
+namespace Medium.Core.ViewModels
 {
-    [Reuse(ReuseType.Transient)]    
-    [ExportEx(typeof(AuthorizationViewModel))]
-    public sealed class AuthorizationViewModel : ReactiveObject, IDisposable
+    [Reuse(ReuseType.Transient)]
+    [ExportEx(typeof(AuthenticationViewModel))]
+    public sealed class AuthenticationViewModel : ReactiveObject, IDisposable
     {
-        private readonly IAuthorizationManager _authorizationManager;
+        private readonly IAuthenticationManager _AuthenticationManager;
         private readonly INavigationService _navigationService;
 
-        public AuthorizationViewModel(
-            IAuthorizationManager authorizationManager,
+        public AuthenticationViewModel(
+            IAuthenticationManager AuthenticationManager,
             INavigationService navigationService)
-        {   
-            _authorizationManager = authorizationManager;
+        {
+            _AuthenticationManager = AuthenticationManager;
             _navigationService = navigationService;
 
             LoginCommand = ReactiveCommand.Create(LoginHandler);
-        }   
+        }
 
         public ReactiveCommand LoginCommand { get; }
 
@@ -32,12 +32,12 @@ namespace Medium.Core.ViewModels
 
         private async void LoginHandler()
         {
-            var result = await _authorizationManager.LoginAsync();
+            await _AuthenticationManager.LoginAsync();
 
-            if (result)
-            {
-                _navigationService.NavigateAsync(PageIndex.MainPage);
-            }
+            //if (result)
+            //{
+            _navigationService.NavigateAsync(PageIndex.MainPage);
+            //}
         }
     }
 }

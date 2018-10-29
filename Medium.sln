@@ -21,11 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.MediumApi",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Utils", "src\Services\Medium.Services.Utils\Medium.Services.Utils.csproj", "{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domain", "domain", "{68F8BF08-8871-4AE6-A876-4EB913B0CED1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Domain.Api", "src\domain\Medium.Domain.Api\Medium.Domain.Api.csproj", "{2D349C56-5EAB-4CDA-838E-791A4FC0EB61}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium.Services.Authentication", "Medium.Services.Authentication\Medium.Services.Authentication.csproj", "{58AEB18C-F089-4336-A11F-A69AA88D34C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Authentication", "Medium.Services.Authentication\Medium.Services.Authentication.csproj", "{58AEB18C-F089-4336-A11F-A69AA88D34C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +53,6 @@ Global
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D349C56-5EAB-4CDA-838E-791A4FC0EB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D349C56-5EAB-4CDA-838E-791A4FC0EB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D349C56-5EAB-4CDA-838E-791A4FC0EB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D349C56-5EAB-4CDA-838E-791A4FC0EB61}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58AEB18C-F089-4336-A11F-A69AA88D34C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58AEB18C-F089-4336-A11F-A69AA88D34C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58AEB18C-F089-4336-A11F-A69AA88D34C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,7 +68,6 @@ Global
 		{4BC788C7-EB3B-415E-B450-A03172EA2772} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
 		{2F490E17-1D7F-4DA5-A265-894847813F99} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
-		{2D349C56-5EAB-4CDA-838E-791A4FC0EB61} = {68F8BF08-8871-4AE6-A876-4EB913B0CED1}
 		{58AEB18C-F089-4336-A11F-A69AA88D34C6} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

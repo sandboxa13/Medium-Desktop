@@ -13,7 +13,7 @@ namespace Medium.Services.Navigation
 
         public NavigationService()
         {
-            _currentPageSubject = new BehaviorSubject<PageIndex>(PageIndex.AuthorizationPage);
+            _currentPageSubject = new BehaviorSubject<PageIndex>(PageIndex.AuthenticationPage);
         }
 
         public void NavigateAsync(PageIndex pageIndex) => _currentPageSubject.OnNext(pageIndex);
