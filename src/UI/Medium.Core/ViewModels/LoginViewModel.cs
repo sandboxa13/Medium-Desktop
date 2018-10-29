@@ -1,6 +1,6 @@
 ﻿using System;
 using DryIocAttributes;
-using Medium.Core.Managers.Interfaces;
+using Medium.Core.Managers;
 using Medium.Services.Navigation;
 using Medium.Services.Navigation.Navigation;
 using ReactiveUI;
