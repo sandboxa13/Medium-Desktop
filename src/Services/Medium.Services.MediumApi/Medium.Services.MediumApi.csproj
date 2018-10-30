@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Medium.Services.Authorization\Medium.Services.Authorization.csproj" />
+    <PackageReference Include="MediumSDK.Net" Version="1.0.6" />
   </ItemGroup>
 
 </Project>

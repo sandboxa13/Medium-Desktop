@@ -1,5 +1,5 @@
 ﻿using System;
-using Medium.Domain.Navigation;
+using Medium.Services.Navigation.Navigation;
 
 namespace Medium.Services.Navigation
 {       

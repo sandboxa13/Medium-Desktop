@@ -2,14 +2,13 @@
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Core.Interfaces;
-using Medium.Domain.Navigation;
 using Medium.Services.Navigation;
+using Medium.Services.Navigation.Navigation;
 using ReactiveUI;
 
-namespace Medium.Core.ViewModels    
+namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]    
     [ExportEx(typeof(LoginViewModel))]
@@ -19,11 +18,13 @@ namespace Medium.Core.ViewModels
         public ViewModelActivator Activator { get; }
 
         public LoginViewModel(
-            IAuthorizationManager authorizationManager,
+            IAuthenticationManager authenticationManager,
             INavigationService navigationService)
-        {   
+        {
             Activator = new ViewModelActivator();
-            LoginCommand = ReactiveCommand.CreateFromTask(() => Task.FromResult(true));
+
+            LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync);
+
             this.WhenActivated(disposables =>
             {
                 LoginCommand.Where(loggedIn => loggedIn)

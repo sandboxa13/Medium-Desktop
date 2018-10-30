@@ -1,9 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <ApplicationIcon />
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
+    <OutputPath>C:\Dima\GitRep\Medium-Desktop\bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
@@ -17,9 +21,11 @@
     <None Remove="Views\LoginView.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.7.0-build331-beta" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.7.0-build331-beta" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.7.0-build331-beta" />
+    <PackageReference Include="Avalonia" Version="0.7.0-build434-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.7.0-build434-beta" />
+    <PackageReference Include="Avalonia.Gtk" Version="0.5.2-build3922-alpha" />
+    <PackageReference Include="Avalonia.Native" Version="0.7.0-build434-beta" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.7.0-build434-beta" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Medium.Core\Medium.Core.csproj" />

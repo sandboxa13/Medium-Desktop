@@ -1,6 +1,5 @@
 ﻿using System.Reactive.Disposables;
 using DryIocAttributes;
-using Medium.Services.MediumApi;
 using Medium.Services.Navigation;
 using ReactiveUI;
 
@@ -11,9 +10,9 @@ namespace Medium.Core.ViewModels
     public sealed class MainPageViewModel : ReactiveObject, ISupportsActivation
     {
         public ViewModelActivator Activator { get; }
-
+            
         public MainPageViewModel(
-            IMediumApiService mediumApiService, 
+            //IMediumApiService mediumApiService, 
             INavigationService navigationService)
         {
             Activator = new ViewModelActivator();

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using Medium.Domain.Navigation;
 using Medium.Services.Navigation;
+using Medium.Services.Navigation.Navigation;
 using Medium.Services.Utils;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -27,14 +27,16 @@ namespace Medium.Core.ViewModels
             IFactory<MainPageViewModel> mainPageFactory,
             INavigationService navigationService)
         {
-            var pages = new List<ISupportsActivation>();
-            pages.Add(authorizationFactory.Create());
-            pages.Add(mainPageFactory.Create());
+            var pages = new List<ISupportsActivation>
+            {
+                authorizationFactory.Create(),
+                mainPageFactory.Create()
+            };
             Pages = pages;
             
             var typeMap = new Dictionary<PageIndex, Type>
             {
-                {PageIndex.AuthorizationPage, typeof(LoginViewModel)},
+                {PageIndex.AuthenticationPage, typeof(LoginViewModel)},
                 {PageIndex.MainPage, typeof(MainPageViewModel)},
                 {PageIndex.SubscriptionsPage, typeof(object)}
             };
@@ -46,6 +48,7 @@ namespace Medium.Core.ViewModels
                     .Select(index => typeMap[index])
                     .Select(type => Pages.First(x => x.GetType() == type))
                     .Subscribe(viewModel => CurrentPage = viewModel)
+
                     .DisposeWith(disposables);
             });
         }
