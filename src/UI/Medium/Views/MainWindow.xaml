@@ -1,15 +1,20 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:Medium.Views"
+        xmlns:viewModels="clr-namespace:Medium.Core.ViewModels;assembly=Medium.Core"
         Title="Medium">
-
   <Panel>
-    <Carousel SelectedIndex="{Binding CurrentPageIndex}">
-
-      <views:LoginView DataContext="{Binding AuthorizationViewModel}"/>
-
-      <views:MainPageView/>
-
-    </Carousel>
+      <Carousel 
+          Items="{Binding Pages, Mode=OneTime}" 
+          SelectedItem="{Binding CurrentPage, Mode=OneWay}">
+          <Carousel.DataTemplates>
+              <DataTemplate DataType="viewModels:LoginViewModel">
+                  <views:LoginView />
+              </DataTemplate>
+              <DataTemplate DataType="viewModels:MainPageViewModel">
+                  <views:MainPageView />
+              </DataTemplate>
+          </Carousel.DataTemplates>
+      </Carousel>
   </Panel>
 </Window>

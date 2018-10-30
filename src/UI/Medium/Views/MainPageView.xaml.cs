@@ -1,18 +1,15 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Medium.Core.ViewModels;
+using ReactiveUI;
 
 namespace Medium.Views
 {
-    public class MainPageView : UserControl
+    public class MainPageView : ReactiveUserControl<MainPageViewModel>
     {
         public MainPageView()
         {
-            this.InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
+            this.WhenActivated(disposables => { });
             AvaloniaXamlLoader.Load(this);
         }
     }
