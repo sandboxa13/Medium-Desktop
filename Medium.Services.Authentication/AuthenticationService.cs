@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Services.Configuration;
-using MediumSDK.Domain;
+using MediumSDK.Net.Domain;
 
 namespace Medium.Services.Authentication
 {
@@ -25,7 +26,17 @@ namespace Medium.Services.Authentication
                 
         public async Task AuthorizateAsync()
         {
-            await _mediumClient.AuthenticateUser();
+            try
+            {
+                _mediumClient.AuthenticateUser();
+                var thread = new Thread(o => {  });
+                thread.Start();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public Task RefreshTokenAsync()

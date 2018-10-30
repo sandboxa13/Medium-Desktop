@@ -2,6 +2,7 @@
 {
     public class Program
     {
+
         public static void Main()
         {
             var bootStrappet = new Bootstrapper();

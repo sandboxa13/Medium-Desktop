@@ -26,6 +26,7 @@
     <PackageReference Include="Avalonia.Gtk" Version="0.5.2-build3922-alpha" />
     <PackageReference Include="Avalonia.Native" Version="0.7.0-build4201810181" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.6.2-build6473-beta" />
+    <PackageReference Include="MediumSDK.Net" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Medium.Core\Medium.Core.csproj" />

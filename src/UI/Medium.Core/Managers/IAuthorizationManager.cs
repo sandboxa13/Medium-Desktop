@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Medium.Core.Managers.Interfaces
+namespace Medium.Core.Managers
 {   
     public interface IAuthenticationManager
     {   
