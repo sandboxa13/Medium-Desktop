@@ -2,8 +2,8 @@
 
 namespace Medium.Core.Managers
 {   
-    public interface IAuthenticationManager
+    public interface IAuthenticationManager 
     {   
-        Task LoginAsync();
+        Task<bool> LoginAsync();
     }
 }

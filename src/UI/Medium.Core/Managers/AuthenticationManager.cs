@@ -15,9 +15,11 @@ namespace Medium.Core.Managers
             _AuthenticationService = AuthenticationService;
         }   
 
-        public async Task LoginAsync()
+        public async Task<bool> LoginAsync()
         {
             await _AuthenticationService.AuthorizateAsync();
+
+            return true;
         }
     }
 }

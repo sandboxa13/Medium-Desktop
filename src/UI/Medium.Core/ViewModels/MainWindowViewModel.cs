@@ -1,5 +1,9 @@
 ﻿using DryIocAttributes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using Medium.Services.Navigation;
 using Medium.Services.Navigation.Navigation;
 using Medium.Services.Utils;
@@ -10,75 +14,40 @@ namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Transient)]
     [ExportEx(typeof(MainWindowViewModel))]
-    public sealed class MainWindowViewModel : ReactiveObject, IDisposable
+    public sealed class MainWindowViewModel : ReactiveObject, ISupportsActivation
     {
-        private readonly INavigationService _navigationService; 
-        private readonly IFactory<AuthenticationViewModel> _AuthenticationFactory;
-        private readonly IFactory<MainPageViewModel> _mainPageFactory;
+        [Reactive] 
+        public ISupportsActivation CurrentPage { get; private set; }
+        
+        public IEnumerable<ISupportsActivation> Pages { get; }
+        public ViewModelActivator Activator { get; }
 
         public MainWindowViewModel(     
-            INavigationService navigationService,
-            IFactory<AuthenticationViewModel> AuthenticationFactory,
-            IFactory<MainPageViewModel> mainPageFactory)
+            IFactory<LoginViewModel> authorizationFactory,
+            IFactory<MainPageViewModel> mainPageFactory,
+            INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            _AuthenticationFactory = AuthenticationFactory;
-            _mainPageFactory = mainPageFactory;
-
-            InitSubscriptions();
-        }
+            var pages = new List<ISupportsActivation>();
+            pages.Add(authorizationFactory.Create());
+            pages.Add(mainPageFactory.Create());
+            Pages = pages;
             
-        [Reactive] public int CurrentPageIndex { get; private set; }
-        [Reactive] public AuthenticationViewModel AuthenticationViewModel { get; private set; }
-        [Reactive] public MainPageViewModel MainPageViewModel { get; private set; }
-
-        public void Dispose()
-        {
-            AuthenticationViewModel?.Dispose();
-            MainPageViewModel?.Dispose();
-        }
-
-        private void InitSubscriptions()
-        {
-            _navigationService.CurrentPage()
-                .Subscribe(CurrentPageChangedHandler());
-
-            GoToAuthenticationPage();
-        }
-       
-
-        private void GoToAuthenticationPage()
-        {
-            AuthenticationViewModel = _AuthenticationFactory.Create();
-            CurrentPageIndex = 0;
-        }
-
-        private void GoToMainPage()
-        {
-            AuthenticationViewModel?.Dispose();
-            MainPageViewModel = _mainPageFactory.Create();
-            CurrentPageIndex = 1;
-        }
-
-        private Action<PageIndex> CurrentPageChangedHandler()
-        {
-            return index =>
+            var typeMap = new Dictionary<PageIndex, Type>
             {
-                switch (index)
-                {
-                    case PageIndex.AuthenticationPage:
-                        GoToAuthenticationPage();
-                        break;
-
-                    case PageIndex.MainPage:
-                        GoToMainPage();
-                        break;
-
-                    case PageIndex.SubscriptionsPage:
-                        CurrentPageIndex = 2;
-                        break;
-                }
+                {PageIndex.AuthenticationPage, typeof(LoginViewModel)},
+                {PageIndex.MainPage, typeof(MainPageViewModel)},
+                {PageIndex.SubscriptionsPage, typeof(object)}
             };
+
+            Activator = new ViewModelActivator();
+            this.WhenActivated(disposables =>
+            {
+                navigationService.CurrentPage()
+                    .Select(index => typeMap[index])
+                    .Select(type => Pages.First(x => x.GetType() == type))
+                    .Subscribe(viewModel => CurrentPage = viewModel)
+                    .DisposeWith(disposables);
+            });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Reactive.Disposables;
 using DryIocAttributes;
 using Medium.Services.MediumApi;
 using Medium.Services.Navigation;
@@ -8,19 +8,20 @@ namespace Medium.Core.ViewModels
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(MainPageViewModel))]
-    public sealed class MainPageViewModel : ReactiveObject, IDisposable
+    public sealed class MainPageViewModel : ReactiveObject, ISupportsActivation
     {
-        private readonly IMediumApiService _mediumApiService;
-        private readonly INavigationService _navigationService;
-
-        public MainPageViewModel(IMediumApiService mediumApiService, INavigationService navigationService)
+        public ViewModelActivator Activator { get; }
+            
+        public MainPageViewModel(
+            //IMediumApiService mediumApiService, 
+            INavigationService navigationService)
         {
-            _mediumApiService = mediumApiService;
-            _navigationService = navigationService;
-        }
-
-        public void Dispose()
-        {
+            Activator = new ViewModelActivator();
+            this.WhenActivated(disposables =>
+            {
+                // Example disposition logic.
+                Disposable.Create(() => {}).DisposeWith(disposables);
+            });
         }
     }
 }

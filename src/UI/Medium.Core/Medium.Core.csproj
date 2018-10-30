@@ -2,11 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Domain\**" />
     <Compile Remove="Logger\**" />
+    <EmbeddedResource Remove="Domain\**" />
     <EmbeddedResource Remove="Logger\**" />
+    <None Remove="Domain\**" />
     <None Remove="Logger\**" />
   </ItemGroup>
 
@@ -15,8 +19,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ReactiveUI" Version="9.0.1" />
-    <PackageReference Include="ReactiveUI.Fody" Version="9.0.1" />
+    <PackageReference Include="ReactiveUI" Version="9.1.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="9.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,3 +31,4 @@
   </ItemGroup>
 
 </Project>
+

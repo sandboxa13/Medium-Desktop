@@ -33,7 +33,6 @@ namespace Medium
             var configuration = _container.Resolve<IConfigurationService>();
             var path = new DirectoryInfo(@"../..").FullName;
             configuration.SetBasePath(path);
-            configuration.AddJsonFile("appsettings.json");
 
             var builder = AppBuilder.Configure<App>()
                 .UsePlatformDetect()
