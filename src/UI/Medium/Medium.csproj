@@ -4,10 +4,7 @@
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <ApplicationIcon />
-    <StartupObject></StartupObject>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
-    <OutputPath>C:\Dima\GitRep\Medium-Desktop\bin\</OutputPath>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
@@ -23,7 +20,6 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.7.0-build434-beta" />
     <PackageReference Include="Avalonia.Desktop" Version="0.7.0-build434-beta" />
-    <PackageReference Include="Avalonia.Gtk" Version="0.5.2-build3922-alpha" />
     <PackageReference Include="Avalonia.Native" Version="0.7.0-build434-beta" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.7.0-build434-beta" />
   </ItemGroup>

@@ -14,10 +14,4 @@
     <PackageReference Include="System.Reactive.PlatformServices" Version="4.1.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Reactive.Linq">
-      <HintPath>..\..\..\..\..\..\Users\iRU\.nuget\packages\system.reactive.linq\3.1.1\lib\netstandard1.3\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-</Project>
+ </Project>
