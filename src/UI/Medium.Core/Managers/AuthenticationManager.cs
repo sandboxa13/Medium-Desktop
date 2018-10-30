@@ -8,17 +8,17 @@ namespace Medium.Core.Managers
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IAuthenticationManager))]   
     public sealed class AuthenticationManager : IAuthenticationManager
-    {
-        private readonly IAuthenticationService _AuthenticationService;
+    {   
+        private readonly IAuthenticationService _authenticationService; 
 
-        public AuthenticationManager(IAuthenticationService AuthenticationService)
+        public AuthenticationManager(IAuthenticationService authenticationService)
         {
-            _AuthenticationService = AuthenticationService;
+            _authenticationService = authenticationService;
         }   
 
         public async Task<bool> LoginAsync()
         {
-            await _AuthenticationService.AuthorizateAsync();
+            await _authenticationService.AuthorizateAsync();
 
             return true;
         }
