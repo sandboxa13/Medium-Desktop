@@ -16,13 +16,14 @@ namespace Medium.Core.ViewModels
     {
         public ReactiveCommand<Unit, bool> LoginCommand { get; }
         public ViewModelActivator Activator { get; }
-            
-        public LoginViewModel(  
+
+        public LoginViewModel(
             IAuthenticationManager authenticationManager,
             INavigationService navigationService)
-        {   
+        {
             Activator = new ViewModelActivator();
-            LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync);
+
+            LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync, outputScheduler: RxApp.TaskpoolScheduler);
 
             this.WhenActivated(disposables =>
             {

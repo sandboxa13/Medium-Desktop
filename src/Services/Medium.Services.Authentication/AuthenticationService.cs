@@ -21,12 +21,13 @@ namespace Medium.Services.Authentication
 
         public async Task AuthorizateAsync()
         {
-           await _mediumClient.AuthenticateUser();
+            await _mediumClient.AuthenticateUser()
         }
 
         public Task RefreshTokenAsync()
         {
             throw new NotImplementedException();
         }
+
     }
 }

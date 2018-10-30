@@ -48,6 +48,7 @@ namespace Medium.Core.ViewModels
                     .Select(index => typeMap[index])
                     .Select(type => Pages.First(x => x.GetType() == type))
                     .Subscribe(viewModel => CurrentPage = viewModel)
+
                     .DisposeWith(disposables);
             });
         }
