@@ -23,6 +23,7 @@ namespace Medium.Core.ViewModels
         {
             Activator = new ViewModelActivator();
 
+
             LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync);
 
             this.WhenActivated(disposables =>

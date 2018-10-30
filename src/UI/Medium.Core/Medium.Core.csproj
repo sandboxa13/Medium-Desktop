@@ -6,15 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Domain\**" />
-    <Compile Remove="Logger\**" />
-    <EmbeddedResource Remove="Domain\**" />
-    <EmbeddedResource Remove="Logger\**" />
-    <None Remove="Domain\**" />
-    <None Remove="Logger\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Fody" Version="3.2.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -24,11 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\services\Medium.Services.Authentication\Medium.Services.Authentication.csproj" />
+    <ProjectReference Include="..\..\Services\Medium.Services.Authentication\Medium.Services.Authentication.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Navigation\Medium.Services.Navigation.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Utils\Medium.Services.Utils.csproj" />
   </ItemGroup>
 
 </Project>
-

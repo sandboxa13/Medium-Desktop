@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.MediumApi",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Utils", "src\Services\Medium.Services.Utils\Medium.Services.Utils.csproj", "{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Authentication", "src\services\Medium.Services.Authentication\Medium.Services.Authentication.csproj", "{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Authentication", "src\Services\Medium.Services.Authentication\Medium.Services.Authentication.csproj", "{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

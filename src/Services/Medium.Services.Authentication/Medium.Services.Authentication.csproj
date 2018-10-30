@@ -12,10 +12,4 @@
     <ProjectReference Include="..\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="DryIocAttributes">
-      <HintPath>..\..\..\..\..\..\Users\iRU\.nuget\packages\dryiocattributes.dll\4.0.2\lib\netstandard2.0\DryIocAttributes.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
