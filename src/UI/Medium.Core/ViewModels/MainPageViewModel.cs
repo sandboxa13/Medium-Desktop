@@ -1,6 +1,5 @@
 ﻿using System.Reactive.Disposables;
 using DryIocAttributes;
-using Medium.Services.MediumApi;
 using Medium.Services.Navigation;
 using ReactiveUI;
 

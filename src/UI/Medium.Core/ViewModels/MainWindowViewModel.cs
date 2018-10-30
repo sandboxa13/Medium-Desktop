@@ -27,9 +27,11 @@ namespace Medium.Core.ViewModels
             IFactory<MainPageViewModel> mainPageFactory,
             INavigationService navigationService)
         {
-            var pages = new List<ISupportsActivation>();
-            pages.Add(authorizationFactory.Create());
-            pages.Add(mainPageFactory.Create());
+            var pages = new List<ISupportsActivation>
+            {
+                authorizationFactory.Create(),
+                mainPageFactory.Create()
+            };
             Pages = pages;
             
             var typeMap = new Dictionary<PageIndex, Type>

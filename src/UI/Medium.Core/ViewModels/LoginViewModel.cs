@@ -2,9 +2,8 @@
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using DryIocAttributes;
-using Medium.Core.Managers;
+using Medium.Core.Interfaces;
 using Medium.Services.Navigation;
 using Medium.Services.Navigation.Navigation;
 using ReactiveUI;
@@ -24,6 +23,7 @@ namespace Medium.Core.ViewModels
         {   
             Activator = new ViewModelActivator();
             LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync);
+
             this.WhenActivated(disposables =>
             {
                 LoginCommand.Where(loggedIn => loggedIn)

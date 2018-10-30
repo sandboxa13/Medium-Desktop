@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Medium.Services.Authentication\Medium.Services.Authentication.csproj" />
+    <ProjectReference Include="..\..\services\Medium.Services.Authentication\Medium.Services.Authentication.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Navigation\Medium.Services.Navigation.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Utils\Medium.Services.Utils.csproj" />
