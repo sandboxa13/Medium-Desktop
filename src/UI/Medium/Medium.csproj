@@ -28,11 +28,6 @@
     <ProjectReference Include="..\Medium.Core\Medium.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\ErrorAuthPage.xaml.cs">
-      <DependentUpon>ErrorAuthPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

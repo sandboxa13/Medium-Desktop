@@ -3,7 +3,8 @@
     public enum PageIndex
     {
         AuthenticationPage, 
-        MainPage, 
-        SubscriptionsPage   
+        MainPage,   
+        SubscriptionsPage, 
+        ErrorAuthPage
     }
 }
