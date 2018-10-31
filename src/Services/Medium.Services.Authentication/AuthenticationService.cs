@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using DryIocAttributes;
 using MediumSDK.Net.Domain;
-using Newtonsoft.Json;
 
 namespace Medium.Services.Authentication
 {
@@ -24,9 +19,11 @@ namespace Medium.Services.Authentication
                 "text");
         }
 
-        public async Task AuthorizateAsync()
+        public async Task<bool> AuthorizateAsync()
         {
-            await _mediumClient.AuthenticateUser();
+            var token = await _mediumClient.AuthenticateUser();
+
+            return !string.IsNullOrEmpty(token.AccessToken);
         }
 
         public Task RefreshTokenAsync()
