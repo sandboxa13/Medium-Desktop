@@ -37,5 +37,4 @@
       <Setter Property="Height" Value="30"/>
     </Style>
   </UserControl.Styles>
-
 </UserControl>
