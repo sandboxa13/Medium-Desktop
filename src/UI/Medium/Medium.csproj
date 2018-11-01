@@ -17,6 +17,8 @@
   <ItemGroup>
     <None Remove="Icons\MaterialDesign.xaml" />
     <None Remove="Icons\MaterialLight.xaml" />
+    <None Remove="Styles\Text.xaml" />
+    <None Remove="Styles\Theme.xaml" />
     <None Remove="Views\ErrorAuthPage.xaml" />
     <None Remove="Views\LoginView.xaml" />
   </ItemGroup>
@@ -30,10 +32,24 @@
     <ProjectReference Include="..\Medium.Core\Medium.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Styles\Theme.xaml.cs">
+      <DependentUpon>Theme.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Styles\Text.xaml.cs">
+      <DependentUpon>Text.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Icons\MaterialDesign.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Icons\MaterialLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Text.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginView.xaml">

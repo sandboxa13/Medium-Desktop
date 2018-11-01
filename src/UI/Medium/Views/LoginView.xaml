@@ -15,23 +15,17 @@
       <Setter Property="Width" Value="100"/>
       <Setter Property="Height" Value="30"/>
     </Style>
-
-    <Style Selector="TextBlock.Welcome">
-      <Setter Property="FontFamily" Value="Segoe UI, Ubuntu"/>
-      <Setter Property="HorizontalAlignment" Value="Center"/>
-    </Style>
   </UserControl.Styles>
 
   <Grid>
     <StackPanel VerticalAlignment="Center">
       <StackPanel Margin="15">
-        <TextBlock Classes="Welcome"
-                   Text="Medium"
+
+        <TextBlock Text="Medium"
                    Foreground="#777777"
                    FontSize="30"/>
 
-        <TextBlock Classes="Welcome"
-                   Text="A Place for Stories"
+        <TextBlock Text="A Place for Stories"
                    Foreground="#999999"
                    FontSize="15"
                    Margin="5"/>
