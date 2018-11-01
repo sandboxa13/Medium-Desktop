@@ -1,35 +1,46 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-            <StackPanel Margin="15">
-                <TextBlock Text="Medium" 
-                           FontFamily="Segoe UI, Ubuntu"
-                           HorizontalAlignment="Center"
-                           Foreground="#777777" 
-                           FontSize="30" />
-                <TextBlock Text="A Place for Stories"
-                           FontFamily="Segoe UI, Ubuntu"
-                           HorizontalAlignment="Center"
-                           Foreground="#999999"
-                           FontSize="15"
-                           Margin="5" />
-            </StackPanel>
-            <Button Classes="Login"
-                    Width="100" Height="30" 
-                    Command="{Binding LoginCommand}" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center" 
-                    FontFamily="Segoe UI"
-                    Background="#03a87c"
-                    Foreground="#ffffff"
-                    Content="Log in" />
-        </StackPanel>
-    </Grid>
-    <UserControl.Styles>
-        <Style Selector="Button.Login /template/ ContentPresenter">
-            <Setter Property="CornerRadius" Value="4" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-    </UserControl.Styles>
+
+  <UserControl.Styles>
+    <Style Selector="Button.Login /template/ ContentPresenter">
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style Selector="Button.Login">
+      <Setter Property="FontFamily" Value="Segoe UI, Ubuntu"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Background" Value="#03a87c"/>
+      <Setter Property="Width" Value="100"/>
+      <Setter Property="Height" Value="30"/>
+    </Style>
+
+    <Style Selector="TextBlock.Welcome">
+      <Setter Property="FontFamily" Value="Segoe UI, Ubuntu"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Grid>
+    <StackPanel VerticalAlignment="Center">
+      <StackPanel Margin="15">
+        <TextBlock Classes="Welcome"
+                   Text="Medium"
+                   Foreground="#777777"
+                   FontSize="30"/>
+
+        <TextBlock Classes="Welcome"
+                   Text="A Place for Stories"
+                   Foreground="#999999"
+                   FontSize="15"
+                   Margin="5"/>
+      </StackPanel>
+
+      <Button Classes="Login"
+              Foreground="#ffffff"
+              Command="{Binding LoginCommand}"
+              Content="Log in" />
+    </StackPanel>
+  </Grid>
 </UserControl>
