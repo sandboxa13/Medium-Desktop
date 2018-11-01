@@ -7,6 +7,11 @@
       <Carousel 
           Items="{Binding Pages, Mode=OneTime}" 
           SelectedItem="{Binding CurrentPage, Mode=OneWay}">
+
+        <Carousel.PageTransition>
+            <PageSlide Duration="00:00:00.300" Orientation="Horizontal" />
+        </Carousel.PageTransition>
+
           <Carousel.DataTemplates>
               <DataTemplate DataType="viewModels:LoginViewModel">
                   <views:LoginView />
