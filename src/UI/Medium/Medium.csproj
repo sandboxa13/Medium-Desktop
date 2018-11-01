@@ -20,7 +20,7 @@
     <None Remove="Styles\Text.xaml" />
     <None Remove="Styles\Theme.xaml" />
     <None Remove="Views\ErrorAuthPage.xaml" />
-    <None Remove="Views\LoginView.xaml" />
+    <None Remove="Views\LoginPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.7.1-build460-beta" />
@@ -38,6 +38,12 @@
     <Compile Update="Styles\Text.xaml.cs">
       <DependentUpon>Text.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Icons\MaterialDesign.xaml">
@@ -52,7 +58,7 @@
     <EmbeddedResource Update="Styles\Text.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\LoginView.xaml">
+    <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ErrorAuthPage.xaml">

@@ -18,7 +18,7 @@
                 <views:LoginPage />
               </DataTemplate>
               <DataTemplate DataType="viewModels:MainPageViewModel">
-                  <views:MainPageView />
+                <views:MainPage />
               </DataTemplate>
               <DataTemplate DataType="viewModels:ErrorAuthViewModel">
                   <views:ErrorAuthPage />
