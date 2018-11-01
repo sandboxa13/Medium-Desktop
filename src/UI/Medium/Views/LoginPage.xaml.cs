@@ -1,13 +1,13 @@
 ﻿using Avalonia;
-using Avalonia.Markup.Xaml;
+using Avalonia.Markup.Xaml; 
 using Medium.Core.ViewModels;
 using ReactiveUI;
 
-namespace Medium.Views
+namespace Medium.Views  
 {
-    public class LoginView : ReactiveUserControl<LoginViewModel>
+    public class LoginPage : ReactiveUserControl<LoginViewModel>
     {
-        public LoginView()
+        public LoginPage()
         {
             this.WhenActivated(disposables => { });
             AvaloniaXamlLoader.Load(this);

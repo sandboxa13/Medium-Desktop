@@ -15,7 +15,7 @@
 
           <Carousel.DataTemplates>
               <DataTemplate DataType="viewModels:LoginViewModel">
-                  <views:LoginView />
+                <views:LoginPage />
               </DataTemplate>
               <DataTemplate DataType="viewModels:MainPageViewModel">
                   <views:MainPageView />
