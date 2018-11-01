@@ -38,6 +38,7 @@ namespace Medium.Core.ViewModels
             {
                 {PageIndex.AuthenticationPage, typeof(LoginViewModel)},
                 {PageIndex.MainPage, typeof(MainPageViewModel)},
+                {PageIndex.ErrorAuthPage, typeof(ErrorAuthViewModel)},
                 {PageIndex.SubscriptionsPage, typeof(object)}
             };
 

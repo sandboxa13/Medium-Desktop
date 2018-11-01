@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Medium.Core.Managers
+﻿namespace Medium.Core.Interfaces
 {
     public interface IUserProfileManager
     {

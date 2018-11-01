@@ -5,9 +5,9 @@ using ReactiveUI;
 
 namespace Medium.Views
 {
-    public class LoginView : ReactiveUserControl<LoginViewModel>
-    {
-        public LoginView()
+    public class MainPage : ReactiveUserControl<MainPageViewModel>
+    {   
+        public MainPage()
         {
             this.WhenActivated(disposables => { });
             AvaloniaXamlLoader.Load(this);

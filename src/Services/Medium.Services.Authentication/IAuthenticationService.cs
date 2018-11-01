@@ -3,8 +3,8 @@
 namespace Medium.Services.Authentication
 {
     public interface IAuthenticationService
-    {   
-        Task AuthorizateAsync();
+    {
+        Task<bool> AuthorizateAsync();  
 
         Task RefreshTokenAsync();
     }

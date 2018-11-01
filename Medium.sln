@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.MediumApi",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Utils", "src\Services\Medium.Services.Utils\Medium.Services.Utils.csproj", "{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium.Services.Authentication", "src\Services\Medium.Services.Authentication\Medium.Services.Authentication.csproj", "{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,7 +62,6 @@ Global
 		{4BC788C7-EB3B-415E-B450-A03172EA2772} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
 		{2F490E17-1D7F-4DA5-A265-894847813F99} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
 		{9AC50DF2-06FF-4A1C-8B14-C8F0D59FCC49} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
-		{A2B9C310-08B5-46E7-A6E3-CB7A9830ED69} = {7153CA56-6C24-4080-97FC-E4B1BB4689DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17A86A2A-DF9D-4AF1-8676-2C09F5250389}

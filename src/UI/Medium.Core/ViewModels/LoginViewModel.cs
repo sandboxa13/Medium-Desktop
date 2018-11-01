@@ -3,6 +3,7 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DryIocAttributes;
+using Medium.Core.Domain;
 using Medium.Core.Interfaces;
 using Medium.Services.Navigation;
 using Medium.Services.Navigation.Navigation;
@@ -14,7 +15,7 @@ namespace Medium.Core.ViewModels
     [ExportEx(typeof(LoginViewModel))]
     public sealed class LoginViewModel : ReactiveObject, ISupportsActivation
     {
-        public ReactiveCommand<Unit, bool> LoginCommand { get; }
+        public ReactiveCommand<Unit, AuthResult> LoginCommand { get; }
         public ViewModelActivator Activator { get; }
 
         public LoginViewModel(
@@ -23,13 +24,17 @@ namespace Medium.Core.ViewModels
         {
             Activator = new ViewModelActivator();
 
-
             LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync);
 
             this.WhenActivated(disposables =>
-            {
-                LoginCommand.Where(loggedIn => loggedIn)
+            {   
+                LoginCommand.Where(result => result == AuthResult.Succses)
                     .Select(ignore => PageIndex.MainPage)
+                    .Subscribe(navigationService.NavigateAsync)
+                    .DisposeWith(disposables);
+
+                LoginCommand.Where(result => result == AuthResult.Error)
+                    .Select(result => PageIndex.ErrorAuthPage)
                     .Subscribe(navigationService.NavigateAsync)
                     .DisposeWith(disposables);
             });
