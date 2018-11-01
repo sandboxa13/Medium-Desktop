@@ -1,4 +1,4 @@
-﻿namespace Medium.Core.Managers
+﻿namespace Medium.Core.Interfaces
 {
     public interface IMainWindowManager
     {

@@ -1,4 +1,5 @@
 ﻿using DryIocAttributes;
+using Medium.Core.Interfaces;
 using Medium.Core.Managers;
 
 namespace Medium.Managers
