@@ -15,7 +15,7 @@
                   <views:MainPageView />
               </DataTemplate>
               <DataTemplate DataType="viewModels:ErrorAuthViewModel">
-                  <views:MainPageView />
+                  <views:ErrorAuthPage />
               </DataTemplate>
           </Carousel.DataTemplates>
       </Carousel>
