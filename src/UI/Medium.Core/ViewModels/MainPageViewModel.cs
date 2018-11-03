@@ -1,6 +1,6 @@
 ﻿using System.Reactive.Disposables;
 using DryIocAttributes;
-using Medium.Services.Navigation;
+using Medium.Core.Interfaces;
 using ReactiveUI;
 
 namespace Medium.Core.ViewModels

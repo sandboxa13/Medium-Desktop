@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Services\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
-    <ProjectReference Include="..\..\Services\Medium.Services.Navigation\Medium.Services.Navigation.csproj" />
     <ProjectReference Include="..\..\Services\Medium.Services.Utils\Medium.Services.Utils.csproj" />
   </ItemGroup>
 

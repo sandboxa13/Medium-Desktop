@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Authentication;
+using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Core.Domain;
 using Medium.Core.Interfaces;
@@ -22,15 +23,14 @@ namespace Medium.Core.Managers
                 "text");
         }   
 
-        public async Task<AuthResult> LoginAsync()
+        public async Task LoginAsync()
         {
             await _mediumClient.AuthenticateUser();
-
+            var token = _mediumClient.Token.AccessToken;
+            if (token == null) throw new AuthenticationException("Token is null");
+            
+            // TODO Persist token into local cache storage
             _mainWindowManager.Activate();
-
-            return !string.IsNullOrEmpty(_mediumClient.Token.AccessToken) ? 
-                AuthResult.Succses : 
-                AuthResult.Error;
         }
     }
 }
