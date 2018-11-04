@@ -1,7 +1,6 @@
 ﻿using System.Security.Authentication;
 using System.Threading.Tasks;
 using DryIocAttributes;
-using Medium.Core.Domain;
 using Medium.Core.Interfaces;
 using MediumSDK.Net.Domain;
 

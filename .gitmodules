@@ -1,0 +1,3 @@
+[submodule "MediumSDK.Net"]
+	path = MediumSDK.Net
+	url = https://github.com/sandboxa13/MediumSDK.Net.git
