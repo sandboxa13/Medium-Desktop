@@ -10,5 +10,5 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
+- script: git submodule update --init --recursive && dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
