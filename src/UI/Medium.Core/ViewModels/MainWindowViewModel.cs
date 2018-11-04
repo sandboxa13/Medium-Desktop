@@ -1,14 +1,12 @@
-﻿using DryIocAttributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using Medium.Services.Navigation;
-using Medium.Services.Navigation.Navigation;
-using Medium.Services.Utils;
-using ReactiveUI;
+using DryIocAttributes;
+using Medium.Core.Interfaces;
 using ReactiveUI.Fody.Helpers;
+using ReactiveUI;
 
 namespace Medium.Core.ViewModels
 {
@@ -23,33 +21,19 @@ namespace Medium.Core.ViewModels
         public ViewModelActivator Activator { get; }
 
         public MainWindowViewModel(     
-            IFactory<LoginViewModel> authorizationFactory,
-            IFactory<MainPageViewModel> mainPageFactory,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            ErrorAuthViewModel errorAuthViewModel,
+            MainPageViewModel mainPageViewModel,
+            LoginViewModel loginViewModel)
         {
-            var pages = new List<ISupportsActivation>
-            {
-                authorizationFactory.Create(),
-                mainPageFactory.Create()
-            };
-            Pages = pages;
-            
-            var typeMap = new Dictionary<PageIndex, Type>
-            {
-                {PageIndex.AuthenticationPage, typeof(LoginViewModel)},
-                {PageIndex.MainPage, typeof(MainPageViewModel)},
-                {PageIndex.ErrorAuthPage, typeof(ErrorAuthViewModel)},
-                {PageIndex.SubscriptionsPage, typeof(object)}
-            };
+            Pages = new List<ISupportsActivation> { mainPageViewModel, loginViewModel, errorAuthViewModel };
 
             Activator = new ViewModelActivator();
             this.WhenActivated(disposables =>
             {
                 navigationService.CurrentPage()
-                    .Select(index => typeMap[index])
                     .Select(type => Pages.First(x => x.GetType() == type))
                     .Subscribe(viewModel => CurrentPage = viewModel)
-
                     .DisposeWith(disposables);
             });
         }

@@ -3,10 +3,7 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DryIocAttributes;
-using Medium.Core.Domain;
 using Medium.Core.Interfaces;
-using Medium.Services.Navigation;
-using Medium.Services.Navigation.Navigation;
 using ReactiveUI;
 
 namespace Medium.Core.ViewModels
@@ -15,27 +12,25 @@ namespace Medium.Core.ViewModels
     [ExportEx(typeof(LoginViewModel))]
     public sealed class LoginViewModel : ReactiveObject, ISupportsActivation
     {
-        public ReactiveCommand<Unit, AuthResult> LoginCommand { get; }
+        public ReactiveCommand<Unit, Unit> LoginCommand { get; }
         public ViewModelActivator Activator { get; }
 
         public LoginViewModel(
             IAuthenticationManager authenticationManager,
             INavigationService navigationService)
         {
-            Activator = new ViewModelActivator();
-
             LoginCommand = ReactiveCommand.CreateFromTask(authenticationManager.LoginAsync);
 
+            Activator = new ViewModelActivator();
             this.WhenActivated(disposables =>
-            {   
-                LoginCommand.Where(result => result == AuthResult.Succses)
-                    .Select(ignore => PageIndex.MainPage)
-                    .Subscribe(navigationService.NavigateAsync)
+            {    
+                LoginCommand.Select(unit => typeof(MainPageViewModel))
+                    .Subscribe(navigationService.Navigate)
                     .DisposeWith(disposables);
 
-                LoginCommand.Where(result => result == AuthResult.Error)
-                    .Select(result => PageIndex.ErrorAuthPage)
-                    .Subscribe(navigationService.NavigateAsync)
+                LoginCommand.ThrownExceptions
+                    .Select(exception => typeof(ErrorAuthViewModel))
+                    .Subscribe(navigationService.Navigate)
                     .DisposeWith(disposables);
             });
         }
