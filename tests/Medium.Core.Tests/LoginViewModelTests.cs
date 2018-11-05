@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Medium.Core.Tests
 {
-    public class UnitTest1
+    public class LoginViewModelTests
     {
         [Fact]
         public void Test1()
