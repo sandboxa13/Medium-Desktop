@@ -10,16 +10,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MediumSDK.Net" Version="1.0.6" />
     <PackageReference Include="ReactiveUI" Version="9.1.1" />
     <PackageReference Include="ReactiveUI.Fody" Version="9.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
-    <ProjectReference Include="..\..\Services\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
-    <ProjectReference Include="..\..\Services\Medium.Services.Navigation\Medium.Services.Navigation.csproj" />
-    <ProjectReference Include="..\..\Services\Medium.Services.Utils\Medium.Services.Utils.csproj" />
+    <ProjectReference Include="..\..\external\MediumSDK.Net\MediumSDK\MediumSDK.csproj" />
+    <ProjectReference Include="..\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
+    <ProjectReference Include="..\Medium.Services.Utils\Medium.Services.Utils.csproj" />
   </ItemGroup>
 
 </Project>
