@@ -15,7 +15,7 @@ namespace Medium.Core.ViewModels
         public ReactiveCommand<Unit, Unit> LoginCommand { get; }
         public ViewModelActivator Activator { get; }
 
-        public LoginViewModel(
+        public LoginViewModel(  
             IAuthenticationManager authenticationManager,
             INavigationService navigationService)
         {
