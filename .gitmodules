@@ -1,6 +1,3 @@
-[submodule "MediumSDK.Net"]
-	path = MediumSDK.Net
-	url = https://github.com/sandboxa13/MediumSDK.Net.git
 [submodule "external/MediumSDK.Net"]
 	path = external/MediumSDK.Net
 	url = https://github.com/sandboxa13/MediumSDK.Net.git
