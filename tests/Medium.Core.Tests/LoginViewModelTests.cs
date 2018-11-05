@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace Medium.Core.Tests
@@ -8,7 +7,7 @@ namespace Medium.Core.Tests
         [Fact]
         public void Test1()
         {
-
+            
         }
     }
 }
