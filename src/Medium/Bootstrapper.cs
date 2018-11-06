@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Gtk3;
 using Avalonia.Logging.Serilog;
 using Avalonia.Platform;
@@ -8,7 +7,6 @@ using DryIoc;
 using DryIoc.MefAttributedModel;
 using Medium.Core.Extensions;
 using Medium.Core.ViewModels;
-using Medium.Services.Configuration;
 using Medium.Views;
 using ReactiveUI;
 
@@ -29,10 +27,6 @@ namespace Medium
             RxApp.MainThreadScheduler = AvaloniaScheduler.Instance;
 
             var dataContext = _container.Resolve<MainWindowViewModel>();
-
-            var configuration = _container.Resolve<IConfigurationService>();
-            var path = new DirectoryInfo(@"../..").FullName;
-            configuration.SetBasePath(path);
 
             var builder = AppBuilder.Configure<App>()
                 .UsePlatformDetect()

@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\external\MediumSDK.Net\MediumSDK\MediumSDK.csproj" />
-    <ProjectReference Include="..\Medium.Services.Configuration\Medium.Services.Configuration.csproj" />
     <ProjectReference Include="..\Medium.Services.Utils\Medium.Services.Utils.csproj" />
   </ItemGroup>
 
