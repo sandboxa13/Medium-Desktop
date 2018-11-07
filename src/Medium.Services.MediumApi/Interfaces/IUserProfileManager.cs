@@ -1,4 +1,4 @@
-﻿namespace Medium.Core.Interfaces
+﻿namespace Medium.Services.MediumApi.Interfaces
 {
     public interface IUserProfileManager
     {

@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="akavache" Version="6.0.30" />
     <PackageReference Include="Fody" Version="3.2.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -16,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\external\MediumSDK.Net\MediumSDK\MediumSDK.csproj" />
+    <ProjectReference Include="..\Medium.Services.MediumApi\Medium.Services.MediumApi.csproj" />
     <ProjectReference Include="..\Medium.Services.Utils\Medium.Services.Utils.csproj" />
   </ItemGroup>
 

@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Medium.Core.Interfaces;
 using Medium.Core.ViewModels;
+using Medium.Services.MediumApi.Interfaces;
 using NSubstitute;
 using Xunit;
 using Xunit.Abstractions;

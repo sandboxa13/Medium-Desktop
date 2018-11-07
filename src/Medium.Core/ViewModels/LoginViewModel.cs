@@ -4,6 +4,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DryIocAttributes;
 using Medium.Core.Interfaces;
+using Medium.Services.MediumApi.Interfaces;
 using ReactiveUI;
 
 namespace Medium.Core.ViewModels

@@ -1,4 +1,4 @@
-﻿namespace Medium.Core.Domain
+﻿namespace Medium.Services.MediumApi.Domain
 {   
     public class UserData
     {

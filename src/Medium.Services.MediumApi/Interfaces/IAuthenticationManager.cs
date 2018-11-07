@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace Medium.Core.Interfaces
+namespace Medium.Services.MediumApi.Interfaces
 {   
     public interface IAuthenticationManager 
-    {   
+    {
         Task LoginAsync();
     }
 }

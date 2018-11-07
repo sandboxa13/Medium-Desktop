@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="akavache" Version="6.0.30" />
+    <PackageReference Include="DryIoc.dll" Version="3.0.2" />
+    <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
+    <PackageReference Include="DryIocAttributes.dll" Version="4.0.2" />
     <PackageReference Include="MediumSDK.Net" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\external\MediumSDK.Net\MediumSDK\MediumSDK.csproj" />
   </ItemGroup>
 
 </Project>

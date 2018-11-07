@@ -1,28 +1,27 @@
-﻿using System.Reactive.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using Akavache;
 using DryIocAttributes;
-using Medium.Core.Interfaces;
+using Medium.Services.MediumApi.Interfaces;
 
-namespace Medium.Core.Managers
+namespace Medium.Services.MediumApi.Managers
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IUserDataStorageManager<>))]
     public class UserDataStorageManager<T> : IUserDataStorageManager<T>
-    {
+    {   
         public UserDataStorageManager()
         {
             BlobCache.ApplicationName = "MediumDesktop";
-        }
+        }   
 
         public void InsertObject(T obj, string key)
         {
-            BlobCache.UserAccount.InsertObject(key, obj);
+            BlobCache.LocalMachine.InsertObject(key, obj);
         }
 
-        public async Task<T> GetObject(string key)
+        public IObservable<T> GetObject(string key)
         {   
-           return await BlobCache.UserAccount.GetObject<T>(key);
+           return BlobCache.LocalMachine.GetObject<T>(key);
         }
     }
 }
