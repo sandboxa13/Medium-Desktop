@@ -3,6 +3,7 @@ using DryIoc.MefAttributedModel;
 using Medium.Core.ViewModels;
 using Medium.Services.MediumApi.Managers;
 using Medium.Services.Utils;
+using MediumSDK.Net.Domain;
 
 namespace Medium.Core.Extensions
 {
@@ -12,6 +13,7 @@ namespace Medium.Core.Extensions
         {
             container.WithMefAttributedModel();
             container.RegisterExports(new[] { typeof(AuthenticationManager).GetAssembly() });    
+            container.RegisterExports(new[] { typeof(MediumClient).GetAssembly() });    
             container.RegisterExports(new[] { typeof(Factory<>).GetAssembly() });
             container.RegisterExports(new[] { typeof(MainWindowViewModel).GetAssembly() });
         }

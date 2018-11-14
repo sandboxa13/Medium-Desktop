@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Services.MediumApi.Domain;
 using Medium.Services.MediumApi.Interfaces;
-using MediumSDK.Net.Domain;
+using MediumSDK.Net;
 
 namespace Medium.Services.MediumApi.Managers
 {
@@ -12,16 +12,14 @@ namespace Medium.Services.MediumApi.Managers
     public sealed class AuthenticationManager : IAuthenticationManager
     {
         private readonly IUserDataStorageManager<UserData> _userDataStorageManager;
-        private readonly MediumClient _mediumClient;
+        private readonly IMediumClient _mediumClient;
 
         public AuthenticationManager(
-            IUserDataStorageManager<UserData> userDataStorageManager)
+            IUserDataStorageManager<UserData> userDataStorageManager,
+            IMediumClient mediumClient)
         {
             _userDataStorageManager = userDataStorageManager;
-            _mediumClient = new MediumClient(
-                "ce250fa7c114",
-                "bb152d21f43b20de5174495f488cd71aede8efaa",
-                "text");
+            _mediumClient = mediumClient;
         }
 
         public async Task LoginAsync()
@@ -30,6 +28,14 @@ namespace Medium.Services.MediumApi.Managers
 
             if (userData == null)
                 await LoginHandler();
+            else
+                UpdateClient(userData);
+        }
+
+        private void UpdateClient(UserData userData)
+        {
+            _mediumClient.Token.AccessToken = userData.Token;
+            _mediumClient.Token.RefreshToken = userData.RefreshToken;
         }
 
         private async Task LoginHandler()
