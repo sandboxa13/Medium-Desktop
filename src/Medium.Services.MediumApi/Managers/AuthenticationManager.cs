@@ -1,5 +1,4 @@
-﻿using System;
-using System.Security.Authentication;
+﻿using System.Security.Authentication;
 using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Services.MediumApi.Domain;
@@ -25,18 +24,12 @@ namespace Medium.Services.MediumApi.Managers
                 "text");
         }
 
-        public Task LoginAsync()
+        public async Task LoginAsync()
         {
-            _userDataStorageManager.GetObject("userData").Subscribe(
-                data =>
-                {
-                },
-                async exc =>
-                {
-                    await LoginHandler();
-                });
+            var userData = await _userDataStorageManager.GetObject("userData");
 
-            return Task.CompletedTask;
+            if (userData == null)
+                await LoginHandler();
         }
 
         private async Task LoginHandler()
@@ -45,7 +38,7 @@ namespace Medium.Services.MediumApi.Managers
 
             var token = _mediumClient.Token;
 
-            if(token == null)
+            if (token == null)
                 throw new AuthenticationException("Token is Null");
 
             var userData = new UserData

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 
 namespace Medium.Services.MediumApi.Interfaces
-{   
+{       
     public interface IUserDataStorageManager<T> 
     {
-        void InsertObject(T obj, string key);
+        void InsertObject(T obj, string key);   
 
-        IObservable<T> GetObject(string key);
+        Task<T> GetObject(string key);
     }
 }
