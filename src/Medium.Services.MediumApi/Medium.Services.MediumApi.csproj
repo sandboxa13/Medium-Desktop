@@ -9,7 +9,6 @@
     <PackageReference Include="DryIoc.dll" Version="3.0.2" />
     <PackageReference Include="DryIoc.MefAttributedModel.dll" Version="4.0.4" />
     <PackageReference Include="DryIocAttributes.dll" Version="4.0.2" />
-    <PackageReference Include="MediumSDK.Net" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>
