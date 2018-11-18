@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive;  
 using System.Threading.Tasks;
 
 namespace Medium.Services.MediumApi.Interfaces
@@ -7,6 +8,6 @@ namespace Medium.Services.MediumApi.Interfaces
     {
         Task LoginAsync();
 
-        IObservable<bool> LoggedIn();
+        IObservable<Unit> LoggedIn();
     }
 }
