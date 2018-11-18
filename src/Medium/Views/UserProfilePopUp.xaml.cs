@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace Medium.Views
 {
-    public class UserProfilePopUp : ReactiveWindow<UserProfilePopUpViewModel>
+    public class UserProfilePopUp : ReactiveUserControl<UserProfilePopUpViewModel>
     {
         public UserProfilePopUp()
         {
