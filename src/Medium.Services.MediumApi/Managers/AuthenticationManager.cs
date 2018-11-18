@@ -26,7 +26,7 @@ namespace Medium.Services.MediumApi.Managers
         {
             var userData = await _userDataStorageManager.GetObject("userData");
 
-            if (userData == null)
+            if (string.IsNullOrEmpty(userData.Token))
                 await LoginHandler();
             else
                 UpdateClient(userData);
