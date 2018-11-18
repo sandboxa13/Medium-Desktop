@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Subjects;
 using System.Security.Authentication;
 using System.Threading.Tasks;
@@ -15,18 +16,18 @@ namespace Medium.Services.MediumApi.Managers
     {
         private readonly IUserDataStorageManager<UserData> _userDataStorageManager;
         private readonly IMediumClient _mediumClient;
-        private readonly BehaviorSubject<bool> _loggedIn;
+        private readonly BehaviorSubject<Unit> _loggedIn;
 
-        public AuthenticationManager(
+        public AuthenticationManager(   
             IUserDataStorageManager<UserData> userDataStorageManager,
             IMediumClient mediumClient)
         {
             _userDataStorageManager = userDataStorageManager;
             _mediumClient = mediumClient;
-            _loggedIn = new BehaviorSubject<bool>(false);
+            _loggedIn = new BehaviorSubject<Unit>(Unit.Default);
         }
 
-        public IObservable<bool> LoggedIn() => _loggedIn;
+        public IObservable<Unit> LoggedIn() => _loggedIn;
 
         public async Task LoginAsync()
         {
@@ -37,7 +38,7 @@ namespace Medium.Services.MediumApi.Managers
             else
             {
                 UpdateClient(userData);
-                _loggedIn.OnNext(true);
+                _loggedIn.OnNext(Unit.Default);
             }
         }
 
@@ -64,7 +65,7 @@ namespace Medium.Services.MediumApi.Managers
 
             _userDataStorageManager.InsertObject(userData, "user");
 
-            _loggedIn.OnNext(true);
+            _loggedIn.OnNext(Unit.Default);
         }
     }
 }

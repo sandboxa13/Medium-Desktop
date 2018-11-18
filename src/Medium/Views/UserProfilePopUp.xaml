@@ -1,3 +1,49 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+  <Border CornerRadius="4" BorderThickness="1" BorderBrush="#D9D9D9" >
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" Background="Transparent">
+      <TextBlock Classes="UserProfile" Grid.Row="0" Text="Become a member"/>
+
+      <Border Grid.Row="1" BorderThickness="0, 1, 0, 1" BorderBrush="#F1F1F1">
+        <StackPanel>
+          <TextBlock Classes="UserProfile" Text="New story"/>
+          <TextBlock Classes="UserProfile" Text="Stories"/>
+          <TextBlock Classes="UserProfile" Text="Series"/>
+          <TextBlock Classes="UserProfile" Text="Stats"/>
+        </StackPanel>
+      </Border>
+
+
+      <Border Grid.Row="2" BorderThickness="0, 0, 0, 0" BorderBrush="#F1F1F1">
+        <TextBlock Classes="UserProfile" Text="Medium Partner Program"/>
+      </Border>
+
+      <Border Grid.Row="3" BorderThickness="0, 1, 0, 1" BorderBrush="#F1F1F1">
+        <StackPanel>
+          <TextBlock Classes="UserProfile" Text="Bookmarks"/>
+          <TextBlock Classes="UserProfile" Text="Publications"/>
+          <TextBlock Classes="UserProfile" Text="Customize your interests"/>
+        </StackPanel>
+      </Border>
+
+      <StackPanel Grid.Row="4">
+        <TextBlock Classes="UserProfile" Text="Profile"/>
+        <TextBlock Classes="UserProfile" Text="Settings"/>
+        <TextBlock Classes="UserProfile" Text="Help"/>
+        <TextBlock Classes="UserProfile" Text="Sign out"/>
+      </StackPanel>
+    </Grid>
+  </Border>
+
+  <UserControl.Styles>
+    <Style Selector="TextBlock.UserProfile">
+      <Setter Property="FontFamily" Value="Segoe UI, Ubuntu" />
+      <Setter Property="FontSize" Value="16" />
+      <Setter Property="Foreground" Value="#666666" />
+      <Setter Property="Margin" Value="20, 10, 0, 10" />
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+  </UserControl.Styles>
 </UserControl>

@@ -2,6 +2,7 @@
 using DryIocAttributes;
 using Medium.Core.Interfaces;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Medium.Core.ViewModels
 {
@@ -11,8 +12,9 @@ namespace Medium.Core.ViewModels
     {
         public ViewModelActivator Activator { get; }
             
+        [Reactive] public bool UserProfilePopUpIsOpen { get; set; }
+
         public MainPageViewModel(
-            //IMediumApiService mediumApiService, 
             INavigationService navigationService)
         {
             Activator = new ViewModelActivator();
@@ -21,6 +23,10 @@ namespace Medium.Core.ViewModels
                 // Example disposition logic.
                 Disposable.Create(() => {}).DisposeWith(disposables);
             });
+
+            ShowPopUpCommand = ReactiveCommand.Create(() => { UserProfilePopUpIsOpen = !UserProfilePopUpIsOpen; });
         }
+
+        public ReactiveCommand ShowPopUpCommand { get; private set; }
     }
 }
