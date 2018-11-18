@@ -13,7 +13,7 @@
     <Grid Grid.Column="2" Grid.Row="0" Margin="5" RowDefinitions="*, Auto">
       <Button Cursor="Hand" Name="UserPofileButtton" Grid.Row="0" Classes="User" Width="40" Height="40" Command="{Binding ShowPopUpCommand}"/>
 
-      <Popup StaysOpen="False" PlacementTarget="{Binding ElementName=UserPofileButtton}" HorizontalOffset="-100" Width="240" IsOpen="{Binding UserProfilePopUpIsOpen}">
+      <Popup Classes="UserProfile" PlacementTarget="{Binding ElementName=UserPofileButtton}" IsOpen="{Binding UserProfilePopUpIsOpen}">
         <views:UserProfilePopUp Margin="0, 10, 0, 0" Grid.Row="1"/>
       </Popup>
     </Grid>
@@ -34,6 +34,12 @@
         </ControlTemplate>
       </Setter>
     </Style>
-  </UserControl.Styles>
+      
+    <Style Selector="Popup.UserProfile">
+        <Setter Property="StaysOpen" Value="False"/>
+        <Setter Property="HorizontalOffset" Value="-100"/>
+        <Setter Property="Width" Value="240"/>
+    </Style>
 
+  </UserControl.Styles>
 </UserControl>
