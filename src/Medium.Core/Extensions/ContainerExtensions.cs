@@ -12,7 +12,7 @@ namespace Medium.Core.Extensions
         public static void RegisterShared(this IContainer container)    
         {
             container.WithMefAttributedModel();
-            container.RegisterExports(new[] { typeof(AuthenticationManager).GetAssembly() });    
+            container.RegisterExports(new[] { typeof(UserProfileManager).GetAssembly() });    
             container.RegisterExports(new[] { typeof(MediumClient).GetAssembly() });    
             container.RegisterExports(new[] { typeof(Factory<>).GetAssembly() });
             container.RegisterExports(new[] { typeof(MainWindowViewModel).GetAssembly() });

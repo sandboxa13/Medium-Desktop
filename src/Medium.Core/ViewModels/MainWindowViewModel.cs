@@ -19,12 +19,13 @@ namespace Medium.Core.ViewModels
         
         public IEnumerable<ISupportsActivation> Pages { get; }
         public ViewModelActivator Activator { get; }
-
+            
         public MainWindowViewModel(     
             INavigationService navigationService,
             ErrorAuthViewModel errorAuthViewModel,
             MainPageViewModel mainPageViewModel,
-            LoginViewModel loginViewModel)
+            LoginViewModel loginViewModel, 
+            UserProfilePopUpViewModel userProfilePopUpViewModel)
         {
             Pages = new List<ISupportsActivation> { mainPageViewModel, loginViewModel, errorAuthViewModel };
 

@@ -21,6 +21,7 @@
     <None Remove="Styles\Theme.xaml" />
     <None Remove="Views\ErrorAuthPage.xaml" />
     <None Remove="Views\LoginPage.xaml" />
+    <None Remove="Views\UserProfilePopUp.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.7.1-build460-beta" />
@@ -62,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ErrorAuthPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserProfilePopUp.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

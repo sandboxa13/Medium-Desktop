@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Akavache;
 using DryIocAttributes;
@@ -9,12 +8,12 @@ namespace Medium.Services.MediumApi.Managers
 {
     [Reuse(ReuseType.Singleton)]
     [ExportEx(typeof(IUserDataStorageManager<>))]
-    public class UserDataStorageManager<T> : IUserDataStorageManager<T> where T: class 
-    {   
+    public class UserDataStorageManager<T> : IUserDataStorageManager<T> where T : class, new()
+    {
         public UserDataStorageManager()
         {
             BlobCache.ApplicationName = "MediumDesktop";
-        }   
+        }
 
         public void InsertObject(T obj, string key)
         {
@@ -23,14 +22,8 @@ namespace Medium.Services.MediumApi.Managers
 
         public async Task<T> GetObject(string key)
         {
-            try
-            {
-                return await BlobCache.LocalMachine.GetObject<T>(key);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+            return await BlobCache.LocalMachine.GetObject<T>(key)
+                .Catch(Observable.Return(new T()));
         }
     }
 }

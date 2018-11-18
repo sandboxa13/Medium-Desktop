@@ -1,4 +1,6 @@
-﻿using System.Security.Authentication;
+﻿using System;
+using System.Reactive.Subjects;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using DryIocAttributes;
 using Medium.Services.MediumApi.Domain;
@@ -13,6 +15,7 @@ namespace Medium.Services.MediumApi.Managers
     {
         private readonly IUserDataStorageManager<UserData> _userDataStorageManager;
         private readonly IMediumClient _mediumClient;
+        private readonly BehaviorSubject<bool> _loggedIn;
 
         public AuthenticationManager(
             IUserDataStorageManager<UserData> userDataStorageManager,
@@ -20,16 +23,22 @@ namespace Medium.Services.MediumApi.Managers
         {
             _userDataStorageManager = userDataStorageManager;
             _mediumClient = mediumClient;
+            _loggedIn = new BehaviorSubject<bool>(false);
         }
+
+        public IObservable<bool> LoggedIn() => _loggedIn;
 
         public async Task LoginAsync()
         {
-            var userData = await _userDataStorageManager.GetObject("userData");
+            var userData = await _userDataStorageManager.GetObject("user");
 
-            if (userData == null)
+            if (string.IsNullOrEmpty(userData.Token))
                 await LoginHandler();
             else
+            {
                 UpdateClient(userData);
+                _loggedIn.OnNext(true);
+            }
         }
 
         private void UpdateClient(UserData userData)
@@ -53,7 +62,9 @@ namespace Medium.Services.MediumApi.Managers
                 RefreshToken = _mediumClient.Token.RefreshToken
             };
 
-            _userDataStorageManager.InsertObject(userData, "userData");
+            _userDataStorageManager.InsertObject(userData, "user");
+
+            _loggedIn.OnNext(true);
         }
     }
 }
