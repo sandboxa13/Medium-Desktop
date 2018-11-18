@@ -22,9 +22,9 @@ namespace Medium.Services.MediumApi.Managers
             _authenticationManager = authenticationManager;
 
             _authenticationManager.LoggedIn()
-                .Subscribe(b =>
+                .Subscribe(async b =>
             {
-                var profile = GetUser();
+                var profile =  await GetUser();
             });
         }
 
