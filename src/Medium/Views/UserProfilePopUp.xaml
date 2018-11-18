@@ -6,7 +6,7 @@
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" Background="Transparent">
       <TextBlock Classes="UserProfile" Grid.Row="0" Text="Become a member"/>
 
-      <Border Grid.Row="1" BorderThickness="0, 1, 0, 1" BorderBrush="#F1F1F1">
+      <Border Grid.Row="1" Classes="Inner" BorderThickness="0, 1, 0, 1">
         <StackPanel>
           <TextBlock Classes="UserProfile" Text="New story"/>
           <TextBlock Classes="UserProfile" Text="Stories"/>
@@ -15,12 +15,11 @@
         </StackPanel>
       </Border>
 
-
-      <Border Grid.Row="2" BorderThickness="0, 0, 0, 0" BorderBrush="#F1F1F1">
+      <Border Grid.Row="2" Classes="Inner" BorderThickness="0, 0, 0, 0">
         <TextBlock Classes="UserProfile" Text="Medium Partner Program"/>
       </Border>
 
-      <Border Grid.Row="3" BorderThickness="0, 1, 0, 1" BorderBrush="#F1F1F1">
+      <Border Grid.Row="3" Classes="Inner" BorderThickness="0, 1, 0, 1">
         <StackPanel>
           <TextBlock Classes="UserProfile" Text="Bookmarks"/>
           <TextBlock Classes="UserProfile" Text="Publications"/>
@@ -44,6 +43,10 @@
       <Setter Property="Foreground" Value="#666666" />
       <Setter Property="Margin" Value="20, 10, 0, 10" />
       <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style Selector="Border.Inner">
+      <Setter Property="BorderBrush" Value="#F1F1F1" />
     </Style>
   </UserControl.Styles>
 </UserControl>

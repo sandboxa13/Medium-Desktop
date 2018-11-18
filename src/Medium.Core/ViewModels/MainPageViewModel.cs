@@ -17,6 +17,8 @@ namespace Medium.Core.ViewModels
         public MainPageViewModel(
             INavigationService navigationService)
         {
+            ShowPopUpCommand = ReactiveCommand.Create(() => { UserProfilePopUpIsOpen = !UserProfilePopUpIsOpen; });
+
             Activator = new ViewModelActivator();
             this.WhenActivated(disposables =>
             {
@@ -24,7 +26,6 @@ namespace Medium.Core.ViewModels
                 Disposable.Create(() => {}).DisposeWith(disposables);
             });
 
-            ShowPopUpCommand = ReactiveCommand.Create(() => { UserProfilePopUpIsOpen = !UserProfilePopUpIsOpen; });
         }
 
         public ReactiveCommand ShowPopUpCommand { get; private set; }
