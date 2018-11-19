@@ -1,5 +1,7 @@
-﻿using System.Reactive;
+﻿using System;
+using System.Reactive;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using DryIocAttributes;
 using Medium.Core.Interfaces;
 using ReactiveUI;
@@ -15,11 +17,16 @@ namespace Medium.Core.ViewModels
 
         public ErrorAuthViewModel(INavigationService navigationService)
         {
-            RetryCommand = ReactiveCommand.Create(() => navigationService.Navigate(typeof(LoginViewModel)));
+            RetryCommand = ReactiveCommand.Create(() => {});
             
             Activator = new ViewModelActivator();
+            
             this.WhenActivated(disposables =>
             {
+                RetryCommand.Select(unit => typeof(LoginViewModel))
+                    .Subscribe(navigationService.Navigate)
+                    .DisposeWith(disposables);
+                
                 Disposable.Create(() => { }).DisposeWith(disposables);
             });
         }
