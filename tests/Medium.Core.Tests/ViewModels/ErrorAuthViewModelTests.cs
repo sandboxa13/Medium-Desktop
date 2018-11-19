@@ -6,7 +6,7 @@ using NSubstitute;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Medium.Core.Tests
+namespace Medium.Core.Tests.ViewModels
 {
     public class ErrorAuthViewModelTests
     {
