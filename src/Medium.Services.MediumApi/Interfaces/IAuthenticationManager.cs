@@ -8,6 +8,6 @@ namespace Medium.Services.MediumApi.Interfaces
     {
         Task LoginAsync();
 
-        IObservable<Unit> LoggedIn();
+        IObservable<bool> LoggedIn();
     }
 }

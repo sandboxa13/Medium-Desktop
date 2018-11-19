@@ -16,18 +16,18 @@ namespace Medium.Services.MediumApi.Managers
     {
         private readonly IUserDataStorageManager<UserData> _userDataStorageManager;
         private readonly IMediumClient _mediumClient;
-        private readonly BehaviorSubject<Unit> _loggedIn;
+        private readonly BehaviorSubject<bool> _loggedIn;
 
-        public AuthenticationManager(   
+        public AuthenticationManager(
             IUserDataStorageManager<UserData> userDataStorageManager,
             IMediumClient mediumClient)
         {
             _userDataStorageManager = userDataStorageManager;
             _mediumClient = mediumClient;
-            _loggedIn = new BehaviorSubject<Unit>(Unit.Default);
+            _loggedIn = new BehaviorSubject<bool>(false);
         }
 
-        public IObservable<Unit> LoggedIn() => _loggedIn;
+        public IObservable<bool> LoggedIn() => _loggedIn;
 
         public async Task LoginAsync()
         {
@@ -38,7 +38,7 @@ namespace Medium.Services.MediumApi.Managers
             else
             {
                 UpdateClient(userData);
-                _loggedIn.OnNext(Unit.Default);
+                _loggedIn.OnNext(true);
             }
         }
 
@@ -55,7 +55,10 @@ namespace Medium.Services.MediumApi.Managers
             var token = _mediumClient.Token;
 
             if (token == null)
+            {
+                _loggedIn.OnNext(false);
                 throw new AuthenticationException("Token is Null");
+            }
 
             var userData = new UserData
             {
@@ -65,7 +68,7 @@ namespace Medium.Services.MediumApi.Managers
 
             _userDataStorageManager.InsertObject(userData, "user");
 
-            _loggedIn.OnNext(Unit.Default);
+            _loggedIn.OnNext(true);
         }
     }
 }

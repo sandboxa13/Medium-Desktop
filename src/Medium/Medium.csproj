@@ -39,7 +39,7 @@
     <Compile Update="Styles\Text.xaml.cs">
       <DependentUpon>Text.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\LoginPage.xaml.cs">
+    <Compile Update="Views\UserProfilePage.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MainPage.xaml.cs">
@@ -68,5 +68,10 @@
     <EmbeddedResource Update="Views\UserProfilePopUp.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

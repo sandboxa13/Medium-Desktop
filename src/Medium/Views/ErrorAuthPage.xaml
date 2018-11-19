@@ -11,7 +11,9 @@
             <Button Classes="Login"
                     Foreground="#ffffff"
                     Command="{Binding RetryCommand}"
-                    Content="Try Again" />
+                    Content="Try Again"/>
+            
+            
         </StackPanel>
     </Grid>
     
