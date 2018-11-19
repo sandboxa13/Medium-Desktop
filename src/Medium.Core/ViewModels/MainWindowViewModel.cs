@@ -36,11 +36,12 @@ namespace Medium.Core.ViewModels
         {
             Pages = new List<ISupportsActivation> { mainPageViewModel, loginViewModel, errorAuthViewModel, userProfileViewModel };
 
-            ShowPopUpCommand = ReactiveCommand.Create(() => { UserProfilePopUpIsOpen = !UserProfilePopUpIsOpen; });
+            ShowPopUpCommand = ReactiveCommand.Create(() => { });
 
             UserProfilePopUpViewModel = userProfilePopUpViewModel;
             
             Activator = new ViewModelActivator();
+            
             this.WhenActivated(disposables =>
             {
                 authenticationManager.LoggedIn()
@@ -50,6 +51,10 @@ namespace Medium.Core.ViewModels
                 navigationService.CurrentPage()
                     .Select(type => Pages.First(x => x.GetType() == type))
                     .Subscribe(viewModel => CurrentPage = viewModel)
+                    .DisposeWith(disposables);
+
+                ShowPopUpCommand.Select(unit => UserProfilePopUpIsOpen = !UserProfilePopUpIsOpen)
+                    .Subscribe()
                     .DisposeWith(disposables);
             });
         }
